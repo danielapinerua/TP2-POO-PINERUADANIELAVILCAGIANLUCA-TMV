@@ -32,7 +32,7 @@ public enum TipoUsuario {
                 JOptionPane.DEFAULT_OPTION,
                 null,
                 TipoUsuario.values(),
-                TipoUsuario.CLIENTE);
+                TipoUsuario.values()[0]);
     }
 
 
