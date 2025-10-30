@@ -25,7 +25,6 @@ public enum TipoUsuario {
         );
 
        
-            JOptionPane.showMessageDialog(null, "Seleccionó: " + opcion);
     }
 
     public static TipoUsuario elegirTipo() {
