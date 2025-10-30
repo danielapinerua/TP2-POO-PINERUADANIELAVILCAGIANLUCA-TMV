@@ -14,27 +14,33 @@ public enum TipoUsuario {
 
     public void mostrarMenu() {
         String[] opcionesEnum = this.opciones.split("/");
-        String opcion = (String) JOptionPane.showInputDialog(null,
+        String opcion = (String) JOptionPane.showInputDialog(
+                null,
                 "Seleccione una opción:",
-                "Menú de " + this.name(),
+                null,  
                 JOptionPane.DEFAULT_OPTION,
                 null,
                 opcionesEnum,
-                opcionesEnum[0]);
-        JOptionPane.showMessageDialog(null, "Seleccionó: " + opcion);
+                opcionesEnum[0]
+        );
+
+        if (opcion != null) {
+            JOptionPane.showMessageDialog(null, "Seleccionó: " + opcion);
+        }
     }
 
     public static TipoUsuario elegirTipo() {
-        return (TipoUsuario) JOptionPane.showInputDialog(
+       TipoUsuario opcion  =(TipoUsuario)JOptionPane.showInputDialog(
                 null,
                 "Seleccione tipo de usuario:",
                 "Ingreso al sistema",
                 JOptionPane.DEFAULT_OPTION,
                 null,
                 TipoUsuario.values(),
-                TipoUsuario.values()[0]);
+                TipoUsuario.CLIENTE
+        );
+       return opcion;
     }
-
 
 }
 
