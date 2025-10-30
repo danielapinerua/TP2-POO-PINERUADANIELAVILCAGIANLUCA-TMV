@@ -92,16 +92,27 @@ public class Cuenta {
 		return null;
 	}
 	
-	public void Tranferencia(int monto) {
-		if(monto <= 0) {
-			JOptionPane.showMessageDialog(null, "invalido");
-		} else {
-			JOptionPane.showMessageDialog(null, "Se agrego movimiento");
-			this.movimientos.add(new Movimiento("Transferencia", monto));
+	public void transferencia(Cuenta aTransferir, double monto) {
+	    if (monto <= 0) {
+	        JOptionPane.showMessageDialog(null, "Monto inválido");
+	        return;
+	    }
 
-		}
-		
-		
+	    if (this.saldo < monto) {
+	        JOptionPane.showMessageDialog(null, "Saldo insuficiente");
+	        return;
+	    }
+
+	    this.saldo -= monto;
+	    aTransferir.saldo += monto;
+
+	   
+	    this.movimientos.add(new Movimiento("Transferencia enviada",monto));
+	    aTransferir.movimientos.add(new Movimiento("Transferencia recibida", monto));
+
+	    JOptionPane.showMessageDialog(null, 
+	        "Transferencia realizada a " + aTransferir.getCliente().getNombre() +
+	        " por $" + monto);
 	}
 	
 	
