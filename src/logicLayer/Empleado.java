@@ -5,8 +5,9 @@ import javax.swing.JOptionPane;
 public class Empleado extends Usuario {
 	private String legajo;
 
-	public Empleado(String nombre, TipoUsuario tipo, String legajo) {
-		super(nombre, tipo);
+
+	public Empleado(String nombre, TipoUsuario tipo, String mail, String pin, String legajo) {
+		super(nombre, tipo, mail, pin);
 		this.legajo = legajo;
 	}
 

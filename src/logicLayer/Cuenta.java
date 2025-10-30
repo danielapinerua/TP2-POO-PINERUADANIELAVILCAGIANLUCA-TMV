@@ -1,74 +1,97 @@
 package logicLayer;
+
 import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
 
 public class Cuenta {
-	private String cbu;
+	private int cbu;
 	private Cliente cliente;
 	private double saldo;
-    private LinkedList<Movimiento> movimientos = new LinkedList<>();
-    private static LinkedList<Cuenta> cuentas = new LinkedList<>();
-    
-
-	 public Cuenta(String cbu, Cliente cliente, double saldo, LinkedList<Movimiento> movimientos) {
+	private LinkedList<Movimiento>movimientos;
+	private static LinkedList<Cuenta>cuentas;
+	public Cuenta(int cbu, Cliente cliente, double saldo) {
 		super();
 		this.cbu = cbu;
 		this.cliente = cliente;
 		this.saldo = saldo;
-		this.movimientos = movimientos;
+		this.movimientos = new LinkedList<Movimiento>();
 	}
-	 
-	 
-	 public String getCbu() {
+	
+	public int getCbu() {
 		return cbu;
 	}
-
-	 public void setCbu(String cbu) {
-		 this.cbu = cbu;
-	 }
-
-	 public Cliente getCliente() {
-		 return cliente;
-	 }
-
-	 public void setCliente(Cliente cliente) {
-		 this.cliente = cliente;
-	 }
-
-	 public double getSaldo() {
-		 return saldo;
-	 }
-
-	 public void setSaldo(double saldo) {
-		 this.saldo = saldo;
-	 }
-
-
-	 public LinkedList<Movimiento> getMovimientos() {
-		 return movimientos;
-	 }
-
-	 public void setMovimientos(LinkedList<Movimiento> movimientos) {
-		 this.movimientos = movimientos;
-	 }
-
-	 public static LinkedList<Cuenta> getCuentas() {
-		 return cuentas;
-	 }
-
-	 public static void setCuentas(LinkedList<Cuenta> cuentas) {
-		 Cuenta.cuentas = cuentas;
-	 }
-
-	 public static void Registrarse() {
-		 String nombre = JOptionPane.showInputDialog("Ingresar nombre");
-	     String mail = JOptionPane.showInputDialog("Ingresar mail");
-	     String pin = JOptionPane.showInputDialog("Ingresar pin");
-	    	
-	 }
+	public void setCbu(int cbu) {
+		this.cbu = cbu;
+	}
+	public Cliente getCliente() {
+		return cliente;
+	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	public double getSaldo() {
+		return saldo;
+	}
+	public void setSaldo(double saldo) {
+		this.saldo = saldo;
+	}
+	public LinkedList<Movimiento> getMovimientos() {
+		return movimientos;
+	}
+	public void setMovimientos(LinkedList<Movimiento> movimientos) {
+		this.movimientos = movimientos;
+	}
+	public static LinkedList<Cuenta> getCuentas() {
+		return cuentas;
+	}
+	public static void setCuentas(LinkedList<Cuenta> cuentas) {
+		Cuenta.cuentas = cuentas;
+	}
 	
 	
-    
-    
+	public static void registrarse() {
+	    String nombre = JOptionPane.showInputDialog("Ingresar nombre:");
+	    String mail = JOptionPane.showInputDialog("Ingresar mail:");
+	    String pin = JOptionPane.showInputDialog("Ingresar pin:");
+	    String telefono = JOptionPane.showInputDialog("Ingresar teléfono:");
+	    
+	    Cliente nuevoCliente = new Cliente(nombre, TipoUsuario.CLIENTE, mail, pin, telefono);
+	    
+	    // CBU automático
+	    int cbu = generarCbu();
+	    
+	    // Generar saldo aleatorio
+	    double saldo = (int) (Math.random() * 10000);
+	  
+	    Cuenta nuevaCuenta = new Cuenta(cbu, nuevoCliente, saldo);
+	    
+	    // Guardarla en la lista de cuentas
+	    cuentas.add(nuevaCuenta);
+	    
+	    JOptionPane.showMessageDialog(null, 
+	        "Registro exitoso.\nCliente: " + nombre + 
+	        "\nCBU asignado: " + cbu + 
+	        "\nSaldo inicial: $" + saldo);
+	}
+	
+	public static int generarCbu() {
+	    int numero = 10000000 + cuentas.size() + 1; 
+	    return numero;
+	}
+	
+	public static Cuenta login(String email, String contrasenia) {
+		for(Cuenta cuenta : cuentas) {
+			if(cuenta.getCliente().getMail().equals(email) && cuenta.getCliente().getPin().equals(contrasenia)) {
+				return cuenta;
+			}
+		}
+		return null;
+	}
+	
+	
+	
+	
+	
+
 }
