@@ -7,12 +7,11 @@ public class Movimiento {
 	private LocalDateTime fecha;
 	private double monto;
 	private String detalle;
-	public Movimiento(String tipo, LocalDateTime fecha, double monto, String detalle) {
+	public Movimiento(String tipo, double monto) {
 		super();
 		this.tipo = tipo;
-		this.fecha = fecha;
+		this.fecha = LocalDateTime.now();
 		this.monto = monto;
-		this.detalle = detalle;
 	}
 	public String getTipo() {
 		return tipo;
@@ -32,15 +31,10 @@ public class Movimiento {
 	public void setMonto(double monto) {
 		this.monto = monto;
 	}
-	public String getDetalle() {
-		return detalle;
-	}
-	public void setDetalle(String detalle) {
-		this.detalle = detalle;
-	}
+
 	@Override
 	public String toString() {
-		return "Movimiento [tipo=" + tipo + ", fecha=" + fecha + ", monto=" + monto + ", detalle=" + detalle + "]";
+		return "Movimiento [tipo=" + tipo + ", fecha=" + fecha + ", monto=" + monto + "]";
 	}
 	
 	

@@ -50,6 +50,12 @@ public class Cuenta {
 	}
 	
 	
+	
+	private static int generarCbu() {
+	    int numero = 10000000 + cuentas.size() + 1; 
+	    return numero;
+	}
+	
 	public static void registrarse() {
 	    String nombre = JOptionPane.showInputDialog("Ingresar nombre:");
 	    String mail = JOptionPane.showInputDialog("Ingresar mail:");
@@ -58,7 +64,7 @@ public class Cuenta {
 	    
 	    Cliente nuevoCliente = new Cliente(nombre, TipoUsuario.CLIENTE, mail, pin, telefono);
 	    
-	    // CBU automático
+	    
 	    int cbu = generarCbu();
 	    
 	    // Generar saldo aleatorio
@@ -66,7 +72,7 @@ public class Cuenta {
 	  
 	    Cuenta nuevaCuenta = new Cuenta(cbu, nuevoCliente, saldo);
 	    
-	    // Guardarla en la lista de cuentas
+	   
 	    cuentas.add(nuevaCuenta);
 	    
 	    JOptionPane.showMessageDialog(null, 
@@ -75,10 +81,7 @@ public class Cuenta {
 	        "\nSaldo inicial: $" + saldo);
 	}
 	
-	public static int generarCbu() {
-	    int numero = 10000000 + cuentas.size() + 1; 
-	    return numero;
-	}
+	
 	
 	public static Cuenta login(String email, String contrasenia) {
 		for(Cuenta cuenta : cuentas) {
@@ -87,6 +90,18 @@ public class Cuenta {
 			}
 		}
 		return null;
+	}
+	
+	public void Tranferencia(int monto) {
+		if(monto <= 0) {
+			JOptionPane.showMessageDialog(null, "invalido");
+		} else {
+			JOptionPane.showMessageDialog(null, "Se agrego movimiento");
+			this.movimientos.add(new Movimiento("Transferencia", monto));
+
+		}
+		
+		
 	}
 	
 	
