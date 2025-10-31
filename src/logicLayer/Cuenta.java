@@ -84,8 +84,8 @@ public class Cuenta {
 		return ingreso;
 	}
 	private static String generarCbu() {
-	    int numero = 10000000 + cuentas.size() + 1; 
-	    return "CBU" + numero;
+	    int numero = 10000000 + cuentas.size(); 
+	    return String.valueOf(numero);
 	}
 	
 	public static void registrarse() {
