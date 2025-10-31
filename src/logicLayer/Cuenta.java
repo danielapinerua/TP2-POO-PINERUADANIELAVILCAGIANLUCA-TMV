@@ -83,28 +83,26 @@ public class Cuenta {
 		} while (flag==false);
 		return ingreso;
 	}
+	
 	private static String generarCbu() {
 	    int numero = 10000000 + cuentas.size(); 
 	    return String.valueOf(numero);
 	}
 	
 	public static void registrarse() {
-	    String nombre = JOptionPane.showInputDialog("Ingresar nombre:");
-	    String mail = JOptionPane.showInputDialog("Ingresar mail:");
-	    String pin = JOptionPane.showInputDialog("Ingresar pin:");
-	    String telefono = JOptionPane.showInputDialog("Ingresar teléfono:");
-	    
+	    String nombre = validarLetras("Ingresar nombre:");
+	    String mail = validarLetras("Ingresar mail:");
+	    String pin = String.valueOf(validarNumero("Ingresar PIN:"));
+	    String telefono = String.valueOf(validarNumero("Ingresar teléfono:"));
+
 	    Cliente nuevoCliente = new Cliente(nombre, TipoUsuario.CLIENTE, mail, pin, telefono);
-	    
-	    
+
 	    String cbu = generarCbu();
 	    
-	    // Generar saldo aleatorio
 	    double saldo = (int) (Math.random() * 10000);
-	  
+
 	    Cuenta nuevaCuenta = new Cuenta(cbu, nuevoCliente, saldo);
 	    
-	   
 	    cuentas.add(nuevaCuenta);
 	    
 	    JOptionPane.showMessageDialog(null, 
@@ -112,7 +110,6 @@ public class Cuenta {
 	        "\nCBU asignado: " + cbu + 
 	        "\nSaldo inicial: $" + saldo);
 	}
-	
 	
 	
 	public static Cuenta login(String email, String contrasenia) {

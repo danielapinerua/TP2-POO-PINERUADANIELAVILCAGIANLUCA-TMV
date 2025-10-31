@@ -24,8 +24,8 @@ public class Main {
 				} else {
 					
 					
-					String email = JOptionPane.showInputDialog(null, "Ingrese mail");
-					String pin = JOptionPane.showInputDialog(null, "Ingrese pin");
+					String email = Cuenta.validarLetras("Ingrese mail");
+					String pin = String.valueOf(Cuenta.validarNumero("Ingrese PIN:"));
 					
 					Cuenta logueada = Cuenta.login(email, pin);
 					if(logueada == null) {
