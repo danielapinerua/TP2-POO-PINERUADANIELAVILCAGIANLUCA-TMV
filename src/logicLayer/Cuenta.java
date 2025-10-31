@@ -5,12 +5,12 @@ import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
 public class Cuenta {
-	private int cbu;
+	private String cbu;
 	private Cliente cliente;
 	private double saldo;
 	private LinkedList<Movimiento>movimientos;
 	private static LinkedList<Cuenta>cuentas;
-	public Cuenta(int cbu, Cliente cliente, double saldo) {
+	public Cuenta(String cbu, Cliente cliente, double saldo) {
 		super();
 		this.cbu = cbu;
 		this.cliente = cliente;
@@ -18,10 +18,10 @@ public class Cuenta {
 		this.movimientos = new LinkedList<Movimiento>();
 	}
 	
-	public int getCbu() {
+	public String getCbu() {
 		return cbu;
 	}
-	public void setCbu(int cbu) {
+	public void setCbu(String cbu) {
 		this.cbu = cbu;
 	}
 	public Cliente getCliente() {
@@ -51,9 +51,41 @@ public class Cuenta {
 	
 	
 	
-	private static int generarCbu() {
+	public static int validarNumero(String mensaje) {	
+		boolean flag;
+		String ingreso;
+		do {
+			flag = true;
+			ingreso = JOptionPane.showInputDialog(mensaje);
+			for (int i = 0; i < ingreso.length(); i++) {
+				if (!Character.isDigit(ingreso.charAt(i))) {
+					flag = false;
+					break;
+				}
+			}
+		} while (flag==false);
+		return Integer.parseInt(ingreso);
+	}
+	
+	public static String validarLetras(String mensaje) {	
+		boolean flag;
+		String ingreso;
+		do {
+			flag = true;
+				ingreso = JOptionPane.showInputDialog(mensaje);
+			
+			for (int i = 0; i < ingreso.length(); i++) {
+				if (!Character.isAlphabetic(ingreso.charAt(i))) {
+					flag = false;
+					break;
+				}
+			}
+		} while (flag==false);
+		return ingreso;
+	}
+	private static String generarCbu() {
 	    int numero = 10000000 + cuentas.size() + 1; 
-	    return numero;
+	    return "CBU" + numero;
 	}
 	
 	public static void registrarse() {
@@ -65,7 +97,7 @@ public class Cuenta {
 	    Cliente nuevoCliente = new Cliente(nombre, TipoUsuario.CLIENTE, mail, pin, telefono);
 	    
 	    
-	    int cbu = generarCbu();
+	    String cbu = generarCbu();
 	    
 	    // Generar saldo aleatorio
 	    double saldo = (int) (Math.random() * 10000);
@@ -91,6 +123,9 @@ public class Cuenta {
 		}
 		return null;
 	}
+	
+	
+	
 	
 	public void transferencia(Cuenta aTransferir, double monto) {
 	    if (monto <= 0) {
