@@ -6,7 +6,7 @@ public class Movimiento {
 	private String tipo;
 	private LocalDateTime fecha;
 	private double monto;
-	private String detalle;
+
 	public Movimiento(String tipo, double monto) {
 		super();
 		this.tipo = tipo;
