@@ -56,11 +56,7 @@ public class Main {
                     String mailEmp = JOptionPane.showInputDialog("Mail del empleado:");
                     String pinEmp = JOptionPane.showInputDialog("PIN del empleado:");
 
-                    Empleado empleadoLogueado = null;
-                    for (Empleado e : empleados) {
-                        if (e.getMail().equals(mailEmp) && e.getPin().equals(pinEmp)) {
-                            empleadoLogueado = e;
-                            break;
+                    Empleado empleadoLogueado = Empleado.login(mailEmp, pinEmp);
                         }
                     }
 
