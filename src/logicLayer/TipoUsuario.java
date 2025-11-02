@@ -3,7 +3,7 @@ package logicLayer;
 import javax.swing.JOptionPane;
 
 public enum TipoUsuario {
-	CLIENTE("Depositar dinero/Retirar dinero/Ver saldo/Salir"),
+	CLIENTE("Depositar dinero/Transferir/Retirar dinero/Ver saldo/Salir"),
     EMPLEADO("Ver cuentas/Cargar dinero al cajero/Salir");
 
     private final String opciones;
