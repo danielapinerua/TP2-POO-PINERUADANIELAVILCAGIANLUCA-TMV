@@ -28,6 +28,7 @@ public class Empleado extends Usuario {
 	public static void setEmpleados(LinkedList<Empleado> empleados) {
 		Empleado.empleados = empleados;
 	}
+	//habria que crear lista de empleados usando add 
 
 	
 	// meun del empleado propio se invoca en el main
