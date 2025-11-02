@@ -146,6 +146,45 @@ public class Cuenta {
 	        "Transferencia realizada a " + aTransferir.getCliente().getNombre() +
 	        " por $" + monto);
 	}
+	// operaciones basicas del cajero
+    public void depositar(double monto) {
+        if (monto > 0) {
+            saldo += monto;
+            movimientos.add(new Movimiento("Depósito", monto));
+            JOptionPane.showMessageDialog(null, "Se depositaron $" + monto);
+        } else {
+            JOptionPane.showMessageDialog(null, "Monto inválido");
+        }
+    }
+
+    public boolean retirar(double monto) {
+        if (monto > 0 && saldo >= monto) {
+            saldo -= monto;
+            movimientos.add(new Movimiento("Retiro", monto));
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "Saldo insuficiente o monto inválido");
+            return false;
+        }
+    }
+
+    public void mostrarHistorial() {
+        if (movimientos.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No hay movimientos");
+        } else {
+            StringBuilder sb = new StringBuilder("=== Movimientos ===\n");
+            for (Movimiento m : movimientos) {
+                sb.append(m.toString()).append("\n");
+            }
+            JOptionPane.showMessageDialog(null, sb.toString());
+        }
+    }
+    
+    @Override
+    public String toString() {
+        return "Cuenta CBU: " + cbu + " | Cliente: " + cliente.getNombre() + " | Saldo: $" + saldo;
+    }
+}
 	
 	
 	
