@@ -8,7 +8,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Cajero cajero = new Cajero(50000);
+        Cajero cajero = new Cajero(50000.00);
 
         // lista de empleados
         
