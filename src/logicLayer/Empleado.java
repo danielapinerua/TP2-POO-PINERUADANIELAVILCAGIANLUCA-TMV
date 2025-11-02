@@ -6,6 +6,8 @@ import javax.swing.JOptionPane;
 
 public class Empleado extends Usuario {
 	private String legajo;
+	private static LinkedList<Empleado>empleados;
+
 
 
 	public Empleado(String nombre, TipoUsuario tipo, String mail, String pin, String legajo) {
@@ -20,6 +22,13 @@ public class Empleado extends Usuario {
 	public void setLegajo(String legajo) {
 		this.legajo = legajo;
 	}
+	public static LinkedList<Empleado> getEmpleados() {
+		return empleados;
+	}
+	public static void setEmpleados(LinkedList<Empleado> empleados) {
+		Empleado.empleados = empleados;
+	}
+
 	
 	// meun del empleado propio se invoca en el main
     public void mostrarMenu(Cajero cajero) {
@@ -48,7 +57,16 @@ public class Empleado extends Usuario {
             }
         } while (opcion != 2);
     }
-
+    
+    
+    public static Empleado login (String email, String contrasenia) {
+		for(Empleado empleado: empleados) {
+			if(empleado.getMail().equals(email) && empleado.getPin().equals(contrasenia)) {
+				return empleado;
+			}
+		}
+		return null;
+	}
 	
 	
 	 	
