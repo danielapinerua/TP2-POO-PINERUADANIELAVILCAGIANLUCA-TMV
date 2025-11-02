@@ -26,7 +26,8 @@ public enum TipoUsuario {
 
        
     }
-
+    
+    
     public static TipoUsuario elegirTipo() {
        TipoUsuario opcion  =(TipoUsuario)JOptionPane.showInputDialog(
                 null,

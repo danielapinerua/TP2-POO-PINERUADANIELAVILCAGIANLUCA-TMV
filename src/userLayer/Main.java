@@ -16,6 +16,27 @@ public class Main {
         LinkedList<Empleado> empleados = new LinkedList<>();
         empleados.add(new Empleado("Gianluca", TipoUsuario.EMPLEADO, "gvilca@mail.com", "1234", "L001"));
 
+        
+        //permite elegir que tipo de usuario
+        //esta en el enum
+         TipoUsuario tipoElegido = TipoUsuario.elegirTipo();
+		
+		// muestra menu depende si es cliente o empleado
+         //esta en el enum
+		if (tipoElegido == TipoUsuario.CLIENTE) {
+			JOptionPane.showMessageDialog(null, "Ingresó como CLIENTE");
+			tipoElegido.mostrarMenu();
+			
+		} else if (tipoElegido == TipoUsuario.EMPLEADO) {
+			JOptionPane.showMessageDialog(null, "Ingresó como EMPLEADO");
+			tipoElegido.mostrarMenu();
+		}
+	}
+
+        
+        
+        
+        //como estaba hecho antes
         int opcionMenu;
         do {
             String[] opcionesTipo = {"Empleado", "Cliente", "Salir"};
