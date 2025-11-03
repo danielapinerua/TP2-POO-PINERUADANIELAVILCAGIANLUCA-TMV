@@ -31,34 +31,6 @@ public class Empleado extends Usuario {
 	//habria que crear lista de empleados usando add 
 
 	
-	// meun del empleado propio se invoca en el main
-    public void mostrarMenu(Cajero cajero) {
-        String[] opciones = {"Ver cuentas", "Cargar dinero al cajero", "Salir"};
-        int opcion;
-        do {
-            opcion = JOptionPane.showOptionDialog(
-                    null,
-                    "Seleccione opción",
-                    "Empleado",
-                    JOptionPane.DEFAULT_OPTION,
-                    JOptionPane.INFORMATION_MESSAGE,
-                    null,
-                    opciones,
-                    opciones[0]
-            );
-
-            switch (opcion) {
-                case 0: // aca vemos las cuentas
-                    verCuentas(cajero);
-                    break;
-                case 1: // aca le cargamos los dolares
-                    double monto = Double.parseDouble(JOptionPane.showInputDialog("Monto a cargar:"));
-                    cargarDinero(cajero, monto);
-                    break;
-            }
-        } while (opcion != 2);
-    }
-    
     
     public static Empleado login (String email, String contrasenia) {
 		for(Empleado empleado: empleados) {
