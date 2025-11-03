@@ -82,7 +82,7 @@ public class Main {
 
                             case 1: // Iniciar sesión
                                 String mailCli = Cuenta.validarCampo("Mail del cliente:");
-                                String pinCli = Cuenta.validarLetras("PIN del cliente:");
+                                String pinCli = Cuenta.validarCampo("PIN del cliente:");
 
                                 Cuenta cuentaLogueada = Cuenta.login(mailCli, pinCli);
 
