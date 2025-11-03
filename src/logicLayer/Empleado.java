@@ -10,7 +10,7 @@ public class Empleado extends Usuario {
 
 
 	public Empleado(String nombre, TipoUsuario tipo, String mail, String pin, String legajo) {
-		super(nombre, tipo, mail, pin);
+		super(nombre, TipoUsuario.EMPLEADO, mail, pin);
 		this.legajo = legajo;
 	}
 

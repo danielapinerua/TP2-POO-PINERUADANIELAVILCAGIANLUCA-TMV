@@ -6,7 +6,7 @@ public class Cliente extends Usuario{
 	private String telefono;
 
 	public Cliente(String nombre, TipoUsuario tipo, String mail, String pin, String telefono) {
-		super(nombre, tipo, mail, pin);
+		super(nombre, TipoUsuario.CLIENTE, mail, pin);
 		this.telefono = telefono;
 	}
 
