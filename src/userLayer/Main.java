@@ -18,7 +18,7 @@ public class Main {
 		
 		LinkedList<Empleado> empleados = new LinkedList<>();
         empleados.add(new Empleado("Gianluca", TipoUsuario.EMPLEADO, "gvilca@mail.com", "1234", "L001"));
-
+        
         int opcionSalir;
         do {
             // 🔹 Elegir tipo de usuario (del enum)
