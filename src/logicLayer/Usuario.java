@@ -1,10 +1,13 @@
 package logicLayer;
 
+import java.util.LinkedList;
+
 import javax.swing.JOptionPane;
 
 public abstract class Usuario {
 	protected String nombre;
 	protected TipoUsuario tipoUsuario;
+	private static LinkedList<Usuario> usuarios = new  LinkedList<Usuario>();
 	protected String mail;
 	protected String pin;
 	public Usuario(String nombre, TipoUsuario tipoUsuario, String mail, String pin) {
@@ -37,6 +40,25 @@ public abstract class Usuario {
 	}
 	public void setPin(String pin) {
 		this.pin = pin;
+	}
+	public static LinkedList<Usuario> getUsuarios() {
+		return usuarios;
+	}
+	public static void setUsuarios(LinkedList<Usuario> usuarios) {
+		Usuario.usuarios = usuarios;
+	}
+	
+	
+	public static Usuario Login(String mail, String contr) {
+		
+		for (Usuario usuario : usuarios) {
+			if (usuario.getPin().equals(contr) && usuario.getNombre().equals(mail)) {
+				
+				return usuario;
+				
+			}
+		}
+		return null;
 	}
 	@Override
 	public String toString() {

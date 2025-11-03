@@ -31,14 +31,14 @@ public class Empleado extends Usuario {
 
 	
     
-    public static Empleado login (String email, String contrasenia) {
-		for(Empleado empleado: empleados) {
-			if(empleado.getMail().equals(email) && empleado.getPin().equals(contrasenia)) {
-				return empleado;
-			}
-		}
-		return null;
-	}
+   // public static Empleado login (String email, String contrasenia) {
+	//	for(Empleado empleado: empleados) {
+	//		if(empleado.getMail().equals(email) && empleado.getPin().equals(contrasenia)) {
+	//			return empleado;
+		//	}
+		//}
+		//return null;
+	//}
 	
 	
     

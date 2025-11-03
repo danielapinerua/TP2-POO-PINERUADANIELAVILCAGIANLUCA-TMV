@@ -129,7 +129,7 @@ public class Cuenta {
 	    String pin = validarCampo("Ingresar PIN:");
 	    String telefono = String.valueOf(validarNumero("Ingresar teléfono:"));
 
-	    Cliente nuevoCliente = new Cliente(nombre, TipoUsuario.CLIENTE, mail, pin, telefono);
+	    Cliente nuevoCliente = new Cliente(nombre, TipoUsuario.Cliente, mail, pin, telefono);
 
 	    String cbu = generarCbu();
 	    
@@ -146,14 +146,14 @@ public class Cuenta {
 	}
 	
 	
-	public static Cuenta login(String email, String contrasenia) {
-		for(Cuenta cuenta : cuentas) {
-			if(cuenta.getCliente().getMail().equals(email) && cuenta.getCliente().getPin().equals(contrasenia)) {
-				return cuenta;
-			}
-		}
-		return null;
-	}
+	//public static Cuenta login(String email, String contrasenia) {
+	//	for(Cuenta cuenta : cuentas) {
+			//if(cuenta.getCliente().getMail().equals(email) && cuenta.getCliente().getPin().equals(contrasenia)) {
+			//	return cuenta;
+			//}
+		//}
+	//	return null;
+	//}
 	
 	
 	
