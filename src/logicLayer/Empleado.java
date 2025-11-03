@@ -43,8 +43,8 @@ public class Empleado extends Usuario {
 	 @Override
 		public void Menu() {
 			int opcion=JOptionPane.showOptionDialog(null, "Menu empleado","",0,0,null, this.getTipoUsuario().getOpciones(),this.getTipoUsuario().getOpciones());
-		}
-    
+		
+	 }
 	 	
 	// ver las cuentas q existen
     public void verCuentas(Cajero cajero) {

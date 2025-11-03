@@ -32,7 +32,8 @@ public class Main {
         int opcionSalir;
         do {
             TipoUsuario tipoElegido = TipoUsuario.elegirTipo();
-            if (tipoElegido == null) break;
+            if (tipoElegido == null)
+            	break;
 
             switch (tipoElegido) {
                 case Empleado:
