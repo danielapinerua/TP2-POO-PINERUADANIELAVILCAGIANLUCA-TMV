@@ -96,12 +96,10 @@ public class Main {
                                 break;
 
                             case 2: // Salir
-                                JOptionPane.showMessageDialog(null, "Volviendo al menú principal...");
                                 break;
                         }
 
-                    } while (opcionCliente != 2); // repetir hasta que elija Salir
-
+                    } while (opcionCliente != 2); 
                     break;
             }
 
