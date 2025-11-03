@@ -9,6 +9,7 @@ import logicLayer.Cliente;
 import logicLayer.Cuenta;
 import logicLayer.Empleado;
 import logicLayer.TipoUsuario;
+import logicLayer.Usuario;
 
 public class Main {
 
@@ -17,8 +18,8 @@ public class Main {
 
 		Cajero cajero = new Cajero(500000.00);
 		//agregue cuentas creadas
-		Cuenta cuenta1 = new Cuenta("10000001", new Cliente("Daniela", TipoUsuario.CLIENTE, "daniela@mail.com", "1111", "123456789"), 5000);
-		Cuenta cuenta2 = new Cuenta("10000002", new Cliente("Lucas", TipoUsuario.CLIENTE, "lucas@mail.com", "2222", "987654321"), 8000);
+		Cuenta cuenta1 = new Cuenta("10000001", new Cliente("Daniela", TipoUsuario.Cliente, "daniela@mail.com", "1111", "123456789"), 5000);
+		Cuenta cuenta2 = new Cuenta("10000002", new Cliente("Lucas", TipoUsuario.Cliente, "lucas@mail.com", "2222", "987654321"), 8000);
 
 		Cuenta.getCuentas().add(cuenta1);
 		Cuenta.getCuentas().add(cuenta2);
@@ -26,11 +27,11 @@ public class Main {
 		cajero.agregarCuenta(cuenta1);
 		cajero.agregarCuenta(cuenta2);
 		//empleados creados
-		Empleado.getEmpleados().add(new Empleado("Gianluca", TipoUsuario.EMPLEADO, "gvilca@gmail.com", "1234", "L001"));
-		Empleado.getEmpleados().add(new Empleado("Paula", TipoUsuario.EMPLEADO, "paula@gmail.com", "12345", "L002"));
-		Empleado.getEmpleados().add(new Empleado("Christian", TipoUsuario.EMPLEADO, "christian@mgail.com", "123456", "L003"));
-		Empleado.getEmpleados().add(new Empleado("Oriana", TipoUsuario.EMPLEADO, "oriana@gmail.com", "1234567", "L004"));
-		Empleado.getEmpleados().add(new Empleado("Francisco", TipoUsuario.EMPLEADO, "francisco@gmail.com", "12345678", "L005"));
+		Empleado.getEmpleados().add(new Empleado("Gianluca", TipoUsuario.Empleado, "gvilca@gmail.com", "1234", "L001"));
+		Empleado.getEmpleados().add(new Empleado("Paula", TipoUsuario.Empleado, "paula@gmail.com", "12345", "L002"));
+		Empleado.getEmpleados().add(new Empleado("Christian", TipoUsuario.Empleado, "christian@mgail.com", "123456", "L003"));
+		Empleado.getEmpleados().add(new Empleado("Oriana", TipoUsuario.Empleado, "oriana@gmail.com", "1234567", "L004"));
+		Empleado.getEmpleados().add(new Empleado("Francisco", TipoUsuario.Empleado, "francisco@gmail.com", "12345678", "L005"));
 
 
 
@@ -45,11 +46,11 @@ public class Main {
 
             switch (tipoElegido) {
 
-                case EMPLEADO:
+                case Empleado:
                 	String mailEmp = Cuenta.validarCampo("Mail del empleado:");
                 	String pinEmp = Cuenta.validarCampo("PIN del empleado:");
 
-                	Empleado empleadoLogueado = Empleado.login(mailEmp, pinEmp);
+                	Empleado empleadoLogueado = Usuario.login(mailEmp, pinEmp);
 
                 	if (empleadoLogueado == null) {
                 	    JOptionPane.showMessageDialog(null, "Empleado no encontrado o datos incorrectos");
@@ -59,7 +60,7 @@ public class Main {
                 	}
                     break;
 
-                case CLIENTE:
+                case Cliente:
                 	String[] opcionesCliente = {"Registrarse", "Iniciar sesión", "Salir"};
                     int opcionCliente;
 
@@ -84,7 +85,7 @@ public class Main {
                                 String mailCli = Cuenta.validarCampo("Mail del cliente:");
                                 String pinCli = Cuenta.validarCampo("PIN del cliente:");
 
-                                Cuenta cuentaLogueada = Cuenta.login(mailCli, pinCli);
+                                Cuenta cuentaLogueada = Usuario.login(mailCli, pinCli);
 
                                 if (cuentaLogueada == null) {
                                     JOptionPane.showMessageDialog(null, "Cliente no encontrado o datos incorrectos");
