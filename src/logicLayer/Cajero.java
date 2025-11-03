@@ -13,10 +13,16 @@ public class Cajero {
     }
 
     // getters y setters
-    public double getDineroDisponible() { return dineroDisponible; }
-    public void setDineroDisponible(double dineroDisponible) { this.dineroDisponible = dineroDisponible; }
+    public double getDineroDisponible() { 
+    	return dineroDisponible; 
+    	}
+    public void setDineroDisponible(double dineroDisponible) { 
+    	this.dineroDisponible = dineroDisponible; 
+    	}
 
-    public LinkedList<Cuenta> getCuentas() { return cuentas; }
+    public LinkedList<Cuenta> getCuentas() { 
+    	return cuentas;
+    	}
     public void setCuentas(LinkedList<Cuenta> cuentas) { this.cuentas = cuentas; }
 
     public void agregarCuenta(Cuenta cuenta) {

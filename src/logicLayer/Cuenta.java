@@ -9,7 +9,7 @@ public class Cuenta {
 	private Cliente cliente;
 	private double saldo;
 	private LinkedList<Movimiento>movimientos;
-	private static LinkedList<Cuenta>cuentas;
+	private static LinkedList<Cuenta>cuentas = new LinkedList<>();
 	public Cuenta(String cbu, Cliente cliente, double saldo) {
 		super();
 		this.cbu = cbu;

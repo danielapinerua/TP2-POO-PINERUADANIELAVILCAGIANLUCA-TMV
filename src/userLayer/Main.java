@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
 import logicLayer.Cajero;
+import logicLayer.Cliente;
 import logicLayer.Cuenta;
 import logicLayer.Empleado;
 import logicLayer.TipoUsuario;
@@ -15,6 +16,15 @@ public class Main {
 		// TODO Auto-generated method stub
 
 		Cajero cajero = new Cajero(500000.00);
+		//agregue cuentas creadas
+		Cuenta cuenta1 = new Cuenta("10000001", new Cliente("Daniela", TipoUsuario.CLIENTE, "daniela@mail.com", "1111", "123456789"), 5000);
+		Cuenta cuenta2 = new Cuenta("10000002", new Cliente("Lucas", TipoUsuario.CLIENTE, "lucas@mail.com", "2222", "987654321"), 8000);
+
+		Cuenta.getCuentas().add(cuenta1);
+		Cuenta.getCuentas().add(cuenta2);
+
+		cajero.agregarCuenta(cuenta1);
+		cajero.agregarCuenta(cuenta2);
 		
 		LinkedList<Empleado> empleados = new LinkedList<>();
         empleados.add(new Empleado("Gianluca", TipoUsuario.EMPLEADO, "gvilca@mail.com", "1234", "L001"));
