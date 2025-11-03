@@ -77,8 +77,7 @@ public class Main {
                                     cliente.Menu();
                                 }
                             }
-                        }
-                    } while (opcionCliente != 2);
+                        } while (opcionCliente != 2);
                     break;
             }
 
@@ -88,5 +87,6 @@ public class Main {
         JOptionPane.showMessageDialog(null, "Gracias por usar el sistema bancario!");
     }
 }
+
 		
 	
