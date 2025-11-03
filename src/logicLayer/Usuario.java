@@ -1,10 +1,10 @@
 package logicLayer;
 
 public abstract class Usuario {
-	private String nombre;
-	private TipoUsuario tipo;
-	private String mail;
-	private String pin;
+	protected String nombre;
+	protected TipoUsuario tipo;
+	protected String mail;
+	protected String pin;
 	public Usuario(String nombre, TipoUsuario tipo, String mail, String pin) {
 		super();
 		this.nombre = nombre;
