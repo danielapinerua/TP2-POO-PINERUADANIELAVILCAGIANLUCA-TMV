@@ -25,7 +25,7 @@ public class Main {
 
 		cajero.agregarCuenta(cuenta1);
 		cajero.agregarCuenta(cuenta2);
-		
+		//empleados creados
 		Empleado.getEmpleados().add(new Empleado("Gianluca", TipoUsuario.EMPLEADO, "gvilca@gmail.com", "1234", "L001"));
 		Empleado.getEmpleados().add(new Empleado("Paula", TipoUsuario.EMPLEADO, "paula@gmail.com", "12345", "L002"));
 		Empleado.getEmpleados().add(new Empleado("Christian", TipoUsuario.EMPLEADO, "christian@mgail.com", "123456", "L003"));
