@@ -9,8 +9,8 @@ public class Empleado extends Usuario {
 	private static LinkedList<Empleado>empleados = new LinkedList<>();
 
 
-	public Empleado(String nombre, TipoUsuario tipo, String mail, String pin, String legajo) {
-		super(nombre, TipoUsuario.EMPLEADO, mail, pin);
+	public Empleado(String nombre, TipoUsuario tipoUsuario, String mail, String pin, String legajo) {
+		super(nombre, TipoUsuario.Empleado, mail, pin);
 		this.legajo = legajo;
 	}
 
@@ -67,7 +67,12 @@ public class Empleado extends Usuario {
         cajero.setDineroDisponible(cajero.getDineroDisponible() + monto);
         JOptionPane.showMessageDialog(null, "Cajero recargado. Total: $" + cajero.getDineroDisponible());
     }
-
+    
+    
+    @Override
+	public void Menu() {
+		int opcion=JOptionPane.showOptionDialog(null, "Menu empleado","",0,0,null, this.getTipoUsuario().getOpciones(),this.getTipoUsuario().getOpciones());
+	}
     @Override
     public String toString() {
         return "Empleado: " + getNombre() + " | Legajo: " + legajo;

@@ -3,30 +3,45 @@ package logicLayer;
 import javax.swing.JOptionPane;
 
 public enum TipoUsuario {
-	CLIENTE("Depositar dinero/Transferir/Retirar dinero/Ver saldo/Ver informacion/Salir"),
-    EMPLEADO("Ver cuentas/Cargar dinero al cajero/Ver informacion/Salir");
+	//CLIENTE("Depositar dinero/Transferir/Retirar dinero/Ver saldo/Ver informacion/Salir"),
+   // EMPLEADO("Ver cuentas/Cargar dinero al cajero/Ver informacion/Salir");
 
-    private final String opciones;
+   // private final String opciones;
 
-    private TipoUsuario(String opciones) {
-        this.opciones = opciones;
-    }
+    //private TipoUsuario(String opciones) {
+     //   this.opciones = opciones;
+   // }
 
-    public void mostrarMenu() {
-        String[] opcionesEnum = this.opciones.split("/");
-        String opcion = (String) JOptionPane.showInputDialog(
-                null,
-                "Seleccione una opción:",
-                null,  
-                JOptionPane.DEFAULT_OPTION,
-                null,
-                opcionesEnum,
-                opcionesEnum[0]
-        );
+   // public void mostrarMenu() {
+      //  String[] opcionesEnum = this.opciones.split("/");
+       // String opcion = (String) JOptionPane.showInputDialog(
+            //    null,
+              //  "Seleccione una opción:",
+              //  null,  
+              //  JOptionPane.DEFAULT_OPTION,
+               // null,
+              //  opcionesEnum,
+               // opcionesEnum[0]
+       // );
 
        
-    }
+   // }
+	Cliente(new String[]{"Depositar dinero","Transferir", "Retirar dinero", "Ver saldo", "Ver informacion", "salir"}),
+	Empleado(new String[]{"Ver cuentas","Cargar dinero al cajero","Ver informacion", "Salir"});
     
+	private String[] opciones;
+
+	private TipoUsuario(String[] opciones) {
+		this.opciones = opciones;
+	}
+
+	public String[] getOpciones() {
+		return opciones;
+	}
+
+	public void setOpciones(String[] opciones) {
+		this.opciones = opciones;
+	}
     
     public static TipoUsuario elegirTipo() {
        TipoUsuario opcion  =(TipoUsuario)JOptionPane.showInputDialog(

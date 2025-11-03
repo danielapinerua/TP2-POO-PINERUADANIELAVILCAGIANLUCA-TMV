@@ -1,14 +1,16 @@
 package logicLayer;
 
+import javax.swing.JOptionPane;
+
 public abstract class Usuario {
 	protected String nombre;
-	protected TipoUsuario tipo;
+	protected TipoUsuario tipoUsuario;
 	protected String mail;
 	protected String pin;
-	public Usuario(String nombre, TipoUsuario tipo, String mail, String pin) {
+	public Usuario(String nombre, TipoUsuario tipoUsuario, String mail, String pin) {
 		super();
 		this.nombre = nombre;
-		this.tipo = tipo;
+		this.tipoUsuario = tipoUsuario;
 		this.mail = mail;
 		this.pin = pin;
 	}
@@ -18,11 +20,11 @@ public abstract class Usuario {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public TipoUsuario getTipo() {
-		return tipo;
+	public TipoUsuario getTipoUsuario() {
+		return tipoUsuario;
 	}
 	public void setTipo(TipoUsuario tipo) {
-		this.tipo = tipo;
+		this.tipoUsuario = tipo;
 	}
 	public String getMail() {
 		return mail;
@@ -38,10 +40,15 @@ public abstract class Usuario {
 	}
 	@Override
 	public String toString() {
-		return "Usuario [nombre=" + nombre + ", tipo=" + tipo + ", mail=" + mail + ", pin=" + pin + "]";
+		return "Usuario [nombre=" + nombre + ", tipo=" + tipoUsuario + ", mail=" + mail + ", pin=" + pin + "]";
 	}
 	
-	
+	public void Menu() {
+		JOptionPane.showMessageDialog(null,
+				"Menu general");
+	}
+}
+
 	
 
-}
+
