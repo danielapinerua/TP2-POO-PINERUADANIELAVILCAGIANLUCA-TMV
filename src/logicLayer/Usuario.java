@@ -64,7 +64,7 @@ public abstract class Usuario {
 	public String toString() {
 		return "Usuario [nombre=" + nombre + ", tipo=" + tipoUsuario + ", mail=" + mail + ", pin=" + pin + "]";
 	}
-	
+	//public abstract void menu();
 	public void Menu() {
 		JOptionPane.showMessageDialog(null,
 				"Menu general");
