@@ -65,6 +65,7 @@ public class Main {
                         switch (opcionCliente) {
                             case 0:
                             	Cuenta.registrarse();
+                            	break;
                             case 1:
                             	
                                 String mailCli = Cuenta.validarCampo("Mail del cliente:");
@@ -76,12 +77,16 @@ public class Main {
                                     JOptionPane.showMessageDialog(null, "Bienvenido " + cliente.getNombre());
                                     cliente.Menu();
                                 }
-                            }
+                                break;
+                            
+                        case 2:
+                        	break;
+                        }
                         } while (opcionCliente != 2);
                     break;
             }
 
-            opcionSalir = JOptionPane.showConfirmDialog(null, "¿Volver al menú principal?", "Continuar", JOptionPane.YES_NO_OPTION);
+            opcionSalir = JOptionPane.showConfirmDialog(null, "¿Desea volver al menú principal?", "Continuar", JOptionPane.YES_NO_OPTION);
         } while (opcionSalir == JOptionPane.YES_OPTION);
 
         JOptionPane.showMessageDialog(null, "Gracias por usar el sistema bancario!");
