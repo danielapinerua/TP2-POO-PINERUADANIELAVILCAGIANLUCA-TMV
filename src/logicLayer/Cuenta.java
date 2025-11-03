@@ -100,7 +100,7 @@ public class Cuenta {
 		return ingreso;
 		}
 	
-	public static String validarMail(String mensaje) {
+	public static String validarCampo(String mensaje) {
 		boolean flag;
 		String ingreso;
 		do {
