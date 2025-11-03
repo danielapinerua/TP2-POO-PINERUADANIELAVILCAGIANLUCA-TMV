@@ -54,15 +54,26 @@ public class Cuenta {
 	public static int validarNumero(String mensaje) {	
 		boolean flag;
 		String ingreso;
+		int numero;
 		do {
 			flag = true;
-			ingreso = JOptionPane.showInputDialog(mensaje);
+			do {
+				ingreso = JOptionPane.showInputDialog(mensaje);
+			} while (ingreso.isEmpty());
 			for (int i = 0; i < ingreso.length(); i++) {
+				//si caracter no es un digito
 				if (!Character.isDigit(ingreso.charAt(i))) {
 					flag = false;
 					break;
 				}
 			}
+	        if (flag) {
+	            numero = Integer.parseInt(ingreso);
+	            if (numero < 0) {
+	                flag = false;
+	            }
+	        }
+	        
 		} while (flag==false);
 		return Integer.parseInt(ingreso);
 	}
@@ -73,17 +84,40 @@ public class Cuenta {
 		do {
 			flag = true;
 				ingreso = JOptionPane.showInputDialog(mensaje);
-			
-			for (int i = 0; i < ingreso.length(); i++) {
-				if (!Character.isAlphabetic(ingreso.charAt(i))) {
-					flag = false;
-					break;
-				}
-			}
+				
+		        if (ingreso.isEmpty()) {
+		            flag = false;
+		        } else {
+		            for (int i = 0; i < ingreso.length(); i++) {
+		                if (!Character.isAlphabetic(ingreso.charAt(i))) {
+		                    flag = false;
+		                    break;
+		                }
+		            }
+		        }
+		    
 		} while (flag==false);
 		return ingreso;
-	}
+		}
 	
+	public static String validarMail(String mensaje) {
+		boolean flag;
+		String ingreso;
+		do {
+			flag = true;
+				ingreso = JOptionPane.showInputDialog(mensaje);
+				
+		        if (ingreso.isEmpty()) {
+		       
+		            flag = false;
+		        }
+		      
+		    
+		} while (flag==false);
+		return ingreso;
+		
+		
+	}
 	private static String generarCbu() {
 	    int numero = 10000000 + cuentas.size(); 
 	    return String.valueOf(numero);
@@ -91,7 +125,7 @@ public class Cuenta {
 	
 	public static void registrarse() {
 	    String nombre = validarLetras("Ingresar nombre:");
-	    String mail = validarLetras("Ingresar mail:");
+	    String mail = validarMail("Ingresar mail:");
 	    String pin = String.valueOf(validarNumero("Ingresar PIN:"));
 	    String telefono = String.valueOf(validarNumero("Ingresar teléfono:"));
 
