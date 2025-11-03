@@ -6,10 +6,10 @@ import javax.swing.JOptionPane;
 
 public class Empleado extends Usuario {
 	private String legajo;
-	private static LinkedList<Empleado>empleados = new LinkedList<>();
+	//private static LinkedList<Empleado>empleados = new LinkedList<>();
 
 
-	public Empleado(String nombre, TipoUsuario tipoUsuario, String mail, String pin, String legajo) {
+	public Empleado(String nombre, String mail, String pin, String legajo) {
 		super(nombre, TipoUsuario.Empleado, mail, pin);
 		this.legajo = legajo;
 	}
@@ -21,12 +21,12 @@ public class Empleado extends Usuario {
 	public void setLegajo(String legajo) {
 		this.legajo = legajo;
 	}
-	public static LinkedList<Empleado> getEmpleados() {
-		return empleados;
-	}
-	public static void setEmpleados(LinkedList<Empleado> empleados) {
-		Empleado.empleados = empleados;
-	}
+	//public static LinkedList<Empleado> getEmpleados() {
+		//return empleados;
+	//}
+	//public static void setEmpleados(LinkedList<Empleado> empleados) {
+	//	Empleado.empleados = empleados;
+	//}
 
 
 	
@@ -40,7 +40,10 @@ public class Empleado extends Usuario {
 		//return null;
 	//}
 	
-	
+	 @Override
+		public void Menu() {
+			int opcion=JOptionPane.showOptionDialog(null, "Menu empleado","",0,0,null, this.getTipoUsuario().getOpciones(),this.getTipoUsuario().getOpciones());
+		}
     
 	 	
 	// ver las cuentas q existen
@@ -69,10 +72,7 @@ public class Empleado extends Usuario {
     }
     
     
-    @Override
-	public void Menu() {
-		int opcion=JOptionPane.showOptionDialog(null, "Menu empleado","",0,0,null, this.getTipoUsuario().getOpciones(),this.getTipoUsuario().getOpciones());
-	}
+    
     @Override
     public String toString() {
         return "Empleado: " + getNombre() + " | Legajo: " + legajo;

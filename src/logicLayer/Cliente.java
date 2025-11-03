@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 public class Cliente extends Usuario{
 	private String telefono;
 
-	public Cliente(String nombre, TipoUsuario tipoUsuario, String mail, String pin, String telefono) {
+	public Cliente(String nombre, String mail, String pin, String telefono) {
 		super(nombre, TipoUsuario.Cliente, mail, pin);
 		this.telefono = telefono;
 	}

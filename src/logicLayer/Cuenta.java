@@ -124,25 +124,24 @@ public class Cuenta {
 	}
 	
 	public static void registrarse() {
-	    String nombre = validarLetras("Ingresar nombre:");
-	    String mail = validarCampo("Ingresar mail:");
-	    String pin = validarCampo("Ingresar PIN:");
-	    String telefono = String.valueOf(validarNumero("Ingresar teléfono:"));
+        String nombre = validarLetras("Ingresar nombre:");
+        String mail = validarCampo("Ingresar mail:");
+        String pin = validarCampo("Ingresar PIN:");
+        String telefono = String.valueOf(validarNumero("Ingresar teléfono:"));
 
-	    Cliente nuevoCliente = new Cliente(nombre, TipoUsuario.Cliente, mail, pin, telefono);
+        Cliente nuevoCliente = new Cliente(nombre, mail, pin, telefono);
+        Usuario.getUsuarios().add(nuevoCliente); // 🔹 Se agrega a la lista general de usuarios
 
-	    String cbu = generarCbu();
-	    
-	    double saldo = (int) (Math.random() * 10000);
+        String cbu = generarCbu();
+        double saldo = (int)(Math.random() * 10000);
 
-	    Cuenta nuevaCuenta = new Cuenta(cbu, nuevoCliente, saldo);
-	    
-	    cuentas.add(nuevaCuenta);
-	    
-	    JOptionPane.showMessageDialog(null, 
-	        "Registro exitoso.\nCliente: " + nombre + 
-	        "\nCBU asignado: " + cbu + 
-	        "\nSaldo inicial: $" + saldo);
+        Cuenta nuevaCuenta = new Cuenta(cbu, nuevoCliente, saldo);
+        cuentas.add(nuevaCuenta);
+
+        JOptionPane.showMessageDialog(null,
+            "Registro exitoso.\nCliente: " + nombre +
+            "\nCBU asignado: " + cbu +
+            "\nSaldo inicial: $" + saldo);
 	}
 	
 	

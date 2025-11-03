@@ -18,94 +18,71 @@ public class Main {
 
 		Cajero cajero = new Cajero(500000.00);
 		//agregue cuentas creadas
-		Cuenta cuenta1 = new Cuenta("10000001", new Cliente("Daniela", TipoUsuario.Cliente, "daniela@mail.com", "1111", "123456789"), 5000);
-		Cuenta cuenta2 = new Cuenta("10000002", new Cliente("Lucas", TipoUsuario.Cliente, "lucas@mail.com", "2222", "987654321"), 8000);
+		Cliente c1 = new Cliente("Daniela", "daniela@mail.com", "1111", "123456789");
+        Cliente c2 = new Cliente("Lucas", "lucas@mail.com", "2222", "987654321");
+        Empleado e1 = new Empleado("Gianluca", "gvilca@mail.com", "1234", "L001");
 
-		Cuenta.getCuentas().add(cuenta1);
-		Cuenta.getCuentas().add(cuenta2);
+        Usuario.getUsuarios().add(c1);
+        Usuario.getUsuarios().add(c2);
+        Usuario.getUsuarios().add(e1);
 
-		cajero.agregarCuenta(cuenta1);
-		cajero.agregarCuenta(cuenta2);
-		//empleados creados
-		Empleado.getEmpleados().add(new Empleado("Gianluca", TipoUsuario.Empleado, "gvilca@gmail.com", "1234", "L001"));
-		Empleado.getEmpleados().add(new Empleado("Paula", TipoUsuario.Empleado, "paula@gmail.com", "12345", "L002"));
-		Empleado.getEmpleados().add(new Empleado("Christian", TipoUsuario.Empleado, "christian@mgail.com", "123456", "L003"));
-		Empleado.getEmpleados().add(new Empleado("Oriana", TipoUsuario.Empleado, "oriana@gmail.com", "1234567", "L004"));
-		Empleado.getEmpleados().add(new Empleado("Francisco", TipoUsuario.Empleado, "francisco@gmail.com", "12345678", "L005"));
+        Cuenta.getCuentas().add(new Cuenta("10000001", c1, 5000));
+        Cuenta.getCuentas().add(new Cuenta("10000002", c2, 8000));
 
-
-
-
-		
         int opcionSalir;
         do {
-            // Elegir tipo de usuario (del enum)
             TipoUsuario tipoElegido = TipoUsuario.elegirTipo();
-
-            if (tipoElegido == null) break; // si cierra el menú, se sale
+            if (tipoElegido == null) break;
 
             switch (tipoElegido) {
-
                 case Empleado:
-                	String mailEmp = Cuenta.validarCampo("Mail del empleado:");
-                	String pinEmp = Cuenta.validarCampo("PIN del empleado:");
-
-                	Empleado empleadoLogueado = Usuario.login(mailEmp, pinEmp);
-
-                	if (empleadoLogueado == null) {
-                	    JOptionPane.showMessageDialog(null, "Empleado no encontrado o datos incorrectos");
-                	} else {
-                	    JOptionPane.showMessageDialog(null, "Ingresó como EMPLEADO");
-                	    tipoElegido.mostrarMenu(); // muestra menú según enum
-                	}
+                    String mailEmp = Cuenta.validarCampo("Mail del empleado:");
+                    String pinEmp = Cuenta.validarCampo("PIN del empleado:");
+                    Usuario empleado = Usuario.login(mailEmp, pinEmp);
+                    if (empleado == null) {
+                        JOptionPane.showMessageDialog(null, "Datos incorrectos");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Bienvenido " + empleado.getNombre());
+                        empleado.Menu();
+                    }
                     break;
 
                 case Cliente:
-                	String[] opcionesCliente = {"Registrarse", "Iniciar sesión", "Salir"};
+                    String[] opcionesCliente = {"Registrarse", "Iniciar sesión", "Salir"};
                     int opcionCliente;
-
                     do {
                         opcionCliente = JOptionPane.showOptionDialog(
-                                null,
-                                "Seleccione una opción:",
-                                "Menú Cliente",
-                                JOptionPane.DEFAULT_OPTION,
-                                JOptionPane.INFORMATION_MESSAGE,
-                                null,
-                                opcionesCliente,
-                                opcionesCliente[0]
+                            null,
+                            "Seleccione una opción:",
+                            "Menú Cliente",
+                            JOptionPane.DEFAULT_OPTION,
+                            JOptionPane.INFORMATION_MESSAGE,
+                            null,
+                            opcionesCliente,
+                            opcionesCliente[0]
                         );
 
                         switch (opcionCliente) {
-                            case 0: // Registrarse
-                                Cuenta.registrarse();
-                                break;
-
-                            case 1: // Iniciar sesión
+                            case 0:
+                            	Cuenta.registrarse();
+                            case 1:
+                            	
                                 String mailCli = Cuenta.validarCampo("Mail del cliente:");
                                 String pinCli = Cuenta.validarCampo("PIN del cliente:");
-
-                                Cuenta cuentaLogueada = Usuario.login(mailCli, pinCli);
-
-                                if (cuentaLogueada == null) {
-                                    JOptionPane.showMessageDialog(null, "Cliente no encontrado o datos incorrectos");
+                                Usuario cliente = Usuario.login(mailCli, pinCli);
+                                if (cliente == null) {
+                                    JOptionPane.showMessageDialog(null, "Datos incorrectos");
                                 } else {
-                                    JOptionPane.showMessageDialog(null, "Ingresó como CLIENTE");
-                                    cuentaLogueada.getCliente().getTipo().mostrarMenu(); 
-                                    // muestra el menú definido en el enum TipoUsuario
+                                    JOptionPane.showMessageDialog(null, "Bienvenido " + cliente.getNombre());
+                                    cliente.Menu();
                                 }
-                                break;
-
-                            case 2: // Salir
-                                break;
+                            }
                         }
-
-                    } while (opcionCliente != 2); 
+                    } while (opcionCliente != 2);
                     break;
             }
 
-            opcionSalir = JOptionPane.showConfirmDialog(null, "¿Desea volver al menú principal?", "Continuar", JOptionPane.YES_NO_OPTION);
-
+            opcionSalir = JOptionPane.showConfirmDialog(null, "¿Volver al menú principal?", "Continuar", JOptionPane.YES_NO_OPTION);
         } while (opcionSalir == JOptionPane.YES_OPTION);
 
         JOptionPane.showMessageDialog(null, "Gracias por usar el sistema bancario!");
