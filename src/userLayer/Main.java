@@ -26,11 +26,11 @@ public class Main {
 		cajero.agregarCuenta(cuenta1);
 		cajero.agregarCuenta(cuenta2);
 		
-		Empleado.getEmpleados().add(new Empleado("Gianluca", TipoUsuario.EMPLEADO, "gvilca@mail.com", "1234", "L001"));
-		Empleado.getEmpleados().add(new Empleado("Paula", TipoUsuario.EMPLEADO, "paula@mail.com", "12345", "L002"));
-		Empleado.getEmpleados().add(new Empleado("Christian", TipoUsuario.EMPLEADO, "christian@mail.com", "123456", "L003"));
-		Empleado.getEmpleados().add(new Empleado("Oriana", TipoUsuario.EMPLEADO, "oriana@mail.com", "1234567", "L004"));
-		Empleado.getEmpleados().add(new Empleado("Francisco", TipoUsuario.EMPLEADO, "francisco@mail.com", "12345678", "L005"));
+		Empleado.getEmpleados().add(new Empleado("Gianluca", TipoUsuario.EMPLEADO, "gvilca@gmail.com", "1234", "L001"));
+		Empleado.getEmpleados().add(new Empleado("Paula", TipoUsuario.EMPLEADO, "paula@gmail.com", "12345", "L002"));
+		Empleado.getEmpleados().add(new Empleado("Christian", TipoUsuario.EMPLEADO, "christian@mgail.com", "123456", "L003"));
+		Empleado.getEmpleados().add(new Empleado("Oriana", TipoUsuario.EMPLEADO, "oriana@gmail.com", "1234567", "L004"));
+		Empleado.getEmpleados().add(new Empleado("Francisco", TipoUsuario.EMPLEADO, "francisco@gmail.com", "12345678", "L005"));
 
 
 
@@ -46,25 +46,17 @@ public class Main {
             switch (tipoElegido) {
 
                 case EMPLEADO:
-                	
-                    String mailEmp = JOptionPane.showInputDialog("Mail del empleado:");
-                    String pinEmp = JOptionPane.showInputDialog("PIN del empleado:");
+                	String mailEmp = JOptionPane.showInputDialog("Mail del empleado:");
+                	String pinEmp = JOptionPane.showInputDialog("PIN del empleado:");
 
-                    // 🔹 Buscar empleado
-                    Empleado empleadoLogueado = null;
-                    for (Empleado empleado : empleados) {
-                        if (empleado.getMail().equals(mailEmp) && empleado.getPin().equals(pinEmp)) {
-                            empleadoLogueado = empleado;
-                            break;
-                        }
-                    }
+                	Empleado empleadoLogueado = Empleado.login(mailEmp, pinEmp);
 
-                    if (empleadoLogueado == null) {
-                        JOptionPane.showMessageDialog(null, "Empleado no encontrado o datos incorrectos");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Ingresó como EMPLEADO");
-                        tipoElegido.mostrarMenu(); // 🔹 muestra el menú del enum
-                    }
+                	if (empleadoLogueado == null) {
+                	    JOptionPane.showMessageDialog(null, "Empleado no encontrado o datos incorrectos");
+                	} else {
+                	    JOptionPane.showMessageDialog(null, "Ingresó como EMPLEADO");
+                	    tipoElegido.mostrarMenu(); // muestra menú según enum
+                	}
                     break;
 
                 case CLIENTE:
