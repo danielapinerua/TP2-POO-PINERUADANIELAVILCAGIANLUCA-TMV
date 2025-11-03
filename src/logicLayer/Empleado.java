@@ -27,7 +27,7 @@ public class Empleado extends Usuario {
 	public static void setEmpleados(LinkedList<Empleado> empleados) {
 		Empleado.empleados = empleados;
 	}
-	//habria que crear lista de empleados usando add 
+
 
 	
     
@@ -57,7 +57,7 @@ public class Empleado extends Usuario {
         JOptionPane.showMessageDialog(null, sb.toString());
     }
 
-    // la funcion q hace q cargen los verdessss
+    
     public void cargarDinero(Cajero cajero, double monto) {
         if (monto <= 0) {
             JOptionPane.showMessageDialog(null, "Monto inválido");
