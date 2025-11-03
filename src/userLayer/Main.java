@@ -38,7 +38,7 @@ public class Main {
 		
         int opcionSalir;
         do {
-            // 🔹 Elegir tipo de usuario (del enum)
+            // Elegir tipo de usuario (del enum)
             TipoUsuario tipoElegido = TipoUsuario.elegirTipo();
 
             if (tipoElegido == null) break; // si cierra el menú, se sale
