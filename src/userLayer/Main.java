@@ -100,7 +100,7 @@ public class Main {
                                 break;
                         }
 
-                    } while (opcionCliente != 2); // repetir hasta que elija "Salir"
+                    } while (opcionCliente != 2); // repetir hasta que elija Salir
 
                     break;
             }
