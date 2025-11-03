@@ -46,8 +46,8 @@ public class Main {
             switch (tipoElegido) {
 
                 case EMPLEADO:
-                	String mailEmp = Cuenta.validarMail("Mail del empleado:");
-                	String pinEmp = Cuenta.validarLetras("PIN del empleado:");
+                	String mailEmp = Cuenta.validarCampo("Mail del empleado:");
+                	String pinEmp = Cuenta.validarCampo("PIN del empleado:");
 
                 	Empleado empleadoLogueado = Empleado.login(mailEmp, pinEmp);
 
@@ -81,7 +81,7 @@ public class Main {
                                 break;
 
                             case 1: // Iniciar sesión
-                                String mailCli = Cuenta.validarMail("Mail del cliente:");
+                                String mailCli = Cuenta.validarCampo("Mail del cliente:");
                                 String pinCli = Cuenta.validarLetras("PIN del cliente:");
 
                                 Cuenta cuentaLogueada = Cuenta.login(mailCli, pinCli);
