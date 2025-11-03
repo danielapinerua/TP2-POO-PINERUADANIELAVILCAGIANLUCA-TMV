@@ -126,7 +126,7 @@ public class Cuenta {
 	public static void registrarse() {
 	    String nombre = validarLetras("Ingresar nombre:");
 	    String mail = validarCampo("Ingresar mail:");
-	    String pin = String.valueOf(validarNumero("Ingresar PIN:"));
+	    String pin = validarCampo("Ingresar PIN:");
 	    String telefono = String.valueOf(validarNumero("Ingresar teléfono:"));
 
 	    Cliente nuevoCliente = new Cliente(nombre, TipoUsuario.CLIENTE, mail, pin, telefono);
