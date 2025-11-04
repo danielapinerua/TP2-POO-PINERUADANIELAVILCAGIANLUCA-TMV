@@ -130,7 +130,7 @@ public class Cuenta {
         String telefono = String.valueOf(validarNumero("Ingresar teléfono:"));
 
         Cliente nuevoCliente = new Cliente(nombre, mail, pin, telefono);
-        Usuario.getUsuarios().add(nuevoCliente); // 🔹 Se agrega a la lista general de usuarios
+        Usuario.getUsuarios().add(nuevoCliente); // Se agrega a la lista general de usuarios
 
         String cbu = generarCbu();
         double saldo = (int)(Math.random() * 10000);

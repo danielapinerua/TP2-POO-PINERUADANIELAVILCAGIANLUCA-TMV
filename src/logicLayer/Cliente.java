@@ -25,12 +25,90 @@ public class Cliente extends Usuario{
         return "Cliente: " + getNombre() + " | Tel: " + telefono + " | Email: " + getMail();
     }
     
-    @Override
-	public void Menu() {
-		int opcion=JOptionPane.showOptionDialog(null, "Menu Cliente","",0,0,null, this.getTipoUsuario().getOpciones(),this.getTipoUsuario().getOpciones());
+   // @Override
+	//public void Menu() {
+		//int opcion=JOptionPane.showOptionDialog(null, "Menu Cliente","",0,0,null, this.getTipoUsuario().getOpciones(),this.getTipoUsuario().getOpciones());
 	
-	}
+    @Override
+    public void Menu() {
+    	int opcion;
+        do {
+            opcion = JOptionPane.showOptionDialog(
+                null,
+                "Menú Cliente",
+                "",
+                0, 0,
+                null,
+                this.getTipoUsuario().getOpciones(),
+                this.getTipoUsuario().getOpciones()[0]
+            );
+
+            // Busca la cuenta por mail
+            Cuenta cuenta = buscarCuentaPorMail(getMail());
+            switch (opcion) {
+                case 0: 
+                    double montoDep = Double.parseDouble(JOptionPane.showInputDialog("Monto a depositar:"));
+                    cuenta.depositar(montoDep); 
+                    break;
+
+                case 1: 
+                    String cbuDestino = JOptionPane.showInputDialog("Ingrese el CBU destino:");
+                    Cuenta aTransferir = null;
+
+                    // Buscar cuenta destino
+                    for (Cuenta c : Cuenta.getCuentas()) {
+                        if (c.getCbu().equals(cbuDestino)) {
+                            aTransferir = c;
+                            break;
+                        }
+                    }
+                    if (aTransferir == null) {
+                        JOptionPane.showMessageDialog(null, "CBU no encontrado");
+                    } 
+                    // Evitar transferencias a la misma cuenta
+                    else if (aTransferir.getCbu().equals(cuenta.getCbu())) {
+                        JOptionPane.showMessageDialog(null, "No puedes transferirte dinero a tu propia cuenta.");
+                    } 
+                    else {
+                        double montoTransf = Double.parseDouble(JOptionPane.showInputDialog("Monto a transferir:"));
+                        cuenta.transferencia(aTransferir, montoTransf);
+                    }
+                    break;
+
+                case 2: // Retirar dinero
+                    double montoRet = Double.parseDouble(JOptionPane.showInputDialog("Monto a retirar:"));
+                    cuenta.retirar(montoRet); // retiro en la cuenta del cliente
+                    break;
+
+                case 3: // Ver saldo
+                    JOptionPane.showMessageDialog(null, "Saldo actual: $" + cuenta.getSaldo());
+                    break;
+
+                case 4: // Ver información
+                    JOptionPane.showMessageDialog(null, toString());
+                    break;
+
+                case 5: // Salir
+                    JOptionPane.showMessageDialog(null, "Cerrando sesión...");
+                    break;
+            }
+
+        } while (opcion != 5);
+    }
+    private Cuenta buscarCuentaPorMail(String mailCliente) {
+        for (Cuenta c : Cuenta.getCuentas()) {
+            if (c.getCliente().getMail().equals(mailCliente)) {
+                return c;
+            }
+        }
+        return null;
+    }
+
+  
+
 }
+
+
 	
 	
 	
