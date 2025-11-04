@@ -20,16 +20,21 @@ public class Main {
 		//agregue cuentas creadas
 		Cliente c1 = new Cliente("Daniela", "daniela@mail.com", "1111", "123456789");
         Cliente c2 = new Cliente("Lucas", "lucas@mail.com", "2222", "987654321");
+        Cliente c3 = new Cliente("Sofia", "sofia@mail.com", "3333", "234567890");
         Empleado e1 = new Empleado("Gianluca", "gvilca@mail.com", "1234", "L001");
         Empleado e2 = new Empleado("Paula", "paula@gmail.com", "12345", "L002");
+        Empleado e3 = new Empleado("Oriana", "oriana@gmail.com", "123456", "L003");
 
         Usuario.getUsuarios().add(c1);
         Usuario.getUsuarios().add(c2);
+        Usuario.getUsuarios().add(c3);
         Usuario.getUsuarios().add(e1);
         Usuario.getUsuarios().add(e2);
+        Usuario.getUsuarios().add(e3);
 
         Cuenta.getCuentas().add(new Cuenta("10000001", c1, 5000));
         Cuenta.getCuentas().add(new Cuenta("10000002", c2, 8000));
+        Cuenta.getCuentas().add(new Cuenta("10000002", c3, 8000));
 
         int opcionSalir;
         do {
