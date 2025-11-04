@@ -47,8 +47,7 @@ public class Empleado extends Usuario {
 	            null,
 	            "Menú Empleado\nCajero actual: $" + cajero.getDineroDisponible(),
 	            "Empleado",
-	            JOptionPane.DEFAULT_OPTION,
-	            JOptionPane.INFORMATION_MESSAGE,
+	            0,0,
 	            null,
 	            this.getTipoUsuario().getOpciones(),
 	            this.getTipoUsuario().getOpciones()[0]
