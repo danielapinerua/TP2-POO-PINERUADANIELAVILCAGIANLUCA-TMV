@@ -31,27 +31,28 @@ public class Cliente extends Usuario{
 	
     @Override
     public void Menu() {
-    	int opcion;
+        int opcion;
         do {
             opcion = JOptionPane.showOptionDialog(
                 null,
                 "Menú Cliente",
                 "",
-                0, 0,
+                0,0,
                 null,
                 this.getTipoUsuario().getOpciones(),
                 this.getTipoUsuario().getOpciones()[0]
             );
 
-            // Busca la cuenta por mail
+            // Busca la cuenta del cliente logueado
             Cuenta cuenta = buscarCuentaPorMail(getMail());
+
             switch (opcion) {
-                case 0: 
+                case 0: // Depositar dinero
                     double montoDep = Double.parseDouble(JOptionPane.showInputDialog("Monto a depositar:"));
-                    cuenta.depositar(montoDep); 
+                    cuenta.depositar(montoDep);
                     break;
 
-                case 1: 
+                case 1: // Transferir dinero
                     String cbuDestino = JOptionPane.showInputDialog("Ingrese el CBU destino:");
                     Cuenta aTransferir = null;
 
@@ -62,6 +63,7 @@ public class Cliente extends Usuario{
                             break;
                         }
                     }
+
                     if (aTransferir == null) {
                         JOptionPane.showMessageDialog(null, "CBU no encontrado");
                     } 
@@ -77,24 +79,29 @@ public class Cliente extends Usuario{
 
                 case 2: // Retirar dinero
                     double montoRet = Double.parseDouble(JOptionPane.showInputDialog("Monto a retirar:"));
-                    cuenta.retirar(montoRet); // retiro en la cuenta del cliente
+                    cuenta.retirar(montoRet);
                     break;
 
                 case 3: // Ver saldo
                     JOptionPane.showMessageDialog(null, "Saldo actual: $" + cuenta.getSaldo());
                     break;
 
-                case 4: // Ver información
+                case 4: // Ver movimientos
+                    cuenta.mostrarHistorial();
+                    break;
+
+                case 5: // Ver información 
                     JOptionPane.showMessageDialog(null, toString());
                     break;
 
-                case 5: // Salir
+                case 6: // Salir
                     JOptionPane.showMessageDialog(null, "Cerrando sesión...");
                     break;
             }
 
-        } while (opcion != 5);
+        } while (opcion != 6);
     }
+
     private Cuenta buscarCuentaPorMail(String mailCliente) {
         for (Cuenta c : Cuenta.getCuentas()) {
             if (c.getCliente().getMail().equals(mailCliente)) {
@@ -103,7 +110,6 @@ public class Cliente extends Usuario{
         }
         return null;
     }
-
   
 
 }
