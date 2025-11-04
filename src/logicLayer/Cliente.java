@@ -48,17 +48,17 @@ public class Cliente extends Usuario{
 
             switch (opcion) {
                 case 0: // Depositar dinero
-                    double montoDep = Double.parseDouble(JOptionPane.showInputDialog("Monto a depositar:"));
+                    double montoDep = Cuenta.validarNumero("Monto a depositar:");
                     cuenta.depositar(montoDep);
                     break;
 
                 case 1: // Transferir dinero
-                    String cbuDestino = JOptionPane.showInputDialog("Ingrese el CBU destino:");
+                	String cbuATransferir = String.valueOf(Cuenta.validarNumero("Ingrese el CBU a transferir:"));
                     Cuenta aTransferir = null;
 
                     // Buscar cuenta destino
                     for (Cuenta c : Cuenta.getCuentas()) {
-                        if (c.getCbu().equals(cbuDestino)) {
+                        if (c.getCbu().equals(cbuATransferir)) {
                             aTransferir = c;
                             break;
                         }
@@ -72,13 +72,13 @@ public class Cliente extends Usuario{
                         JOptionPane.showMessageDialog(null, "No puedes transferirte dinero a tu propia cuenta.");
                     } 
                     else {
-                        double montoTransf = Double.parseDouble(JOptionPane.showInputDialog("Monto a transferir:"));
+                        double montoTransf = Cuenta.validarNumero("Monto a transferir:");
                         cuenta.transferencia(aTransferir, montoTransf);
                     }
                     break;
 
                 case 2: // Retirar dinero
-                    double montoRet = Double.parseDouble(JOptionPane.showInputDialog("Monto a retirar:"));
+                    double montoRet = Cuenta.validarNumero("Monto a retirar:");
                     cuenta.retirar(montoRet);
                     break;
 
