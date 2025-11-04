@@ -37,15 +37,6 @@ public class Movimiento {
 	public String toString() {
 		return "Movimiento [tipo=" + tipo + ", fecha=" + fecha + ", monto=" + monto + "]";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
 
 }

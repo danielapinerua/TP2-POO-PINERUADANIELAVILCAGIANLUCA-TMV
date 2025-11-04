@@ -105,12 +105,4 @@ public class Empleado extends Usuario {
     public String toString() {
         return "Empleado: " + getNombre() + " | Legajo: " + legajo;
     }
-
-		
-	
-
-
-	
-	
-
 }
