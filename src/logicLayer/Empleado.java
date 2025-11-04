@@ -28,24 +28,52 @@ public class Empleado extends Usuario {
 	//	Empleado.empleados = empleados;
 	//}
 
-
 	
-    
-   // public static Empleado login (String email, String contrasenia) {
-	//	for(Empleado empleado: empleados) {
-	//		if(empleado.getMail().equals(email) && empleado.getPin().equals(contrasenia)) {
-	//			return empleado;
-		//	}
-		//}
-		//return null;
-	//}
-	
-	 @Override
-		public void Menu() {
-			int opcion=JOptionPane.showOptionDialog(null, "Menu empleado","",0,0,null, this.getTipoUsuario().getOpciones(),this.getTipoUsuario().getOpciones());
+	 //@Override
+		//public void Menu() {
+			//int opcion=JOptionPane.showOptionDialog(null, "Menu empleado","",0,0,null, this.getTipoUsuario().getOpciones(),this.getTipoUsuario().getOpciones());
 		
-	 }
+	// }
 	 	
+	@Override
+	public void Menu() {
+	    // Generar un cajero con dinero aleatorio
+	    double dineroAleatorio =  Math.random() * 1000000;
+	    Cajero cajero = new Cajero(dineroAleatorio);
+
+	    int opcion;
+	    do {
+	        opcion = JOptionPane.showOptionDialog(
+	            null,
+	            "Menú Empleado\nCajero actual: $" + cajero.getDineroDisponible(),
+	            "Empleado",
+	            JOptionPane.DEFAULT_OPTION,
+	            JOptionPane.INFORMATION_MESSAGE,
+	            null,
+	            this.getTipoUsuario().getOpciones(),
+	            this.getTipoUsuario().getOpciones()[0]
+	        );
+
+	        switch (opcion) {
+	            case 0: // Ver cuentas
+	                verCuentas(cajero);
+	                break;
+
+	            case 1: // Cargar dinero
+	                double monto = Double.parseDouble(JOptionPane.showInputDialog("Monto a cargar:"));
+	                cargarDinero(cajero, monto);
+	                break;
+
+	            case 2: // Ver información del empleado
+	                JOptionPane.showMessageDialog(null, toString());
+	                break;
+
+	            case 3: // Salir
+	                JOptionPane.showMessageDialog(null, "Cerrando sesión...");
+	                break;
+	        }
+	    } while (opcion != 3);
+	}
 	// ver las cuentas q existen
     public void verCuentas(Cajero cajero) {
         LinkedList<Cuenta> cuentas = Cuenta.getCuentas();

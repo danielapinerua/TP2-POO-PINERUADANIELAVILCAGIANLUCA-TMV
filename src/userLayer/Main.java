@@ -21,10 +21,12 @@ public class Main {
 		Cliente c1 = new Cliente("Daniela", "daniela@mail.com", "1111", "123456789");
         Cliente c2 = new Cliente("Lucas", "lucas@mail.com", "2222", "987654321");
         Empleado e1 = new Empleado("Gianluca", "gvilca@mail.com", "1234", "L001");
+        Empleado e2 = new Empleado("Paula", "paula@gmail.com", "12345", "L002");
 
         Usuario.getUsuarios().add(c1);
         Usuario.getUsuarios().add(c2);
         Usuario.getUsuarios().add(e1);
+        Usuario.getUsuarios().add(e2);
 
         Cuenta.getCuentas().add(new Cuenta("10000001", c1, 5000));
         Cuenta.getCuentas().add(new Cuenta("10000002", c2, 8000));

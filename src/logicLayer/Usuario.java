@@ -52,7 +52,7 @@ public abstract class Usuario {
 	public static Usuario login(String mail, String contr) {
 		
 		for (Usuario usuario : usuarios) {
-			if (usuario.getPin().equals(contr) && usuario.getNombre().equals(mail)) {
+			if (usuario.getMail().equals(mail) && usuario.getPin().equals(contr)) {
 				
 				return usuario;
 				
