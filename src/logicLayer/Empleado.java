@@ -21,13 +21,6 @@ public class Empleado extends Usuario {
 	public void setLegajo(String legajo) {
 		this.legajo = legajo;
 	}
-	//public static LinkedList<Empleado> getEmpleados() {
-		//return empleados;
-	//}
-	//public static void setEmpleados(LinkedList<Empleado> empleados) {
-	//	Empleado.empleados = empleados;
-	//}
-
 	
 	 //@Override
 		//public void Menu() {

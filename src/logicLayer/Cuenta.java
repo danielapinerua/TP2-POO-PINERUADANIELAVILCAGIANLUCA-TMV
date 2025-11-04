@@ -145,16 +145,6 @@ public class Cuenta {
 	}
 	
 	
-	//public static Cuenta login(String email, String contrasenia) {
-	//	for(Cuenta cuenta : cuentas) {
-			//if(cuenta.getCliente().getMail().equals(email) && cuenta.getCliente().getPin().equals(contrasenia)) {
-			//	return cuenta;
-			//}
-		//}
-	//	return null;
-	//}
-	
-	
 	
 	
 	public void transferencia(Cuenta aTransferir, double monto) {
