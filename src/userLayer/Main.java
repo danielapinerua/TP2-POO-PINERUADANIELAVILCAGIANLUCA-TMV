@@ -31,7 +31,8 @@ public class Main {
         Usuario.getUsuarios().add(e1);
         Usuario.getUsuarios().add(e2);
         Usuario.getUsuarios().add(e3);
-
+        
+        //                                    CBU
         Cuenta.getCuentas().add(new Cuenta("10000001", c1, 5000));
         Cuenta.getCuentas().add(new Cuenta("10000002", c2, 8000));
         Cuenta.getCuentas().add(new Cuenta("10000002", c3, 8000));
