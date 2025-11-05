@@ -74,8 +74,9 @@ public class Cliente extends Usuario{
                         JOptionPane.showMessageDialog(null, "No puedes transferirte dinero a tu propia cuenta.");
                     } 
                     else {
-                        double montoTransf = Cuenta.validarNumero("Monto a transferir:");
+                        double montoTransf = Cuenta.validarNumero("Ingrese el monto a transferir a " + aTransferir.getCliente().getNombre() + ":");
                         cuenta.transferencia(aTransferir, montoTransf);
+
                     }
                     break;
 
