@@ -48,14 +48,13 @@ public class Cliente extends Usuario{
 
             switch (opcion) {
                 case 0: // Depositar dinero
-                    double montoDep = Cuenta.validarNumero("Monto a depositar:");
+                    double montoDep = Validar.validarNumero("Monto a depositar:");
                     cuenta.depositar(montoDep);
-                    JOptionPane.showMessageDialog(null, "Depositaste: " + montoDep);
 
                     break;
 
                 case 1: // Transferir dinero
-                	String cbuATransferir = String.valueOf(Cuenta.validarNumero("Ingrese el CBU a transferir:"));
+                	String cbuATransferir = String.valueOf(Validar.validarNumero("Ingrese el CBU a transferir:"));
                     Cuenta aTransferir = null;
 
                     // Buscar cuenta destino

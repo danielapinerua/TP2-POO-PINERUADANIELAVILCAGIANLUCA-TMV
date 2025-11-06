@@ -10,6 +10,7 @@ import logicLayer.Cuenta;
 import logicLayer.Empleado;
 import logicLayer.TipoUsuario;
 import logicLayer.Usuario;
+import logicLayer.Validar;
 
 public class Main {
 
@@ -46,8 +47,8 @@ public class Main {
 
             switch (tipoElegido) {
                 case Empleado:
-                    String mailEmp = Cuenta.validarCampo("Mail del empleado:");
-                    String pinEmp = Cuenta.validarCampo("PIN del empleado:");
+                    String mailEmp = Validar.validarCampo("Mail del empleado:");
+                    String pinEmp = Validar.validarCampo("PIN del empleado:");
                     Usuario empleado = Usuario.login(mailEmp, pinEmp);
                     if (empleado == null) {
                         JOptionPane.showMessageDialog(null, "Datos incorrectos");
@@ -78,8 +79,8 @@ public class Main {
                             	break;
                             case 1:
                             	
-                                String mailCli = Cuenta.validarCampo("Mail del cliente:");
-                                String pinCli = Cuenta.validarCampo("PIN del cliente:");
+                                String mailCli = Validar.validarCampo("Mail del cliente:");
+                                String pinCli = Validar.validarCampo("PIN del cliente:");
                                 Usuario cliente = Usuario.login(mailCli, pinCli);
                                 if (cliente == null) {
                                     JOptionPane.showMessageDialog(null, "Datos incorrectos");
