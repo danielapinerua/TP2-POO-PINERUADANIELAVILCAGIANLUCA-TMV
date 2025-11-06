@@ -119,7 +119,7 @@ public class Cuenta {
 		
 	}
 	private static String generarCbu() {
-	    int numero = 1000000 + (int)(Math.random() * 1000000);
+	    int numero = 10000001 + cuentas.size();
 	    return String.valueOf(numero);
 	}
 	

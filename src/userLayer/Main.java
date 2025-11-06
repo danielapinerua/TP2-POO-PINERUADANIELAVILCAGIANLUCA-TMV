@@ -35,7 +35,7 @@ public class Main {
         //                                    CBU
         Cuenta.getCuentas().add(new Cuenta("10000001", c1, 5000));
         Cuenta.getCuentas().add(new Cuenta("10000002", c2, 8000));
-        Cuenta.getCuentas().add(new Cuenta("10000002", c3, 8000));
+        Cuenta.getCuentas().add(new Cuenta("10000003", c3, 8000));
 
         int opcionSalir;
         do {
