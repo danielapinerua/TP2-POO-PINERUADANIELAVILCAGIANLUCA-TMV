@@ -6,7 +6,7 @@ public enum TipoUsuario {
 	
 	Cliente(new String[]{"Depositar dinero","Transferir", "Retirar dinero", "Ver saldo", "Ver movimientos","Ver informacion", "salir"}),
 	Empleado(new String[]{"Ver cuentas","Cargar dinero al cajero","Ver movimientos generales","Ver informacion", "Salir"});
-    
+    //empleados puede ser dar de baja cajero
 	private String[] opciones;
 
 	private TipoUsuario(String[] opciones) {

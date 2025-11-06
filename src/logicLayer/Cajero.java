@@ -6,6 +6,8 @@ import javax.swing.JOptionPane;
 public class Cajero {
     private double dineroDisponible;
     private LinkedList<Cuenta> cuentas;
+    private String ubicacion;
+    private boolean estado;
 
     public Cajero(double dineroDisponible) {
         this.dineroDisponible = dineroDisponible;

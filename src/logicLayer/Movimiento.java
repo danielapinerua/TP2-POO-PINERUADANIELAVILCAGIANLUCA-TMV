@@ -8,6 +8,7 @@ public class Movimiento {
 	private String tipo;
 	private LocalDateTime fecha;
 	private double monto;
+	private Cajero cajero;
 
 	public Movimiento(String tipo, double monto) {
 		super();
