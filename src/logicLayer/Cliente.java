@@ -74,14 +74,14 @@ public class Cliente extends Usuario{
                         JOptionPane.showMessageDialog(null, "No puedes transferirte dinero a tu propia cuenta.");
                     } 
                     else {
-                        double montoTransf = Cuenta.validarNumero("Ingrese el monto a transferir a " + aTransferir.getCliente().getNombre() + ":");
+                        double montoTransf = Validar.validarNumero("Ingrese el monto a transferir a " + aTransferir.getCliente().getNombre() + ":");
                         cuenta.transferencia(aTransferir, montoTransf);
 
                     }
                     break;
 
                 case 2: // Retirar dinero
-                    double montoRet = Cuenta.validarNumero("Monto a retirar:");
+                    double montoRet = Validar.validarNumero("Monto a retirar:");
                     cuenta.retirar(montoRet);
                     JOptionPane.showMessageDialog(null, "Retiraste: " + montoRet);
                     break;
@@ -92,6 +92,7 @@ public class Cliente extends Usuario{
 
                 case 4: // Ver movimientos
                     cuenta.mostrarHistorial();
+
                     break;
 
                 case 5: // Ver información 

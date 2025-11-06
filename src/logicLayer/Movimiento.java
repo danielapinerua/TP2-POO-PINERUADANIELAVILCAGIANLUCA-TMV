@@ -6,13 +6,13 @@ public class Movimiento {
 	private String tipo;
 	private LocalDateTime fecha;
 	private double monto;
-	private Cliente cliente;
-	public Movimiento(String tipo,double monto, Cliente cliente) {
+
+	public Movimiento(String tipo,double monto) {
 		super();
 		this.tipo = tipo;
 		this.fecha = LocalDateTime.now();
 		this.monto = monto;
-		this.cliente = cliente;
+		
 	}
 	public String getTipo() {
 		return tipo;
@@ -32,15 +32,11 @@ public class Movimiento {
 	public void setMonto(double monto) {
 		this.monto = monto;
 	}
-	public Cliente getCliente() {
-		return cliente;
-	}
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
+
+	
 	@Override
 	public String toString() {
-		return "tipo=" + tipo + ", fecha=" + fecha + ", monto=" + monto + ", cliente=" + cliente + "\n";
+		return "tipo=" + tipo + ", fecha=" + fecha + ", monto=" + monto ;
 	}
 	
 	

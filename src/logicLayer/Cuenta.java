@@ -51,83 +51,17 @@ public class Cuenta {
 	
 	
 	
-	public static int validarNumero(String mensaje) {	
-		boolean flag;
-		String ingreso;
-		int numero;
-		do {
-			flag = true;
-			do {
-				ingreso = JOptionPane.showInputDialog(mensaje);
-			} while (ingreso.isEmpty());
-			for (int i = 0; i < ingreso.length(); i++) {
-				//si caracter no es un digito
-				if (!Character.isDigit(ingreso.charAt(i))) {
-					flag = false;
-					break;
-				}
-			}
-	        if (flag) {
-	            numero = Integer.parseInt(ingreso);
-	            if (numero < 0) {
-	                flag = false;
-	            }
-	        }
-	        
-		} while (flag==false);
-		return Integer.parseInt(ingreso);
-	}
 	
-	public static String validarLetras(String mensaje) {	
-		boolean flag;
-		String ingreso;
-		do {
-			flag = true;
-				ingreso = JOptionPane.showInputDialog(mensaje);
-				
-		        if (ingreso.isEmpty()) {
-		            flag = false;
-		        } else {
-		            for (int i = 0; i < ingreso.length(); i++) {
-		                if (!Character.isAlphabetic(ingreso.charAt(i))) {
-		                    flag = false;
-		                    break;
-		                }
-		            }
-		        }
-		    
-		} while (flag==false);
-		return ingreso;
-		}
-	
-	public static String validarCampo(String mensaje) {
-		boolean flag;
-		String ingreso;
-		do {
-			flag = true;
-				ingreso = JOptionPane.showInputDialog(mensaje);
-				
-		        if (ingreso.isEmpty()) {
-		       
-		            flag = false;
-		        }
-		      
-		    
-		} while (flag==false);
-		return ingreso;
-		
-		
-	}
 	private static String generarCbu() {
-	    int numero = 10000001 + cuentas.size();
+	    int numero = 1000000 + cuentas.size();
 	    return String.valueOf(numero);
 	}
 	
 	public static void registrarse() {
-        String nombre = validarLetras("Ingresar nombre:");
-        String mail = validarCampo("Ingresar mail:");
-        String pin = validarCampo("Ingresar PIN:");
-        String telefono = String.valueOf(validarNumero("Ingresar teléfono:"));
+        String nombre = Validar.validarLetras("Ingresar nombre:");
+        String mail = Validar.validarCampo("Ingresar mail:");
+        String pin = Validar.validarCampo("Ingresar PIN:");
+        String telefono = String.valueOf(Validar.validarNumero("Ingresar teléfono:"));
 
         Cliente nuevoCliente = new Cliente(nombre, mail, pin, telefono);
         Usuario.getUsuarios().add(nuevoCliente); // Se agrega a la lista general de usuarios
@@ -172,8 +106,8 @@ public class Cuenta {
 	// operaciones basicas del cajero
     public void depositar(double monto) {
         if (monto > 0) {
-            saldo += monto;
-            movimientos.add(new Movimiento("Depósito", monto));
+            this.saldo += monto;
+            this.movimientos.add(new Movimiento("Depósito", monto));
             JOptionPane.showMessageDialog(null, "Se depositaron $" + monto);
         } else {
             JOptionPane.showMessageDialog(null, "Monto inválido");
@@ -182,8 +116,9 @@ public class Cuenta {
 
     public boolean retirar(double monto) {
         if (monto > 0 && saldo >= monto) {
-            saldo -= monto;
-            movimientos.add(new Movimiento("Retiro", monto));
+            this.saldo -= monto;
+            this.movimientos.add(new Movimiento("Retiro", monto));
+            JOptionPane.showMessageDialog(null, "Retiro exitoso!");
             return true;
         } else {
             JOptionPane.showMessageDialog(null, "Saldo insuficiente o monto inválido");
@@ -192,11 +127,11 @@ public class Cuenta {
     }
 
     public void mostrarHistorial() {
-        if (movimientos.isEmpty()) {
+        if (this.movimientos.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay movimientos");
         } else {
             StringBuilder sb = new StringBuilder("=== Movimientos ===\n");
-            for (Movimiento m : movimientos) {
+            for (Movimiento m : this.movimientos) {
                 sb.append(m.toString()).append("\n");
             }
             JOptionPane.showMessageDialog(null, sb.toString());

@@ -53,7 +53,7 @@ public class Empleado extends Usuario {
 	                break;
 
 	            case 1: // Cargar dinero
-	                double monto = Cuenta.validarNumero("Monto a cargar:");
+	                double monto = Validar.validarNumero("Monto a cargar:");
 	                cargarDinero(cajero, monto);
 	                JOptionPane.showMessageDialog(null, "Cargaste: " + monto);
 	                break;
