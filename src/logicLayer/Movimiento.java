@@ -1,17 +1,18 @@
 package logicLayer;
 
-import java.time.LocalDate;
+
+import java.time.LocalDateTime;
 
 
 public class Movimiento {
 	private String tipo;
-	private LocalDate fecha;
+	private LocalDateTime fecha;
 	private double monto;
 
 	public Movimiento(String tipo, double monto) {
 		super();
 		this.tipo = tipo;
-		this.fecha = LocalDate.now();
+		this.fecha = LocalDateTime.now();
 		this.monto = monto;
 	}
 	public String getTipo() {
@@ -20,10 +21,10 @@ public class Movimiento {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	public LocalDate getFecha() {
+	public LocalDateTime getFecha() {
 		return fecha;
 	}
-	public void setFecha(LocalDate fecha) {
+	public void setFecha(LocalDateTime fecha) {
 		this.fecha = fecha;
 	}
 	public double getMonto() {
