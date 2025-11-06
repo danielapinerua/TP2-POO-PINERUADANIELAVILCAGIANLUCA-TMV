@@ -41,7 +41,7 @@ public class Main {
         do {
         	
             TipoUsuario tipoElegido = TipoUsuario.elegirTipo();
-            if (tipoElegido == null)
+           if (tipoElegido == null)
             	break;
 
             switch (tipoElegido) {
