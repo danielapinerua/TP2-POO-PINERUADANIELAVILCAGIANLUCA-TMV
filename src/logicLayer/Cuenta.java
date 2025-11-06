@@ -127,13 +127,18 @@ public class Cuenta {
     }
 
     public void mostrarHistorial() {
-        if (this.movimientos.isEmpty()) {
+        if (movimientos.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay movimientos");
         } else {
-            StringBuilder sb = new StringBuilder("=== Movimientos ===\n");
-            for (Movimiento m : this.movimientos) {
+            StringBuilder sb = new StringBuilder(
+                "=== Movimientos de " + cliente.getNombre() + 
+                " (CBU: " + cbu + ") ===\n"
+            );
+            
+            for (Movimiento m : movimientos) {
                 sb.append(m.toString()).append("\n");
             }
+            
             JOptionPane.showMessageDialog(null, sb.toString());
         }
     }
