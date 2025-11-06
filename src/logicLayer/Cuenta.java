@@ -96,8 +96,8 @@ public class Cuenta {
 	    aTransferir.saldo += monto;
 
 	   
-	    this.movimientos.add(new Movimiento("Transferencia enviada",monto));
-	    aTransferir.movimientos.add(new Movimiento("Transferencia recibida", monto));
+	    this.movimientos.add(new Movimiento("Transferencia enviada",monto, this.cliente));
+	    aTransferir.movimientos.add(new Movimiento("Transferencia recibida", monto, aTransferir.cliente));
 
 	    JOptionPane.showMessageDialog(null, 
 	        "Transferencia realizada a " + aTransferir.getCliente().getNombre() +
@@ -107,7 +107,7 @@ public class Cuenta {
     public void depositar(double monto) {
         if (monto > 0) {
             this.saldo += monto;
-            this.movimientos.add(new Movimiento("Depósito", monto));
+            this.movimientos.add(new Movimiento("Depósito", monto, this.cliente));
             JOptionPane.showMessageDialog(null, "Se depositaron $" + monto);
         } else {
             JOptionPane.showMessageDialog(null, "Monto inválido");
@@ -117,7 +117,7 @@ public class Cuenta {
     public boolean retirar(double monto) {
         if (monto > 0 && saldo >= monto) {
             this.saldo -= monto;
-            this.movimientos.add(new Movimiento("Retiro", monto));
+            this.movimientos.add(new Movimiento("Retiro", monto, this.cliente));
             JOptionPane.showMessageDialog(null, "Retiro exitoso!");
             return true;
         } else {
@@ -127,18 +127,13 @@ public class Cuenta {
     }
 
     public void mostrarHistorial() {
-        if (movimientos.isEmpty()) {
+        if (this.movimientos.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay movimientos");
         } else {
-            StringBuilder sb = new StringBuilder(
-                "=== Movimientos de " + cliente.getNombre() + 
-                " (CBU: " + cbu + ") ===\n"
-            );
-            
-            for (Movimiento m : movimientos) {
+            StringBuilder sb = new StringBuilder("=== Movimientos ===\n");
+            for (Movimiento m : this.movimientos) {
                 sb.append(m.toString()).append("\n");
             }
-            
             JOptionPane.showMessageDialog(null, sb.toString());
         }
     }
