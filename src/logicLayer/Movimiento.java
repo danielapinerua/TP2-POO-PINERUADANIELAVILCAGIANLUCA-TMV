@@ -7,7 +7,17 @@ public class Movimiento {
 	private LocalDateTime fecha;
 	private double monto;
 	private Cliente cliente;
-	public Movimiento(String tipo,double monto, Cliente cliente) {
+	private Cajero cajero;
+	public Movimiento(String tipo,double monto, Cliente cliente, Cajero cajero) {
+		super();
+		this.tipo = tipo;
+		this.fecha = LocalDateTime.now();
+		this.monto = monto;
+		this.cliente = cliente;
+		this.cajero = cajero;
+	}
+	
+	public Movimiento(String tipo,double monto, Cliente cliente) { 
 		super();
 		this.tipo = tipo;
 		this.fecha = LocalDateTime.now();
@@ -38,10 +48,19 @@ public class Movimiento {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+	public Cajero getCajero() {
+		return cajero;
+	}
+	public void setCajero(Cajero cajero) {
+		this.cajero = cajero;
+	}
 	@Override
 	public String toString() {
-		return "tipo=" + tipo + ", fecha=" + fecha + ", monto=" + monto + ", cliente=" + cliente + "\n";
+		return "Movimiento [tipo=" + tipo + ", fecha=" + fecha + ", monto=" + monto + ", cliente=" + cliente
+				+ ", cajero=" + cajero + "]";
 	}
+	
+	
 	
 	
 

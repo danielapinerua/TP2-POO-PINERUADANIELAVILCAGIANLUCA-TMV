@@ -15,9 +15,15 @@ import logicLayer.Validar;
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
-		Cajero cajero = new Cajero(500000.00);
+		Cajero.getCajeros().add(new Cajero(20000,"Callao", false));		
+		Cajero.getCajeros().add(new Cajero(0,"Rivadavia", true));
+		Cajero.getCajeros().add(new Cajero(100,"Corrientes", true));
+		Cajero.getCajeros().add(new Cajero(1000,"Lavalle", true));
+
+
+		
+		
 		//agregue cuentas creadas
 		Cliente c1 = new Cliente("Daniela", "daniela@mail.com", "1111", "123456789");
         Cliente c2 = new Cliente("Lucas", "lucas@mail.com", "2222", "987654321");

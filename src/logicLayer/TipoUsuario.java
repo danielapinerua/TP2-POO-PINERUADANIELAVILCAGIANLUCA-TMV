@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 public enum TipoUsuario {
 	
 	Cliente(new String[]{"Depositar dinero","Transferir", "Retirar dinero", "Ver saldo", "Ver movimientos","Ver informacion", "salir"}),
-	Empleado(new String[]{"Ver cuentas","Cargar dinero al cajero","Ver movimientos generales","Dar de baja cajero","Ver informacion", "Salir"});
+	Empleado(new String[]{"Ver cuentas","Cargar dinero al cajero","Ver movimientos generales","Dar de alta cajero","Dar de baja cajero","Ver informacion", "Salir"});
     //empleados puede ser dar de baja cajero
 	private String[] opciones;
 

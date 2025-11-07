@@ -48,8 +48,11 @@ public class Cliente extends Usuario{
 
             switch (opcion) {
                 case 0: // Depositar dinero
-                    double montoDep = Validar.validarNumero("Monto a depositar:");
-                    cuenta.depositar(montoDep);
+                	Cajero cajeroSeleccionado = Cajero.elegirCajero();
+                	if (cajeroSeleccionado != null) {
+                	    double montoDep = Validar.validarNumero("Monto a depositar:");
+                	    cuenta.depositar(montoDep, cajeroSeleccionado);
+                	}
 
                     break;
 
@@ -80,8 +83,15 @@ public class Cliente extends Usuario{
                     break;
 
                 case 2: // Retirar dinero
-                    double montoRet = Validar.validarNumero("Monto a retirar:");
-                    cuenta.retirar(montoRet);
+                	
+                	Cajero seleccionado = Cajero.elegirCajero();
+                	if(seleccionado !=null) {
+                	cuenta.retirar(seleccionado, Validar.validarNumero("ingrese monto"));
+                	}
+                	
+                
+                    //double montoRet = Validar.validarNumero("Monto a retirar:");
+                    ///cuenta.retirar(Cajero corrientes,montoRet);
                     break;
 
                 case 3: // Ver saldo
@@ -116,6 +126,7 @@ public class Cliente extends Usuario{
         return null;
     }
 }
+
 
 
 	

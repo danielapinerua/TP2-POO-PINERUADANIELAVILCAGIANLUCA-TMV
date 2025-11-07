@@ -8,6 +8,8 @@ public class Empleado extends Usuario {
 	private String legajo;
 	private static LinkedList<Movimiento> movimientosGenerales = new LinkedList<Movimiento>();
 
+	//private static LinkedList<Empleado>empleados = new LinkedList<>();
+
 
 	public Empleado(String nombre, String mail, String pin, String legajo) {
 		super(nombre, TipoUsuario.Empleado, mail, pin);
@@ -36,18 +38,19 @@ public class Empleado extends Usuario {
 	public static void setMovimientosGenerales(LinkedList<Movimiento> movimientosGenerales) {
 		Empleado.movimientosGenerales = movimientosGenerales;
 	}
+	
 
 	@Override
 	public void Menu() {
 	    // Generar un cajero con dinero aleatorio
 	    double dineroAleatorio =  Math.random() * 1000000;
-	    Cajero cajero = new Cajero(dineroAleatorio);
+	
 
 	    int opcion;
 	    do {
 	        opcion = JOptionPane.showOptionDialog(
 	            null,
-	            "Menú Empleado\nCajero actual: $" + cajero.getDineroDisponible(),
+	            "Menú Empleado\nCajero actual: $" + cajero.getSaldo(),
 	            "Empleado",
 	            0,0,
 	            null,
@@ -69,18 +72,23 @@ public class Empleado extends Usuario {
 	            case 2: // Ver información del empleado
 	                JOptionPane.showMessageDialog(null, movimientosGenerales.isEmpty()?"No hay movimientos":movimientosGenerales);
 	                break;
+	                
+	            case 3: //dar de alta cajero
+	            	
+	            	
+	            	break;
 
-	            case 3: // dar de baja cajero
+	            case 4: // dar de baja cajero
 	                JOptionPane.showMessageDialog(null, "Se dio de abja el cajero");
 	            	
 	                break;
-	            case 4: // ver informacion del empleado
+	            case 5: // ver informacion del empleado
 	                JOptionPane.showMessageDialog(null, toString());
 	                break;
-	            case 5 ://salir
+	            case 6 ://salir
 	            	JOptionPane.showMessageDialog(null, "Cerrando sesión...");
 	        }
-	    } while (opcion != 5);
+	    } while (opcion != 6);
 	}
 	// ver las cuentas q existen
     public void verCuentas(Cajero cajero) {
@@ -103,8 +111,8 @@ public class Empleado extends Usuario {
             JOptionPane.showMessageDialog(null, "Monto inválido");
             return;
         }
-        cajero.setDineroDisponible(cajero.getDineroDisponible() + monto);
-        JOptionPane.showMessageDialog(null, "Cajero recargado. Total: $" + cajero.getDineroDisponible());
+        cajero.setSaldo(cajero.getSaldo() + monto);
+        JOptionPane.showMessageDialog(null, "Cajero recargado. Total: $" + cajero.getSaldo());
     }
     
     
