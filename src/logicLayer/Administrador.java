@@ -6,10 +6,21 @@ public class Administrador extends Usuario {
 	//dar de baja cuentas y crear empleados
 	private String idAdmin;
 
-	public Administrador(String nombre, TipoUsuario tipoUsuario, String mail, String pin, String idAdmin) {
-		super(nombre, tipoUsuario, mail, pin);
+	public Administrador(String nombre,  String mail, String pin, String idAdmin) {
+		super(nombre, TipoUsuario.Administrador, mail, pin);
 		this.idAdmin = idAdmin;
 	}
+	
+
+	public String getIdAdmin() {
+		return idAdmin;
+	}
+
+
+	public void setIdAdmin(String idAdmin) {
+		this.idAdmin = idAdmin;
+	}
+
 
 	@Override
 	public String toString() {
@@ -44,6 +55,39 @@ public class Administrador extends Usuario {
 	    } else {
 	        JOptionPane.showMessageDialog(null, "No se encontró una cuenta con ese CBU.");
 	    }
+	}
+	
+	@Override
+    public void Menu() {
+        int opcion;
+        do {
+            opcion = JOptionPane.showOptionDialog(
+                null,
+                "Menú Administrador", "",
+                0, 0, null,
+                this.getTipoUsuario().getOpciones(),
+                this.getTipoUsuario().getOpciones()[0]
+            );
+
+            switch (opcion) {
+                case 0: // Crear empleado
+                    crearEmpleado();
+                    break;
+
+                case 1: // Dar de baja cuenta
+                    darDeBajaCuenta();
+                    break;
+
+                case 2: // Ver información
+                    JOptionPane.showMessageDialog(null, toString());
+                    break;
+
+                case 3: // Salir
+                    JOptionPane.showMessageDialog(null, "Cerrando sesión...");
+                    break;
+            }
+
+        } while (opcion != 3);
 	}
 	
 

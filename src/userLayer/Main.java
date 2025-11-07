@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
 
+import logicLayer.Administrador;
 import logicLayer.Cajero;
 import logicLayer.Cliente;
 import logicLayer.Cuenta;
@@ -16,14 +17,12 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Cajero.getCajeros().add(new Cajero(20000,"Callao", false));		
-		Cajero.getCajeros().add(new Cajero(0,"Rivadavia", true));
-		Cajero.getCajeros().add(new Cajero(100,"Corrientes", true));
-		Cajero.getCajeros().add(new Cajero(1000,"Lavalle", true));
+		Cajero.getCajeros().add(new Cajero(200000,"Constituyentes", false));		
+		Cajero.getCajeros().add(new Cajero(0,"Beiro", true));
+		Cajero.getCajeros().add(new Cajero(100000,"Congreso", true));
+		Cajero.getCajeros().add(new Cajero(10000,"Sarmiento", true));
+		Cajero.getCajeros().add(new Cajero(50000,"Nazca", true));
 
-
-		
-		
 		//agregue cuentas creadas
 		Cliente c1 = new Cliente("Daniela", "daniela@mail.com", "1111", "123456789");
         Cliente c2 = new Cliente("Lucas", "lucas@mail.com", "2222", "987654321");
@@ -31,7 +30,9 @@ public class Main {
         Empleado e1 = new Empleado("Gianluca", "gvilca@mail.com", "1234", "L001");
         Empleado e2 = new Empleado("Paula", "paula@gmail.com", "12345", "L002");
         Empleado e3 = new Empleado("Oriana", "oriana@gmail.com", "123456", "L003");
-
+        
+        Administrador admin = new Administrador("Luciano", "admin@mail.com", "9999", "ADM001");
+        
         Usuario.getUsuarios().add(c1);
         Usuario.getUsuarios().add(c2);
         Usuario.getUsuarios().add(c3);
@@ -100,6 +101,17 @@ public class Main {
                         	break;
                         }
                         } while (opcionCliente != 2);
+                    break;
+                case Administrador: // ✅ nuevo caso
+                    String mailAdmin = Validar.validarCampo("Mail del administrador:");
+                    String pinAdmin = Validar.validarCampo("PIN del administrador:");
+                    Usuario administrador = Usuario.login(mailAdmin, pinAdmin);
+                    if (administrador == null) {
+                        JOptionPane.showMessageDialog(null, "Datos incorrectos");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Bienvenido " + administrador.getNombre());
+                        administrador.Menu();
+                    }
                     break;
             }
 
