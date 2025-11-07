@@ -84,7 +84,7 @@ public class Cliente extends Usuario{
 
                 case 2: // Retirar dinero
                 	
-                	Cajero seleccionado = Cajero.elegirCajeroRetirar();
+                	Cajero seleccionado = Cajero.elegirCajeroRecibir();
                 	if(seleccionado !=null) {
                 	cuenta.retirar(seleccionado, Validar.validarNumero("ingrese monto"));
                 	}
@@ -94,7 +94,7 @@ public class Cliente extends Usuario{
                     ///cuenta.retirar(Cajero corrientes,montoRet);
                     break;
                 case 3: // Solicitar préstamo
-                    Cajero cajeroPrestamo = Cajero.elegirCajeroRetirar();
+                    Cajero cajeroPrestamo = Cajero.elegirCajeroRecibir();
                     if (cajeroPrestamo != null) {
                         cuenta.solicitarPrestamo(cajeroPrestamo);
                     }

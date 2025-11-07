@@ -56,7 +56,7 @@ public class Cajero {
 	}
 	
 	
-	public static Cajero elegirCajeroRetirar() {
+	public static Cajero elegirCajeroRecibir() {
 		//me aseguro que no se pueda retirar dinero de un cajero que no esta habilitado
 		int habilitados = 0;
 		LinkedList<Cajero> cajerosHabilitados = new LinkedList<Cajero>();
