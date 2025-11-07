@@ -122,6 +122,8 @@ public class Cuenta {
             //agregarlos a empleado, agrego tanto a la cuenta como a los movimientos generales
             Empleado.getMovimientosGenerales().add(new Movimiento("Retiro", monto, cliente));
             JOptionPane.showMessageDialog(null, "Retiro exitoso!");
+            JOptionPane.showMessageDialog(null, "Retiraste: " + monto);
+
             return true;
         } else {
             JOptionPane.showMessageDialog(null, "Saldo insuficiente o monto inválido");
@@ -129,7 +131,7 @@ public class Cuenta {
         }
     }
 
-    public void mostrarHistorial() {
+  /*  public void mostrarHistorial() {
         if (this.movimientos.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay movimientos");
         } else {
@@ -140,6 +142,7 @@ public class Cuenta {
             JOptionPane.showMessageDialog(null, sb.toString());
         }
     }
+    */
     
     @Override
     public String toString() {

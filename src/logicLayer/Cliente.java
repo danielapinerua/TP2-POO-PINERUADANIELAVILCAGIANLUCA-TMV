@@ -82,7 +82,6 @@ public class Cliente extends Usuario{
                 case 2: // Retirar dinero
                     double montoRet = Validar.validarNumero("Monto a retirar:");
                     cuenta.retirar(montoRet);
-                    JOptionPane.showMessageDialog(null, "Retiraste: " + montoRet);
                     break;
 
                 case 3: // Ver saldo
