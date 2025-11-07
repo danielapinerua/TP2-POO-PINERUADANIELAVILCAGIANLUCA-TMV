@@ -31,7 +31,7 @@ public class Main {
         Empleado e2 = new Empleado("Paula", "paula@gmail.com", "12345", "L002");
         Empleado e3 = new Empleado("Oriana", "oriana@gmail.com", "123456", "L003");
         
-        Administrador admin = new Administrador("Luciano", "admin@mail.com", "9999", "ADM001");
+        Administrador admin = new Administrador("Julian", "admin@gmail.com", "9999", "ADM001");
         
         Usuario.getUsuarios().add(c1);
         Usuario.getUsuarios().add(c2);
@@ -102,7 +102,7 @@ public class Main {
                         }
                         } while (opcionCliente != 2);
                     break;
-                case Administrador: // ✅ nuevo caso
+                case Administrador: 
                     String mailAdmin = Validar.validarCampo("Mail del administrador:");
                     String pinAdmin = Validar.validarCampo("PIN del administrador:");
                     Usuario administrador = Usuario.login(mailAdmin, pinAdmin);
