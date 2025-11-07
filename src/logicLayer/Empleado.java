@@ -7,7 +7,6 @@ import javax.swing.JOptionPane;
 public class Empleado extends Usuario {
 	private String legajo;
 	private static LinkedList<Movimiento> movimientosGenerales = new LinkedList<Movimiento>();
-	//private static LinkedList<Empleado>empleados = new LinkedList<>();
 
 
 	public Empleado(String nombre, String mail, String pin, String legajo) {
