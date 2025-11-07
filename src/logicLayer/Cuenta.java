@@ -121,8 +121,7 @@ public class Cuenta {
             this.movimientos.add(new Movimiento("Retiro", monto,cliente));
             //agregarlos a empleado, agrego tanto a la cuenta como a los movimientos generales
             Empleado.getMovimientosGenerales().add(new Movimiento("Retiro", monto, cliente));
-            JOptionPane.showMessageDialog(null, "Retiro exitoso!");
-            JOptionPane.showMessageDialog(null, "Retiraste: " + monto);
+            JOptionPane.showMessageDialog(null, "Retiro exitoso! Retiraste: $" + monto);
 
             return true;
         } else {
