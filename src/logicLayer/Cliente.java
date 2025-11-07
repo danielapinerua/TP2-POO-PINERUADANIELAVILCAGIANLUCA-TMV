@@ -48,7 +48,7 @@ public class Cliente extends Usuario{
 
             switch (opcion) {
                 case 0: // Depositar dinero
-                	Cajero cajeroSeleccionado = Cajero.elegirCajero();
+                	Cajero cajeroSeleccionado = Cajero.elegirCajeroDepositar();
                 	if (cajeroSeleccionado != null) {
                 	    double montoDep = Validar.validarNumero("Monto a depositar:");
                 	    cuenta.depositar(montoDep, cajeroSeleccionado);
@@ -84,7 +84,7 @@ public class Cliente extends Usuario{
 
                 case 2: // Retirar dinero
                 	
-                	Cajero seleccionado = Cajero.elegirCajero();
+                	Cajero seleccionado = Cajero.elegirCajeroRetirar();
                 	if(seleccionado !=null) {
                 	cuenta.retirar(seleccionado, Validar.validarNumero("ingrese monto"));
                 	}

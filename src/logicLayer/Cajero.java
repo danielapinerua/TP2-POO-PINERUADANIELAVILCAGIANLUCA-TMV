@@ -56,7 +56,7 @@ public class Cajero {
 	}
 	
 	
-	public static Cajero elegirCajero() {
+	public static Cajero elegirCajeroRetirar() {
 		//me aseguro que no se pueda retirar dinero de un cajero que no esta habilitado
 		int habilitados = 0;
 		LinkedList<Cajero> cajerosHabilitados = new LinkedList<Cajero>();
@@ -86,6 +86,38 @@ public class Cajero {
 		return cajerosHabilitados.get(elegido);
 		}
 
+	}
+	
+	public static Cajero elegirCajeroDepositar() {
+		int habilitados = 0;
+		LinkedList<Cajero> cajerosHabilitados = new LinkedList<Cajero>();
+		
+		
+		for(int i = 0; i < cajeros.size(); i++) {
+			if( cajeros.get(i).isEstado()==true) {
+				cajerosHabilitados.add(cajeros.get(i)); //cada vez q tengo un cajero habilitado traigo este de aca
+				habilitados++;
+			}
+		}
+		if(habilitados == 0) {
+			JOptionPane.showMessageDialog(null, "No hay cajeros disponibles");
+			return null;
+		} else {
+		
+		int actual = 0;
+		String[] cajerosString = new String[habilitados];
+		for(int i = 0; i < cajeros.size(); i++ ) {
+			if(cajeros.get(i).isEstado()==true) {
+			cajerosString[actual] = cajeros.get(i).getUbicacion();
+				actual++;
+			}//guardo el actual porque pueden ser menos cajeros habilitados de los que yo tengo en total
+		}
+		int elegido = JOptionPane.showOptionDialog(null,"Elegir cajero", "", 0,
+				0, null, cajerosString, cajerosString[0]) ;
+		return cajerosHabilitados.get(elegido);
+		}
+
+	
 	}
 	
 	
