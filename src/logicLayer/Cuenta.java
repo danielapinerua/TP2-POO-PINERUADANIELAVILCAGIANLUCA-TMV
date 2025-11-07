@@ -98,6 +98,8 @@ public class Cuenta {
 	   
 	    this.movimientos.add(new Movimiento("Transferencia enviada",monto,cliente));
 	    aTransferir.movimientos.add(new Movimiento("Transferencia recibida", monto, aTransferir.cliente));
+        Empleado.getMovimientosGenerales().add(new Movimiento("Transferencia", monto, cliente));
+
 
 	    JOptionPane.showMessageDialog(null, 
 	        "Transferencia realizada a " + aTransferir.getCliente().getNombre() +
@@ -108,6 +110,7 @@ public class Cuenta {
         if (monto > 0) {
             this.saldo += monto;
             this.movimientos.add(new Movimiento("Depósito", monto, cliente));
+            Empleado.getMovimientosGenerales().add(new Movimiento("Deposito", monto, cliente));
             JOptionPane.showMessageDialog(null, "Se depositaron $" + monto);
         } else {
             JOptionPane.showMessageDialog(null, "Monto inválido");

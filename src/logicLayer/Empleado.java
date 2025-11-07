@@ -68,15 +68,18 @@ public class Empleado extends Usuario {
 	                break;
 
 	            case 2: // Ver información del empleado
-	                JOptionPane.showMessageDialog(null, toString());
-	                break;
-
-	            case 3: // ver movimientos generales
 	                JOptionPane.showMessageDialog(null, movimientosGenerales.isEmpty()?"No hay movimientos":movimientosGenerales);
 	                break;
-	            case 4: // dar de baja cajero
+
+	            case 3: // dar de baja cajero
 	                JOptionPane.showMessageDialog(null, "Se dio de abja el cajero");
+	            	
 	                break;
+	            case 4: // ver informacion del empleado
+	                JOptionPane.showMessageDialog(null, toString());
+	                break;
+	            case 5 ://salir
+	            	JOptionPane.showMessageDialog(null, "Cerrando sesión...");
 	        }
 	    } while (opcion != 5);
 	}
