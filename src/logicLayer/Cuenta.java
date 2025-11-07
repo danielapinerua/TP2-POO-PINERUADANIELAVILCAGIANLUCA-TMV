@@ -156,19 +156,78 @@ public class Cuenta {
 
 	    JOptionPane.showMessageDialog(null, "Retiro exitoso! Retiraste: $" + monto);
 	}
+	
+	
+	public void solicitarPrestamo(Cajero cajero) {
+	    double monto = Validar.validarNumero("Ingrese el monto del préstamo:");
+	    if (monto <= 0) {
+	        JOptionPane.showMessageDialog(null, "El monto debe ser mayor a cero.");
+	        return;
+	    }
 
-  /*  public void mostrarHistorial() {
-        if (this.movimientos.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "No hay movimientos");
-        } else {
-            StringBuilder sb = new StringBuilder("=== Movimientos ===\n");
-            for (Movimiento m : this.movimientos) {
-                sb.append(m.toString()).append("\n");
-            }
-            JOptionPane.showMessageDialog(null, sb.toString());
-        }
-    }
-    */
+	    if (cajero.getSaldo() < monto) {
+	        JOptionPane.showMessageDialog(null, "El cajero no tiene suficiente dinero para este préstamo.");
+	        return;
+	    }
+
+	    String[] cuotasOpciones = {"3 cuotas (10% interés)", "6 cuotas (20% interés)", "12 cuotas (40% interés)"};
+	    int elegido = JOptionPane.showOptionDialog(
+	        null,
+	        "Seleccione el plan de cuotas:",
+	        "Opciones de préstamo",
+	        0, 0, null,
+	        cuotasOpciones,
+	        cuotasOpciones[0]
+	    );
+
+	    double interes = 0;
+	    int cuotas = 0;
+
+	    switch (elegido) {
+	        case 0: 
+	        	interes = 0.10; 
+	        	cuotas = 3;
+	        break;
+	        case 1: 
+	        	interes = 0.20; 
+	        	cuotas = 6;
+	        	break;
+	        case 2:
+	        	interes = 0.40; 
+	        	cuotas = 12;
+	        	break;
+	        default:
+	            JOptionPane.showMessageDialog(null, "Operación cancelada.");
+	            return;
+	    }
+
+	    double montoTotal = monto + (monto * interes);
+	    double valorCuota = montoTotal / cuotas;
+
+	    int confirmar = JOptionPane.showConfirmDialog(
+	        null,
+	        "Préstamo de $" + monto +
+	        "\nInterés: " + (interes * 100) + "%" +
+	        "\nTotal a devolver: $" + montoTotal +
+	        "\n" + cuotas + " cuotas de $" + String.format("%.2f", valorCuota) +
+	        "\n¿Desea confirmar el préstamo?",
+	        "Confirmar préstamo",
+	        JOptionPane.YES_NO_OPTION
+	    );
+
+	    if (confirmar == JOptionPane.YES_OPTION) {
+	        this.saldo += monto;
+	        cajero.setSaldo(cajero.getSaldo() - monto);
+
+	        Movimiento mov = new Movimiento("Préstamo", monto, cliente, cajero);
+	        this.movimientos.add(mov);
+	        Empleado.getMovimientosGenerales().add(mov);
+
+	        JOptionPane.showMessageDialog(null, "Préstamo acreditado exitosamente.\nNuevo saldo: $" + this.saldo);
+	    } else {
+	        JOptionPane.showMessageDialog(null, "Préstamo cancelado.");
+	    }
+	}
     
     @Override
     public String toString() {

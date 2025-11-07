@@ -93,28 +93,34 @@ public class Cliente extends Usuario{
                     //double montoRet = Validar.validarNumero("Monto a retirar:");
                     ///cuenta.retirar(Cajero corrientes,montoRet);
                     break;
+                case 3: // Solicitar préstamo
+                    Cajero cajeroPrestamo = Cajero.elegirCajeroRetirar();
+                    if (cajeroPrestamo != null) {
+                        cuenta.solicitarPrestamo(cajeroPrestamo);
+                    }
+                    break;
 
-                case 3: // Ver saldo
+                case 4: // Ver saldo
                     JOptionPane.showMessageDialog(null, "Saldo actual: $" + cuenta.getSaldo());
                     break;
 
-                case 4: // Ver movimientos
+                case 5: // Ver movimientos
                    // cuenta.mostrarHistorial();
 	                JOptionPane.showMessageDialog(null, cuenta.getMovimientos().isEmpty()?"No hay movimientos":cuenta.getMovimientos());
 
 
                     break;
 
-                case 5: // Ver información 
+                case 6: // Ver información 
                     JOptionPane.showMessageDialog(null, toString());
                     break;
 
-                case 6: // Salir
+                case 7: // Salir
                     JOptionPane.showMessageDialog(null, "Cerrando sesión...");
                     break;
             }
 
-        } while (opcion != 6);
+        } while (opcion != 7);
     }
 
     private Cuenta buscarCuentaPorMail(String mailCliente) {
