@@ -115,18 +115,18 @@ public class Cuenta {
     }
 
     public boolean retirar(double monto) {
-        if (monto > 0 && saldo >= monto) {
+        if (monto <= 0) {
+            JOptionPane.showMessageDialog(null, "El monto debe ser mayor a cero.");
+            return false;
+        } else if (monto > saldo) {
+            JOptionPane.showMessageDialog(null, "Saldo insuficiente. Tu saldo actual es de $" + this.saldo);
+            return false;
+        } else {
             this.saldo -= monto;
-            //afrego a la cuenta
-            this.movimientos.add(new Movimiento("Retiro", monto,cliente));
-            //agregarlos a empleado, agrego tanto a la cuenta como a los movimientos generales
+            movimientos.add(new Movimiento("Retiro", monto, cliente));
             Empleado.getMovimientosGenerales().add(new Movimiento("Retiro", monto, cliente));
             JOptionPane.showMessageDialog(null, "Retiro exitoso! Retiraste: $" + monto);
-
             return true;
-        } else {
-            JOptionPane.showMessageDialog(null, "Saldo insuficiente o monto inválido");
-            return false;
         }
     }
 
