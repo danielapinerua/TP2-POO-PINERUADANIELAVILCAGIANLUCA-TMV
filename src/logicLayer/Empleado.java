@@ -50,7 +50,7 @@ public class Empleado extends Usuario {
 	    do {
 	        opcion = JOptionPane.showOptionDialog(
 	            null,
-	            "Menú Empleado\nCajero actual: $" + cajero.getSaldo(),
+	            "Menú Empleado",
 	            "Empleado",
 	            0,0,
 	            null,
@@ -60,13 +60,15 @@ public class Empleado extends Usuario {
 
 	        switch (opcion) {
 	            case 0: // Ver cuentas
-	                verCuentas(cajero);
+	                verCuentas();
 	                break;
 
 	            case 1: // Cargar dinero
-	                double monto = Validar.validarNumero("Monto a cargar:");
-	                cargarDinero(cajero, monto);
-	                JOptionPane.showMessageDialog(null, "Cargaste: " + monto);
+	            	Cajero cajeroCarga = Cajero.elegirCajeroEmpleado();
+	                if (cajeroCarga != null) {
+	                    double monto = Validar.validarNumero("Monto a cargar en el cajero " + cajeroCarga.getUbicacion() + ":");
+	                    cargarDinero(cajeroCarga, monto);
+	                }
 	                break;
 
 	            case 2: // Ver información del empleado
@@ -74,7 +76,7 @@ public class Empleado extends Usuario {
 	                break;
 	                
 	            case 3: //dar de alta cajero
-	            	
+	            	darAltaCajero();
 	            	
 	            	break;
 
@@ -91,7 +93,7 @@ public class Empleado extends Usuario {
 	    } while (opcion != 6);
 	}
 	// ver las cuentas q existen
-    public void verCuentas(Cajero cajero) {
+    public void verCuentas() {
         LinkedList<Cuenta> cuentas = Cuenta.getCuentas();
         if (cuentas.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay cuentas registradas.");
@@ -115,7 +117,16 @@ public class Empleado extends Usuario {
         JOptionPane.showMessageDialog(null, "Cajero recargado. Total: $" + cajero.getSaldo());
     }
     
-    
+    public void darAltaCajero() {
+        String ubicacion = Validar.validarCampo("Ingrese la ubicación del nuevo cajero:");
+        double saldoInicial = Validar.validarNumero("Saldo inicial del cajero:");
+        boolean estado = true;
+
+        Cajero nuevo = new Cajero(saldoInicial, ubicacion, estado);
+        Cajero.getCajeros().add(nuevo);
+
+        JOptionPane.showMessageDialog(null, "Cajero en " + ubicacion + " dado de alta exitosamente.");
+    }
     
     @Override
     public String toString() {

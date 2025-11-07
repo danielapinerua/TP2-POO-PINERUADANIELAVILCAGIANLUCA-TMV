@@ -119,38 +119,43 @@ public class Cuenta {
 	    }
 	}
 
-    public boolean retirar(Cajero cajero, double monto) {
-        if (cajero.isEstado()== false) {
-            JOptionPane.showMessageDialog(null, "El cajero de " + cajero.getUbicacion() + " no funciona");
-            return false;
-        }
+	public void retirar(Cajero cajero, double monto) {
+	    boolean hayError = false;
 
-        if (monto <= 0) {
-            JOptionPane.showMessageDialog(null, "El monto debe ser mayor a cero.");
-            return false;
-        }
+	    if (cajero.isEstado() == false) {
+	        JOptionPane.showMessageDialog(null, "El cajero de " + cajero.getUbicacion() + " no funciona.");
+	        hayError = true;
+	    }
 
-        if (monto > saldo) {
-            JOptionPane.showMessageDialog(null, "Saldo insuficiente en la cuenta. Tu saldo actual es de $" + this.saldo);
-            return false;
-        }
+	    if (monto <= 0) {
+	        JOptionPane.showMessageDialog(null, "El monto debe ser mayor a cero.");
+	        hayError = true;
+	    }
 
-        if (cajero.getSaldo() < monto) {
-            JOptionPane.showMessageDialog(null, "No hay dinero suficiente en el cajero.");
-            return false;
-        }
+	    if (monto > saldo) {
+	        JOptionPane.showMessageDialog(null, "Saldo insuficiente en la cuenta. Tu saldo actual es de $" + this.saldo);
+	        hayError = true;
+	    }
 
-        // Si todo está bien:
-        this.saldo -= monto;
-        cajero.setSaldo(cajero.getSaldo() - monto);
+	    if (cajero.getSaldo() < monto) {
+	        JOptionPane.showMessageDialog(null, "No hay dinero suficiente en el cajero (saldo disponible: $" + cajero.getSaldo() + ")");
+	        hayError = true;
+	    }
 
-        Movimiento mov = new Movimiento("Retiro", monto, cliente, cajero);
-        this.movimientos.add(mov);
-        Empleado.getMovimientosGenerales().add(mov);
+	    if (hayError) {
+	        return; // si hubo al menos un error, no hace el retiro
+	    }
 
-        JOptionPane.showMessageDialog(null, "Retiro exitoso! Retiraste: $" + monto);
-        return true;
-    }
+	    // Si todo está bien:
+	    this.saldo -= monto;
+	    cajero.setSaldo(cajero.getSaldo() - monto);
+
+	    Movimiento mov = new Movimiento("Retiro", monto, cliente, cajero);
+	    this.movimientos.add(mov);
+	    Empleado.getMovimientosGenerales().add(mov);
+
+	    JOptionPane.showMessageDialog(null, "Retiro exitoso! Retiraste: $" + monto);
+	}
 
   /*  public void mostrarHistorial() {
         if (this.movimientos.isEmpty()) {
