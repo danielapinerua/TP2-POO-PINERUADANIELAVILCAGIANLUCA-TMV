@@ -22,11 +22,14 @@ public class Administrador extends Usuario {
 	}
 
 
+
+	
 	@Override
 	public String toString() {
-		return "Administrador [idAdmin=" + idAdmin + "]";
+		return "idAdmin=" + idAdmin + ", getNombre()=" + getNombre() + ", getMail()=" + getMail() + "]";
 	}
-	
+
+
 	public void crearEmpleado() {
 	    String nombre = Validar.validarLetras("Ingrese nombre del empleado:");
 	    String mail = Validar.validarCampo("Ingrese mail del empleado:");
@@ -50,8 +53,20 @@ public class Administrador extends Usuario {
 	    }
 
 	    if (cuentaABorrar != null) {
-	        Cuenta.getCuentas().remove(cuentaABorrar);
-	        JOptionPane.showMessageDialog(null, "Cuenta eliminada correctamente.");
+	        int confirmacion = JOptionPane.showConfirmDialog(
+	            null,
+	            "¿Seguro que desea eliminar la cuenta de " + cuentaABorrar.getCliente().getNombre() +
+	            " (CBU: " + cuentaABorrar.getCbu() + ")?",
+	            "Confirmar eliminación",
+	            JOptionPane.YES_NO_OPTION
+	        );
+
+	        if (confirmacion == JOptionPane.YES_OPTION) {
+	            Cuenta.getCuentas().remove(cuentaABorrar);
+	            JOptionPane.showMessageDialog(null, "Cuenta eliminada correctamente.");
+	        } else {
+	            JOptionPane.showMessageDialog(null, "Operación cancelada.");
+	        }
 	    } else {
 	        JOptionPane.showMessageDialog(null, "No se encontró una cuenta con ese CBU.");
 	    }

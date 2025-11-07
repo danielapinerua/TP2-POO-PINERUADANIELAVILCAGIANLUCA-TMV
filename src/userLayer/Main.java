@@ -39,6 +39,7 @@ public class Main {
         Usuario.getUsuarios().add(e1);
         Usuario.getUsuarios().add(e2);
         Usuario.getUsuarios().add(e3);
+        Usuario.getUsuarios().add(admin);
         
         //                                    CBU
         Cuenta.getCuentas().add(new Cuenta("10000001", c1, 5000));
