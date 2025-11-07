@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 
 public class Empleado extends Usuario {
 	private String legajo;
-	private static LinkedList<Movimiento> movimientosGenerales;
+	private static LinkedList<Movimiento> movimientosGenerales = new LinkedList<Movimiento>();
 	//private static LinkedList<Empleado>empleados = new LinkedList<>();
 
 
@@ -23,12 +23,21 @@ public class Empleado extends Usuario {
 		this.legajo = legajo;
 	}
 	
+	
 	 //@Override
 		//public void Menu() {
 			//int opcion=JOptionPane.showOptionDialog(null, "Menu empleado","",0,0,null, this.getTipoUsuario().getOpciones(),this.getTipoUsuario().getOpciones());
 		
 	// }
 	 	
+	public static LinkedList<Movimiento> getMovimientosGenerales() {
+		return movimientosGenerales;
+	}
+
+	public static void setMovimientosGenerales(LinkedList<Movimiento> movimientosGenerales) {
+		Empleado.movimientosGenerales = movimientosGenerales;
+	}
+
 	@Override
 	public void Menu() {
 	    // Generar un cajero con dinero aleatorio
@@ -62,11 +71,14 @@ public class Empleado extends Usuario {
 	                JOptionPane.showMessageDialog(null, toString());
 	                break;
 
-	            case 3: // Salir
-	                JOptionPane.showMessageDialog(null, "Cerrando sesión...");
+	            case 3: // ver movimientos generales
+	                JOptionPane.showMessageDialog(null, movimientosGenerales.isEmpty()?"No hay movimientos":movimientosGenerales);
+	                break;
+	            case 4: // dar de baja cajero
+	                JOptionPane.showMessageDialog(null, "Se dio de abja el cajero");
 	                break;
 	        }
-	    } while (opcion != 3);
+	    } while (opcion != 5);
 	}
 	// ver las cuentas q existen
     public void verCuentas(Cajero cajero) {

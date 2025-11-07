@@ -40,7 +40,7 @@ public class Movimiento {
 	}
 	@Override
 	public String toString() {
-		return "Movimiento [tipo=" + tipo + ", fecha=" + fecha + ", monto=" + monto + ", cliente=" + cliente + "]";
+		return "tipo=" + tipo + ", fecha=" + fecha + ", monto=" + monto + ", cliente=" + cliente + "\n";
 	}
 	
 	

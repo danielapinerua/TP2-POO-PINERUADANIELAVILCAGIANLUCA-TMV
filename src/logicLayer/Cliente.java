@@ -90,7 +90,9 @@ public class Cliente extends Usuario{
                     break;
 
                 case 4: // Ver movimientos
-                    cuenta.mostrarHistorial();
+                   // cuenta.mostrarHistorial();
+	                JOptionPane.showMessageDialog(null, cuenta.getMovimientos().isEmpty()?"No hay movimientos":cuenta.getMovimientos());
+
 
                     break;
 

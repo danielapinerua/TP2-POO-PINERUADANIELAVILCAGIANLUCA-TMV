@@ -96,7 +96,7 @@ public class Cuenta {
 	    aTransferir.saldo += monto;
 
 	   
-	    this.movimientos.add(new Movimiento("Transferencia enviada",monto, this.cliente));
+	    this.movimientos.add(new Movimiento("Transferencia enviada",monto,cliente));
 	    aTransferir.movimientos.add(new Movimiento("Transferencia recibida", monto, aTransferir.cliente));
 
 	    JOptionPane.showMessageDialog(null, 
@@ -107,7 +107,7 @@ public class Cuenta {
     public void depositar(double monto) {
         if (monto > 0) {
             this.saldo += monto;
-            this.movimientos.add(new Movimiento("Depósito", monto, this.cliente));
+            this.movimientos.add(new Movimiento("Depósito", monto, cliente));
             JOptionPane.showMessageDialog(null, "Se depositaron $" + monto);
         } else {
             JOptionPane.showMessageDialog(null, "Monto inválido");
@@ -117,7 +117,10 @@ public class Cuenta {
     public boolean retirar(double monto) {
         if (monto > 0 && saldo >= monto) {
             this.saldo -= monto;
-            this.movimientos.add(new Movimiento("Retiro", monto, this.cliente));
+            //afrego a la cuenta
+            this.movimientos.add(new Movimiento("Retiro", monto,cliente));
+            //agregarlos a empleado, agrego tanto a la cuenta como a los movimientos generales
+            Empleado.getMovimientosGenerales().add(new Movimiento("Retiro", monto, cliente));
             JOptionPane.showMessageDialog(null, "Retiro exitoso!");
             return true;
         } else {
