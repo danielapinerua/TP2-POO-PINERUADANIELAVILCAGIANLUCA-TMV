@@ -8,6 +8,7 @@ public class Cuenta {
 	private String cbu;
 	private Cliente cliente;
 	private double saldo;
+	private double limiteCubierto;
 	private LinkedList<Movimiento>movimientos;
 	private static LinkedList<Cuenta>cuentas = new LinkedList<>();
 	public Cuenta(String cbu, Cliente cliente, double saldo) {
@@ -15,6 +16,7 @@ public class Cuenta {
 		this.cbu = cbu;
 		this.cliente = cliente;
 		this.saldo = saldo;
+		this.limiteCubierto = 2000;
 		this.movimientos = new LinkedList<Movimiento>();
 	}
 	
@@ -80,36 +82,44 @@ public class Cuenta {
 	
 	
 	
-	
-    public void transferencia(Cuenta aTransferir, double monto) {
+	public void transferencia(Cuenta aTransferir, double monto) {
 	    if (monto <= 0) {
-	        JOptionPane.showMessageDialog(null, "Monto inválido");
+	        JOptionPane.showMessageDialog(null, "El monto debe ser mayor a cero.");
 	        return;
 	    }
 
-	    if (this.saldo < monto) {
-	        JOptionPane.showMessageDialog(null, "Saldo insuficiente");
+	    double saldoDisponible = this.saldo + this.limiteCubierto;
+
+	    //  ni con el límite alcanza
+	    if (monto > saldoDisponible) {
+	        JOptionPane.showMessageDialog(null, 
+	            "Saldo insuficiente. Tu saldo disponible (incluyendo el límite cubierto) es de $" + saldoDisponible);
 	        return;
 	    }
 
+	    // usa parte del límite cubierto
+	    if (monto > this.saldo && monto <= saldoDisponible) {
+	        JOptionPane.showMessageDialog(null, 
+	            "Estás utilizando parte de tu límite cubierto para realizar esta transferencia.");
+	    }
 	    this.saldo -= monto;
 	    aTransferir.saldo += monto;
 
-	   
-	    this.movimientos.add(new Movimiento("Transferencia enviada",monto,cliente));
+	    this.movimientos.add(new Movimiento("Transferencia enviada", monto, cliente));
 	    aTransferir.movimientos.add(new Movimiento("Transferencia recibida", monto, aTransferir.cliente));
-        Empleado.getMovimientosGenerales().add(new Movimiento("Transferencia", monto, cliente));
-
+	    Empleado.getMovimientosGenerales().add(new Movimiento("Transferencia", monto, cliente));
 
 	    JOptionPane.showMessageDialog(null, 
 	        "Transferencia realizada a " + aTransferir.getCliente().getNombre() +
 	        " por $" + monto);
 	}
+	
+	
 
 	public void depositar(double monto, Cajero cajero) {
 	    if (monto > 0) {
 	        this.saldo += monto;
-	        cajero.setSaldo(cajero.getSaldo() + monto); // <--- suma al cajero
+	        cajero.setSaldo(cajero.getSaldo() + monto); // suma al cajero
 	        Movimiento mov = new Movimiento("Depósito", monto, cliente, cajero);
 	        this.movimientos.add(mov);
 	        Empleado.getMovimientosGenerales().add(mov);
@@ -120,33 +130,30 @@ public class Cuenta {
 	}
 
 	public void retirar(Cajero cajero, double monto) {
-	    boolean hayError = false;
-
-	    if (cajero.isEstado() == false) {
-	        JOptionPane.showMessageDialog(null, "El cajero de " + cajero.getUbicacion() + " no funciona.");
-	        hayError = true;
-	    }
-
 	    if (monto <= 0) {
 	        JOptionPane.showMessageDialog(null, "El monto debe ser mayor a cero.");
-	        hayError = true;
+	        return;
 	    }
 
-	    if (monto > saldo) {
-	        JOptionPane.showMessageDialog(null, "Saldo insuficiente en la cuenta. Tu saldo actual es de $" + this.saldo);
-	        hayError = true;
+	    double saldoDisponible = this.saldo + this.limiteCubierto;
+
+	    // el monto supera incluso el límite cubierto
+	    if (monto > saldoDisponible) {
+	        JOptionPane.showMessageDialog(null, 
+	            "Saldo insuficiente. Tu saldo disponible (incluyendo el límite cubierto) es de $" + saldoDisponible);
+	        return;
+	    }
+
+	    // el monto es mayor al saldo, pero se cubre con el límite
+	    if (monto > this.saldo && monto <= saldoDisponible) {
+	        JOptionPane.showMessageDialog(null, 
+	            "Estás utilizando parte de tu límite cubierto. Tu saldo quedará negativo después de este retiro.");
 	    }
 
 	    if (cajero.getSaldo() < monto) {
-	        JOptionPane.showMessageDialog(null, "No hay dinero suficiente en el cajero (saldo disponible: $" + cajero.getSaldo() + ")");
-	        hayError = true;
+	        JOptionPane.showMessageDialog(null, "No hay dinero suficiente en el cajero.");
+	        return;
 	    }
-
-	    if (hayError) {
-	        return; // si hubo al menos un error, no hace el retiro
-	    }
-
-	    // Si todo está bien:
 	    this.saldo -= monto;
 	    cajero.setSaldo(cajero.getSaldo() - monto);
 
