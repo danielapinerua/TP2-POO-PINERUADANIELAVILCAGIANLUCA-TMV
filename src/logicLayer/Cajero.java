@@ -52,7 +52,7 @@ public class Cajero {
 	}
 	@Override
 	public String toString() {
-		return "Cajero [saldo=" + saldo + ", ubicacion=" + ubicacion + ", estado=" + estado + "]";
+		return "Cajero [saldo=" + saldo + ", ubicacion=" + ubicacion ;
 	}
 	
 	
