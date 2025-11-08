@@ -235,11 +235,14 @@ public class Cuenta {
 	        JOptionPane.showMessageDialog(null, "Préstamo cancelado.");
 	    }
 	}
+
+	@Override
+	public String toString() {
+		return "cbu=" + cbu + ", cliente=" + cliente + ", saldo=" + saldo + ", limiteCubierto=" + limiteCubierto
+				+ ", movimientos=" + movimientos ;
+	}
     
-    @Override
-    public String toString() {
-        return "Cuenta CBU: " + cbu + " | Cliente: " + cliente.getNombre() + " | Saldo: $" + saldo;
-    }
+    
 }
 
 	
