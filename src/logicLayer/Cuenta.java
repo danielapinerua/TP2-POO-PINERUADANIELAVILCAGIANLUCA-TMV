@@ -273,9 +273,15 @@ public class Cuenta {
 	        JOptionPane.showMessageDialog(null, "Monto inválido.");
 	        return;
 	    }
-	    if (pesos > this.saldo) {
-	        JOptionPane.showMessageDialog(null, "Saldo insuficiente para realizar la operación.");
+	    double saldoDisponible = this.saldo + this.limiteCubierto;
+	    if (pesos > saldoDisponible) {
+	        JOptionPane.showMessageDialog(null, 
+	            "Saldo insuficiente. Tu saldo disponible (incluyendo el límite cubierto) es de $" + saldoDisponible);
 	        return;
+	    }
+	    if (pesos > this.saldo) {
+	        JOptionPane.showMessageDialog(null, 
+	            "Usarás parte de tu límite cubierto para completar la operación.");
 	    }
 	    double dolares = pesos / cotizacion;
 	    this.saldo -= pesos;
@@ -283,7 +289,9 @@ public class Cuenta {
 	    movimientos.add(mov);
 	    Empleado.getMovimientosGenerales().add(mov);
 	    JOptionPane.showMessageDialog(null,
-	       "Cambio realizado con éxito!\nCotización: $" + cotizacion + "\nCompraste: " + dolares + " USD" + "\nSaldo actual: " + this.saldo);
+	       "Cambio realizado con éxito!\nCotización: $" + cotizacion + 
+	       "\nCompraste: " + dolares + " USD" + 
+	       "\nSaldo actual: $" + this.saldo);
 	}
 }
 

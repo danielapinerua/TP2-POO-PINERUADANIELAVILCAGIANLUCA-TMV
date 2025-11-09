@@ -91,8 +91,6 @@ public class Cliente extends Usuario{
                 	}
                 	
                 
-                    //double montoRet = Validar.validarNumero("Monto a retirar:");
-                    ///cuenta.retirar(Cajero corrientes,montoRet);
                     break;
                 case 3: // Solicitar préstamo
                     Cajero cajeroPrestamo = Cajero.elegirCajeroRecibir();
