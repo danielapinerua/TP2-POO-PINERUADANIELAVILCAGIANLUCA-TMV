@@ -123,7 +123,7 @@ public class Cliente extends Usuario{
                     break;
             }
 
-        } while (opcion != 7);
+        } while (opcion != 8);
     }
 
     private Cuenta buscarCuentaPorMail(String mailCliente) {
