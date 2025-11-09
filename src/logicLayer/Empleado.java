@@ -42,8 +42,6 @@ public class Empleado extends Usuario {
 
 	@Override
 	public void Menu() {
-	    // Generar un cajero con dinero aleatorio
-	    double dineroAleatorio =  Math.random() * 1000000;
 	
 
 	    int opcion;
@@ -96,7 +94,7 @@ public class Empleado extends Usuario {
 	                break;
 
 	            case 4: // dar de baja cajero
-	                JOptionPane.showMessageDialog(null, "Se dio de baja el cajero");
+	              darBajaCajero();
 	            	
 	                break;
 	            case 5: // ver informacion del empleado
@@ -150,6 +148,34 @@ public class Empleado extends Usuario {
         Cajero.getCajeros().add(nuevo);
 
         JOptionPane.showMessageDialog(null, "Cajero nuevo creado en " + ubicacion + ".");
+    }
+    
+    
+    public void darBajaCajero() {
+        // Elegir entre los cajeros activos
+        Cajero cajeroBaja = Cajero.elegirCajeroDisponible();
+
+        if (cajeroBaja == null) {
+            JOptionPane.showMessageDialog(null, "No hay cajeros activos para dar de baja.");
+            return;
+        }
+
+        // Confirmar antes de desactivarlo
+        int confirmar = JOptionPane.showConfirmDialog(
+            null,
+            "¿Seguro que desea dar de baja el cajero en " + cajeroBaja.getUbicacion() + "?",
+            "Confirmar baja de cajero",
+            JOptionPane.YES_NO_OPTION
+        );
+
+        if (confirmar == JOptionPane.YES_OPTION) {
+            cajeroBaja.setEstado(false);
+            JOptionPane.showMessageDialog(null, 
+                "Cajero en " + cajeroBaja.getUbicacion() + " dado de baja correctamente.");
+        } else {
+            JOptionPane.showMessageDialog(null, 
+                "Operación cancelada. El cajero sigue activo.");
+        }
     }
     
     @Override

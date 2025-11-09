@@ -88,7 +88,7 @@ public class Cajero {
 
 	}
 	
-	public static Cajero elegirCajeroDepositar() {
+	public static Cajero elegirCajeroDisponible() {
 		int habilitados = 0;
 		LinkedList<Cajero> cajerosHabilitados = new LinkedList<Cajero>();
 		
@@ -172,14 +172,7 @@ public class Cajero {
 	}
   
 
-    //public void agregarCuenta(Cuenta cuenta) {
-       // if (!cuentas.contains(cuenta)) {
-        //    cuentas.add(cuenta);
-        //} else {
-       //     JOptionPane.showMessageDialog(null, "Cuenta ya registrada");
-       // }
-    //}
-
+   
   
     
     
