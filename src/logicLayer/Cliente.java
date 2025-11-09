@@ -99,23 +99,26 @@ public class Cliente extends Usuario{
                         cuenta.solicitarPrestamo(cajeroPrestamo);
                     }
                     break;
+                    
+                case 4: //pagar servicios
+                	cuenta.pagarServicio();
 
-                case 4: // Ver saldo
+                case 5: // Ver saldo
                     JOptionPane.showMessageDialog(null, "Saldo actual: $" + cuenta.getSaldo());
                     break;
 
-                case 5: // Ver movimientos
+                case 6: // Ver movimientos
                    // cuenta.mostrarHistorial();
 	                JOptionPane.showMessageDialog(null, cuenta.getMovimientos().isEmpty()?"No hay movimientos":cuenta.getMovimientos());
 
 
                     break;
 
-                case 6: // Ver información 
+                case 7: // Ver información 
                     JOptionPane.showMessageDialog(null, toString());
                     break;
 
-                case 7: // Salir
+                case 8: // Salir
                     JOptionPane.showMessageDialog(null, "Cerrando sesión...");
                     break;
             }

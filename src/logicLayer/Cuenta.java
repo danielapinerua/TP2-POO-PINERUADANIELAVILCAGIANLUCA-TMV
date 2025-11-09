@@ -235,7 +235,40 @@ public class Cuenta {
 	        JOptionPane.showMessageDialog(null, "Préstamo cancelado.");
 	    }
 	}
+	
+	public void pagarServicio() {
+	    String[] servicios = {"Internet", "Agua", "Luz", "Cargar SUBE"};
+	    int servicioElegido = JOptionPane.showOptionDialog(
+	        null,
+	        "Seleccione el servicio que desea pagar:",
+	        "Pagar servicio",
+	        0, 0, null,
+	        servicios,
+	        servicios[0]
+	    );
+	    if (servicioElegido == -1) {
+	        return; // si el usuario cancela
+	    }
+	    double monto = Validar.validarNumero("Ingrese el monto a pagar para " + servicios[servicioElegido] + ":");
 
+	    if (monto <= 0) {
+	        JOptionPane.showMessageDialog(null, "Monto inválido.");
+	        return;
+	    }
+	    double saldoDisponible = this.saldo + this.limiteCubierto;
+	    if (monto > saldoDisponible) {
+	        JOptionPane.showMessageDialog(null, "Saldo insuficiente (incluyendo límite cubierto).");
+	        return;
+	    }
+	    this.saldo -= monto;
+	    Movimiento mov = new Movimiento("Pago de servicio: " + servicios[servicioElegido], monto, cliente);
+	    this.movimientos.add(mov);
+	    Empleado.getMovimientosGenerales().add(mov);
+
+	    JOptionPane.showMessageDialog(null, 
+	        "Pago de " + servicios[servicioElegido] + " realizado con éxito por $" + monto +
+	        "\nSaldo actual: $" + this.saldo);
+	}
 	@Override
 	public String toString() {
 		return "cbu=" + cbu + ", cliente=" + cliente + ", saldo=" + saldo + ", limiteCubierto=" + limiteCubierto
