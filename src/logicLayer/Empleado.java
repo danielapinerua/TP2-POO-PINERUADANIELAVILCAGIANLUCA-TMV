@@ -81,7 +81,7 @@ public class Empleado extends Usuario {
 	            	break;
 
 	            case 4: // dar de baja cajero
-	                JOptionPane.showMessageDialog(null, "Se dio de abja el cajero");
+	                JOptionPane.showMessageDialog(null, "Se dio de baja el cajero");
 	            	
 	                break;
 	            case 5: // ver informacion del empleado
