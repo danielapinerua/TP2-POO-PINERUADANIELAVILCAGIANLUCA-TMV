@@ -29,16 +29,28 @@ public class Administrador extends Usuario {
 		return "idAdmin=" + idAdmin + ", getNombre()=" + getNombre() + ", getMail()=" + getMail() + "]";
 	}
 
-
 	public void crearEmpleado() {
 	    String nombre = Validar.validarLetras("Ingrese nombre del empleado:");
 	    String mail = Validar.validarCampo("Ingrese mail del empleado:");
 	    String pin = Validar.validarCampo("Ingrese PIN del empleado:");
-	    String legajo = Validar.validarCampo("Ingrese legajo del empleado:");
 
-	    Empleado nuevo = new Empleado(nombre, mail, pin, legajo);
+	    // Generar legajo aleatorio basado en el tamaño actual de usuarios
+	  
+	    int legajoAleatorio = 10 + Usuario.getUsuarios().size(); 
+
+	    
+
+	    String nuevoLegajo = String.valueOf(legajoAleatorio);
+
+	    Empleado nuevo = new Empleado(nombre, mail, pin, nuevoLegajo);
 	    Usuario.getUsuarios().add(nuevo);
-	    JOptionPane.showMessageDialog(null, "Empleado creado con éxito.");
+
+	    JOptionPane.showMessageDialog(null,
+	        "Empleado creado con éxito.\n\n" +
+	        "Nombre: " + nombre +
+	        "\nMail: " + mail +
+	        "\nPIN: " + pin +
+	        "\nLegajo asignado: " + nuevoLegajo);
 	}
 	
 	public void darDeBajaCuenta() {
