@@ -4,30 +4,19 @@ import javax.swing.JOptionPane;
 
 public class Administrador extends Usuario {
 	//dar de baja cuentas y crear empleados
-	private String idAdmin;
-
-	public Administrador(String nombre,  String mail, String pin, String idAdmin) {
-		super(nombre, TipoUsuario.Administrador, mail, pin);
-		this.idAdmin = idAdmin;
-	}
 	
 
-	public String getIdAdmin() {
-		return idAdmin;
+	public Administrador(String nombre,  String mail, String pin) {
+		super(nombre, TipoUsuario.Administrador, mail, pin);
+		
 	}
-
-
-	public void setIdAdmin(String idAdmin) {
-		this.idAdmin = idAdmin;
-	}
-
-
-
+	
 	
 	@Override
 	public String toString() {
-		return "idAdmin=" + idAdmin + ", getNombre()=" + getNombre() + ", getMail()=" + getMail() + "]";
+		return "nombre=" + nombre + ", mail=" + mail;
 	}
+
 
 	public void crearEmpleado() {
 	    String nombre = Validar.validarLetras("Ingrese nombre del empleado:");
@@ -67,8 +56,7 @@ public class Administrador extends Usuario {
 	    if (cuentaABorrar != null) {
 	        int confirmacion = JOptionPane.showConfirmDialog(
 	            null,
-	            "¿Seguro que desea eliminar la cuenta de " + cuentaABorrar.getCliente().getNombre() +
-	            " (CBU: " + cuentaABorrar.getCbu() + ")?",
+	            "¿Seguro que desea eliminar la cuenta de " + cuentaABorrar.getCliente().getNombre() + "?",
 	            "Confirmar eliminación",
 	            JOptionPane.YES_NO_OPTION
 	        );

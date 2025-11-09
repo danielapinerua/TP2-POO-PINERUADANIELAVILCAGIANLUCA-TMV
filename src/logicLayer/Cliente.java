@@ -20,16 +20,17 @@ public class Cliente extends Usuario{
 
 	
 
-    @Override
-    public String toString() {
-        return "Cliente: " + getNombre() + " | Tel: " + telefono + " | Email: " + getMail();
-    }
-    
+   
    // @Override
 	//public void Menu() {
 		//int opcion=JOptionPane.showOptionDialog(null, "Menu Cliente","",0,0,null, this.getTipoUsuario().getOpciones(),this.getTipoUsuario().getOpciones());
 	
     @Override
+	public String toString() {
+		return "Telefono=" + telefono + ", nombre=" + nombre + ", mail=" + mail;
+	}
+
+	@Override
     public void Menu() {
         int opcion;
         do {

@@ -57,10 +57,10 @@ public class Movimiento {
 	@Override
 	public String toString() {
 		if(cajero != null) {
-			return "Movimiento [tipo=" + tipo + ", fecha=" + fecha + ", monto=" + monto + ", cliente=" + cliente
-					+ ", cajero=" + cajero + "]";
+			return "Tipo=" + tipo + ", fecha=" + fecha + ", monto=" + monto + ", cliente=" + cliente
+					+ ", cajero=" + cajero + "\n";
 		}else {
-		return "Movimiento [tipo=" + tipo + ", fecha=" + fecha + ", monto=" + monto + ", cliente=" + cliente;
+		return "Tipo=" + tipo + ", fecha=" + fecha + ", monto=" + monto + ", cliente=" + cliente + "\n";
 	}
 	}
 	

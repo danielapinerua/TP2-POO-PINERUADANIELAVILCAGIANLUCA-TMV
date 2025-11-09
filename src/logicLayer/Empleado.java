@@ -177,9 +177,11 @@ public class Empleado extends Usuario {
                 "Operación cancelada. El cajero sigue activo.");
         }
     }
+
+	@Override
+	public String toString() {
+		return "Legajo=" + legajo + ", nombre=" + nombre + ", mail=" + mail ;
+	}
     
-    @Override
-    public String toString() {
-        return "Empleado: " + getNombre() + " | Legajo: " + legajo;
-    }
+    
 }
