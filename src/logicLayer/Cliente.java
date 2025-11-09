@@ -103,28 +103,31 @@ public class Cliente extends Usuario{
                     
                 case 4: //pagar servicios
                 	cuenta.pagarServicio();
+                	
+                case 5: //cambiar dolares
+                	cuenta.cambiarDolares();
 
-                case 5: // Ver saldo
+                case 6: // Ver saldo
                     JOptionPane.showMessageDialog(null, "Saldo actual: $" + cuenta.getSaldo());
                     break;
 
-                case 6: // Ver movimientos
+                case 7: // Ver movimientos
                    // cuenta.mostrarHistorial();
 	                JOptionPane.showMessageDialog(null, cuenta.getMovimientos().isEmpty()?"No hay movimientos":cuenta.getMovimientos());
 
 
                     break;
 
-                case 7: // Ver información 
+                case 8: // Ver información 
                     JOptionPane.showMessageDialog(null, toString());
                     break;
 
-                case 8: // Salir
+                case 9: // Salir
                     JOptionPane.showMessageDialog(null, "Cerrando sesión...");
                     break;
             }
 
-        } while (opcion != 8);
+        } while (opcion != 9);
     }
 
     private Cuenta buscarCuentaPorMail(String mailCliente) {

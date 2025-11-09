@@ -55,7 +55,7 @@ public class Cuenta {
 	
 	
 	private static String generarCbu() {
-	    int numero = 1000000 + cuentas.size();
+	    int numero = 1000 + cuentas.size();
 	    return String.valueOf(numero);
 	}
 	
@@ -67,17 +67,15 @@ public class Cuenta {
 
         Cliente nuevoCliente = new Cliente(nombre, mail, pin, telefono);
         Usuario.getUsuarios().add(nuevoCliente); // Se agrega a la lista general de usuarios
-
         String cbu = generarCbu();
-        double saldo = (int)(Math.random() * 10000);
-
+        double saldo = 0;
         Cuenta nuevaCuenta = new Cuenta(cbu, nuevoCliente, saldo);
         cuentas.add(nuevaCuenta);
-
         JOptionPane.showMessageDialog(null,
             "Registro exitoso.\nCliente: " + nombre +
             "\nCBU asignado: " + cbu +
-            "\nSaldo inicial: $" + saldo);
+            "\nSaldo inicial: $" + saldo
+            + "\nCBU: " + cbu);
 	}
 	
 	
@@ -134,16 +132,13 @@ public class Cuenta {
 	        JOptionPane.showMessageDialog(null, "El monto debe ser mayor a cero.");
 	        return;
 	    }
-
 	    double saldoDisponible = this.saldo + this.limiteCubierto;
-
 	    // el monto supera incluso el límite cubierto
 	    if (monto > saldoDisponible) {
 	        JOptionPane.showMessageDialog(null, 
 	            "Saldo insuficiente. Tu saldo disponible (incluyendo el límite cubierto) es de $" + saldoDisponible);
 	        return;
 	    }
-
 	    // el monto es mayor al saldo, pero se cubre con el límite
 	    if (monto > this.saldo && monto <= saldoDisponible) {
 	        JOptionPane.showMessageDialog(null, 
@@ -171,12 +166,10 @@ public class Cuenta {
 	        JOptionPane.showMessageDialog(null, "El monto debe ser mayor a cero.");
 	        return;
 	    }
-
 	    if (cajero.getSaldo() < monto) {
 	        JOptionPane.showMessageDialog(null, "El cajero no tiene suficiente dinero para este préstamo.");
 	        return;
 	    }
-
 	    String[] cuotasOpciones = {"3 cuotas (10% interés)", "6 cuotas (20% interés)", "12 cuotas (40% interés)"};
 	    int elegido = JOptionPane.showOptionDialog(
 	        null,
@@ -210,7 +203,6 @@ public class Cuenta {
 
 	    double montoTotal = monto + (monto * interes);
 	    double valorCuota = montoTotal / cuotas;
-
 	    int confirmar = JOptionPane.showConfirmDialog(
 	        null,
 	        "Préstamo de $" + monto +
@@ -250,7 +242,6 @@ public class Cuenta {
 	        return; // si el usuario cancela
 	    }
 	    double monto = Validar.validarNumero("Ingrese el monto a pagar para " + servicios[servicioElegido] + ":");
-
 	    if (monto <= 0) {
 	        JOptionPane.showMessageDialog(null, "Monto inválido.");
 	        return;
@@ -264,18 +255,36 @@ public class Cuenta {
 	    Movimiento mov = new Movimiento("Pago de servicio: " + servicios[servicioElegido], monto, cliente);
 	    this.movimientos.add(mov);
 	    Empleado.getMovimientosGenerales().add(mov);
-
 	    JOptionPane.showMessageDialog(null, 
 	        "Pago de " + servicios[servicioElegido] + " realizado con éxito por $" + monto +
 	        "\nSaldo actual: $" + this.saldo);
 	}
+	
 	@Override
 	public String toString() {
 		return "cbu=" + cbu + ", cliente=" + cliente + ", saldo=" + saldo + ", limiteCubierto=" + limiteCubierto
 				+ ", movimientos=" + movimientos ;
 	}
     
-    
+	public void cambiarDolares() {
+	    double cotizacion = 1500.50;
+	    double pesos = Validar.validarNumero("Ingrese el monto en pesos que desea cambiar a dólares:");
+	    if (pesos <= 0) {
+	        JOptionPane.showMessageDialog(null, "Monto inválido.");
+	        return;
+	    }
+	    if (pesos > this.saldo) {
+	        JOptionPane.showMessageDialog(null, "Saldo insuficiente para realizar la operación.");
+	        return;
+	    }
+	    double dolares = pesos / cotizacion;
+	    this.saldo -= pesos;
+	    Movimiento mov = new Movimiento("Cambio de dólares", pesos, cliente);
+	    movimientos.add(mov);
+	    Empleado.getMovimientosGenerales().add(mov);
+	    JOptionPane.showMessageDialog(null,
+	       "Cambio realizado con éxito!\nCotización: $" + cotizacion + "\nCompraste: " + dolares + " USD" + "\nSaldo actual: " + this.saldo);
+	}
 }
 
 	

@@ -31,7 +31,7 @@ public class Main {
         Empleado e2 = new Empleado("Paula", "paula@gmail.com", "12345", "002");
         Empleado e3 = new Empleado("Oriana", "oriana@gmail.com", "123456", "003");
         
-        Administrador admin = new Administrador("Julian", "admin@gmail.com", "9999", "ADMIN001");
+        Administrador admin = new Administrador("Julian", "admin@gmail.com", "9999");
         
         Usuario.getUsuarios().add(c1);
         Usuario.getUsuarios().add(c2);
@@ -42,9 +42,9 @@ public class Main {
         Usuario.getUsuarios().add(admin);
         
         //                                    CBU
-        Cuenta.getCuentas().add(new Cuenta("10000001", c1, 5000));
-        Cuenta.getCuentas().add(new Cuenta("10000002", c2, 8000));
-        Cuenta.getCuentas().add(new Cuenta("10000003", c3, 8000));
+        Cuenta.getCuentas().add(new Cuenta("1001", c1, 5000));
+        Cuenta.getCuentas().add(new Cuenta("1002", c2, 8000));
+        Cuenta.getCuentas().add(new Cuenta("1003", c3, 8000));
 
         int opcionSalir;
         do {
