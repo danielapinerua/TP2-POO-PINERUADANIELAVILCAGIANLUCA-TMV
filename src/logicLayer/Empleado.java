@@ -75,10 +75,23 @@ public class Empleado extends Usuario {
 	                JOptionPane.showMessageDialog(null, movimientosGenerales.isEmpty()?"No hay movimientos":movimientosGenerales);
 	                break;
 	                
-	            case 3: //dar de alta cajero
-	            	darAltaCajero();
-	            	
-	            	break;
+	            case 3: // dar alta cajero
+	                String[] opcionesCajero = {"Dar de alta cajero existente", "Crear cajero nuevo"};
+	                int opcionCajero = JOptionPane.showOptionDialog(
+	                    null,
+	                    "Seleccione una acción:",
+	                    "Administrar cajeros",
+	                    0, 0, null,
+	                    opcionesCajero,
+	                    opcionesCajero[0]
+	                );
+
+	                if (opcionCajero == 0) {
+	                    darAltaCajeroExistente();
+	                } else if (opcionCajero == 1) {
+	                    crearCajeroNuevo();
+	                }
+	                break;
 
 	            case 4: // dar de baja cajero
 	                JOptionPane.showMessageDialog(null, "Se dio de baja el cajero");
@@ -117,7 +130,16 @@ public class Empleado extends Usuario {
         JOptionPane.showMessageDialog(null, "Cajero recargado. Total: $" + cajero.getSaldo());
     }
     
-    public void darAltaCajero() {
+    public void darAltaCajeroExistente() {
+        Cajero seleccionado = Cajero.elegirCajeroInactivo();
+
+        if (seleccionado != null) {
+            seleccionado.setEstado(true);
+            JOptionPane.showMessageDialog(null, "Cajero en " + seleccionado.getUbicacion() + " dado de alta exitosamente.");
+        }
+    }
+    
+    public void crearCajeroNuevo() {
         String ubicacion = Validar.validarCampo("Ingrese la ubicación del nuevo cajero:");
         double saldoInicial = Validar.validarNumero("Saldo inicial del cajero:");
         boolean estado = true;
@@ -125,7 +147,7 @@ public class Empleado extends Usuario {
         Cajero nuevo = new Cajero(saldoInicial, ubicacion, estado);
         Cajero.getCajeros().add(nuevo);
 
-        JOptionPane.showMessageDialog(null, "Cajero en " + ubicacion + " dado de alta exitosamente.");
+        JOptionPane.showMessageDialog(null, "Cajero nuevo creado en " + ubicacion + ".");
     }
     
     @Override

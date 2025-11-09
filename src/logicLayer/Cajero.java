@@ -133,7 +133,43 @@ public class Cajero {
 	
 		
 	}
-    
+	public static Cajero elegirCajeroInactivo() {
+	    int inactivos = 0;
+	    LinkedList<Cajero> cajerosInactivos = new LinkedList<Cajero>();
+
+	    for (int i = 0; i < cajeros.size(); i++) {
+	        if (!cajeros.get(i).isEstado()) { // estado == false
+	            cajerosInactivos.add(cajeros.get(i));
+	            inactivos++;
+	        }
+	    }
+
+	    if (inactivos == 0) {
+	        JOptionPane.showMessageDialog(null, "No hay cajeros inactivos disponibles.");
+	        return null;
+	    } else {
+	        int actual = 0;
+	        String[] cajerosString = new String[inactivos];
+
+	        for (int i = 0; i < cajeros.size(); i++) {
+	            if (cajeros.get(i).isEstado()==false) {
+	                cajerosString[actual] = cajeros.get(i).getUbicacion();
+	                actual++;
+	            }
+	        }
+
+	        int elegido = JOptionPane.showOptionDialog(
+	            null,
+	            "Elegí un cajero inactivo para dar de alta:",
+	            "Cajeros inactivos",
+	            0, 0, null,
+	            cajerosString,
+	            cajerosString[0]
+	        );
+
+	        return cajerosInactivos.get(elegido);
+	    }
+	}
   
 
     //public void agregarCuenta(Cuenta cuenta) {
