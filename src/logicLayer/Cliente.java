@@ -90,8 +90,8 @@ public class Cliente extends Usuario{
                 	cuenta.retirar(seleccionado, Validar.validarNumero("ingrese monto"));
                 	}
                 	
-                
                     break;
+                    
                 case 3: // Solicitar préstamo
                     Cajero cajeroPrestamo = Cajero.elegirCajeroRecibir();
                     if (cajeroPrestamo != null) {
@@ -101,9 +101,11 @@ public class Cliente extends Usuario{
                     
                 case 4: //pagar servicios
                 	cuenta.pagarServicio();
+                	break;
                 	
                 case 5: //cambiar dolares
                 	cuenta.cambiarDolares();
+                	break;
                 	
                 case 6: //cambiar pin
                 	cambiarPin();

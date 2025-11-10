@@ -77,6 +77,7 @@ public class Empleado extends Usuario {
 	                
 	            case 3: // dar alta cajero
 	              darAltaCajero();
+	              break;
 
 	            case 4: // dar de baja cajero
 	              darBajaCajero();
@@ -92,6 +93,7 @@ public class Empleado extends Usuario {
 	                
 	            case 7 ://salir
 	            	JOptionPane.showMessageDialog(null, "Cerrando sesión...");
+	            	break;
 	        }
 	    } while (opcion != 7);
 	}

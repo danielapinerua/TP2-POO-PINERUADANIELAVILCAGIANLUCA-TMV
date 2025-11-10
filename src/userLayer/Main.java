@@ -27,9 +27,9 @@ public class Main {
 		Cliente c1 = new Cliente("Daniela", "daniela@mail.com", "1111", "123456789");
         Cliente c2 = new Cliente("Lucas", "lucas@mail.com", "2222", "987654321");
         Cliente c3 = new Cliente("Sofia", "sofia@mail.com", "3333", "234567890");
-        Empleado e1 = new Empleado("Gianluca", "gvilca@mail.com", "1234", "001");
-        Empleado e2 = new Empleado("Paula", "paula@gmail.com", "12345", "002");
-        Empleado e3 = new Empleado("Oriana", "oriana@gmail.com", "123456", "003");
+        Empleado e1 = new Empleado("Gianluca", "gvilca@mail.com", "1234", "3");
+        Empleado e2 = new Empleado("Paula", "paula@gmail.com", "12345", "4");
+        Empleado e3 = new Empleado("Oriana", "oriana@gmail.com", "123456", "5");
         
         Administrador admin = new Administrador("Julian", "admin@gmail.com", "9999", "1");
         
