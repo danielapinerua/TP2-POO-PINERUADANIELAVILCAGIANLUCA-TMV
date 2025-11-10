@@ -31,7 +31,7 @@ public class Main {
         Empleado e2 = new Empleado("Paula", "paula@gmail.com", "12345", "002");
         Empleado e3 = new Empleado("Oriana", "oriana@gmail.com", "123456", "003");
         
-        Administrador admin = new Administrador("Julian", "admin@gmail.com", "9999");
+        Administrador admin = new Administrador("Julian", "admin@gmail.com", "9999", "1");
         
         Usuario.getUsuarios().add(c1);
         Usuario.getUsuarios().add(c2);

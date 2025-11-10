@@ -4,18 +4,35 @@ import javax.swing.JOptionPane;
 
 public class Administrador extends Usuario {
 	//dar de baja cuentas y crear empleados
+	private String idAdmin;
+	
+	
+	
+	public Administrador(String nombre, String mail, String pin, String idAdmin) {
+		super(nombre, TipoUsuario.Administrador, mail, pin);
+		this.idAdmin = idAdmin;
+	}
+	
 	
 
-	public Administrador(String nombre,  String mail, String pin) {
-		super(nombre, TipoUsuario.Administrador, mail, pin);
-		
+	public String getIdAdmin() {
+		return idAdmin;
 	}
-	
-	
+
+
+
+	public void setIdAdmin(String idAdmin) {
+		this.idAdmin = idAdmin;
+	}
+
+
+
+
 	@Override
 	public String toString() {
-		return "nombre=" + nombre + ", mail=" + mail;
+		return "IdAdmin=" + idAdmin + ", nombre=" + nombre + ", mail=" + mail;
 	}
+
 
 
 	public void crearEmpleado() {
@@ -92,17 +109,21 @@ public class Administrador extends Usuario {
                 case 1: // Dar de baja cuenta
                     darDeBajaCuenta();
                     break;
-
-                case 2: // Ver información
+                    
+                case 2: //cambiar pin
+                	cambiarPin();
+                	break;
+                	
+                case 3: // Ver información
                     JOptionPane.showMessageDialog(null, toString());
                     break;
 
-                case 3: // Salir
+                case 4: // Salir
                     JOptionPane.showMessageDialog(null, "Cerrando sesión...");
                     break;
             }
 
-        } while (opcion != 3);
+        } while (opcion != 4);
 	}
 	
 

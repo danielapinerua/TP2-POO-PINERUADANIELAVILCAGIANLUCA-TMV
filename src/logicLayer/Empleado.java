@@ -80,15 +80,20 @@ public class Empleado extends Usuario {
 
 	            case 4: // dar de baja cajero
 	              darBajaCajero();
-	            	
 	                break;
-	            case 5: // ver informacion del empleado
+	                
+	            case 5: // cambiar pin 
+	            	cambiarPin();
+	            	break;
+	            	
+	            case 6: // ver informacion del empleado
 	                JOptionPane.showMessageDialog(null, toString());
 	                break;
-	            case 6 ://salir
+	                
+	            case 7 ://salir
 	            	JOptionPane.showMessageDialog(null, "Cerrando sesión...");
 	        }
-	    } while (opcion != 6);
+	    } while (opcion != 7);
 	}
 	// ver las cuentas q existen
     public void verCuentas() {

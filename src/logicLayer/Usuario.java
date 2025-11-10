@@ -60,6 +60,18 @@ public abstract class Usuario {
 		}
 		return null;
 	}
+	
+	public void cambiarPin() {
+	    String pinActual = Validar.validarCampo("Ingrese su PIN actual:");
+
+	    if (this.getPin().equals(pinActual)) {
+	        String nuevoPin = Validar.validarCampo("Ingrese el nuevo PIN:");
+	        this.setPin(nuevoPin);
+	        JOptionPane.showMessageDialog(null, "PIN actualizado correctamente.");
+	    } else {
+	        JOptionPane.showMessageDialog(null, "PIN incorrecto.");
+	    }
+	}
 	@Override
 	public String toString() {
 		return "Usuario [nombre=" + nombre + ", tipo=" + tipoUsuario + ", mail=" + mail + ", pin=" + pin + "]";
