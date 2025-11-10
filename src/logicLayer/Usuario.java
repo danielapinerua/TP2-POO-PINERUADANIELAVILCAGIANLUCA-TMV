@@ -62,16 +62,18 @@ public abstract class Usuario {
 	}
 	
 	public void cambiarPin() {
-	    String pinActual = Validar.validarCampo("Ingrese su PIN actual:");
-
-	    if (this.getPin().equals(pinActual)) {
-	        String nuevoPin = Validar.validarCampo("Ingrese el nuevo PIN:");
-	        this.setPin(nuevoPin);
-	        JOptionPane.showMessageDialog(null, "PIN actualizado correctamente.");
-	    } else {
-	        JOptionPane.showMessageDialog(null, "PIN incorrecto.");
-	    }
+	    String pinActual;
+	    do {
+	        pinActual = Validar.validarCampo("Ingrese su PIN actual:");
+	        if (!this.getPin().equals(pinActual)) {
+	            JOptionPane.showMessageDialog(null, "PIN incorrecto. Intente nuevamente.");
+	        }
+	    } while (!this.getPin().equals(pinActual)); // se repite mientras el pin sea incorrecto
+	    String nuevoPin = Validar.validarCampo("Ingrese el nuevo PIN:");
+	    this.setPin(nuevoPin);
+	    JOptionPane.showMessageDialog(null, "PIN actualizado correctamente.");
 	}
+	
 	@Override
 	public String toString() {
 		return "Usuario [nombre=" + nombre + ", tipo=" + tipoUsuario + ", mail=" + mail + ", pin=" + pin + "]";
