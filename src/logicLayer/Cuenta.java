@@ -339,7 +339,7 @@ public class Cuenta {
 	            String tipoSeleccionado = tipos[tipoElegido];
 
 	            filtrados = movimientos.stream()
-	                .filter(movimiento -> movimiento.getTipo().toLowerCase().contains(tipoSeleccionado.toLowerCase()))
+	                .filter(movimiento -> movimiento.getTipo().contains(tipoSeleccionado))
 	                .collect(Collectors.toCollection(LinkedList::new));
 	            break;
 	    }

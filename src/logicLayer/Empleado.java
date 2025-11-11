@@ -270,7 +270,7 @@ public class Empleado extends Usuario {
                 String clienteFiltro = Validar.validarCampo("Ingrese el nombre del cliente:");
 
                 filtrados = movimientosGenerales.stream()
-                    .filter(movimiento -> movimiento.getCliente().getNombre().toLowerCase().contains(clienteFiltro.toLowerCase()))
+                    .filter(movimiento -> movimiento.getCliente().getNombre().contains(clienteFiltro))
                     .collect(Collectors.toCollection(LinkedList::new));
                 break;
         }
