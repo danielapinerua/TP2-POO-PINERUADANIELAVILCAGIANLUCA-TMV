@@ -224,6 +224,7 @@ public class Empleado extends Usuario {
             JOptionPane.showMessageDialog(null, "No hay movimientos registrados.");
             return;
         }
+
         String[] opciones = {
             "Ver todos los movimientos",
             "Filtrar por tipo de movimiento",
@@ -246,30 +247,38 @@ public class Empleado extends Usuario {
         switch (opcion) {
             case 0: // Ver todos los movimientos
                 break;
-
-            case 1: // Filtrar por tipo de movimiento
-                String tipoFiltro = Validar.validarCampo( "Ingrese el tipo de movimiento (Retiro, Depósito, Préstamo):"
+            case 1: //  Filtrar por tipo de movimiento 
+                String[] tipos = {"Depósito", "Retiro", "Préstamo", "Transferencia", "Pago de servicio", "Cambio de dólares"};
+                int tipoElegido = JOptionPane.showOptionDialog(
+                    null,
+                    "Seleccione el tipo de movimiento:",
+                    "Filtrar por tipo",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    tipos,
+                    tipos[0]
                 );
 
+
+                String tipoSeleccionado = tipos[tipoElegido];
                 filtrados = movimientosGenerales.stream()
-                    .filter(movimiento -> movimiento.getTipo().toLowerCase().contains(tipoFiltro.toLowerCase()))
+                    .filter(movimiento -> movimiento.getTipo().toLowerCase().contains(tipoSeleccionado.toLowerCase()))
                     .collect(Collectors.toCollection(LinkedList::new));
                 break;
-
-            case 2: // Filtrar por cliente
+            case 2: //  Filtrar por cliente
                 String clienteFiltro = Validar.validarCampo("Ingrese el nombre del cliente:");
 
                 filtrados = movimientosGenerales.stream()
                     .filter(movimiento -> movimiento.getCliente().getNombre().toLowerCase().contains(clienteFiltro.toLowerCase()))
                     .collect(Collectors.toCollection(LinkedList::new));
                 break;
-
         }
 
         if (filtrados.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No se encontraron movimientos con ese criterio.");
         } else {
-            StringBuilder sb = new StringBuilder("Movimientos: \n");
+            StringBuilder sb = new StringBuilder("Movimientos:\n");
             for (Movimiento mov : filtrados) {
                 sb.append(mov.toString()).append("\n");
             }
