@@ -1,5 +1,8 @@
 package logicLayer;
 
+import java.util.LinkedList;
+import java.util.stream.Collectors;
+
 import javax.swing.JOptionPane;
 
 public class Cliente extends Usuario{
@@ -116,9 +119,7 @@ public class Cliente extends Usuario{
                     break;
 
                 case 8: // Ver movimientos
-                   // cuenta.mostrarHistorial();
-	                JOptionPane.showMessageDialog(null, cuenta.getMovimientos().isEmpty()?"No hay movimientos":cuenta.getMovimientos());
-
+                  cuenta.verMovimientos();
                     break;
 
                 case 9: // Ver información 
@@ -141,6 +142,11 @@ public class Cliente extends Usuario{
         }
         return null;
     }
+    
+    
+    
+   
+    
 }
 
 

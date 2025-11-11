@@ -229,6 +229,7 @@ public class Empleado extends Usuario {
             "Filtrar por tipo de movimiento",
             "Filtrar por cliente"
         };
+
         int opcion = JOptionPane.showOptionDialog(
             null,
             "Seleccione una opción:",
@@ -239,17 +240,16 @@ public class Empleado extends Usuario {
             opciones,
             opciones[0]
         );
+
         LinkedList<Movimiento> filtrados = new LinkedList<>(movimientosGenerales);
-        
+
         switch (opcion) {
             case 0: // Ver todos los movimientos
                 break;
 
             case 1: // Filtrar por tipo de movimiento
-                String tipoFiltro = JOptionPane.showInputDialog("Ingrese el tipo de movimiento (ej: Retiro, Depósito, Préstamo):");
-                if (tipoFiltro.trim().isEmpty()) {
-                	return;
-                }
+                String tipoFiltro = Validar.validarCampo( "Ingrese el tipo de movimiento (ej: Retiro, Depósito, Préstamo):"
+                );
 
                 filtrados = movimientosGenerales.stream()
                     .filter(movimiento -> movimiento.getTipo().toLowerCase().contains(tipoFiltro.toLowerCase()))
@@ -257,15 +257,13 @@ public class Empleado extends Usuario {
                 break;
 
             case 2: // Filtrar por cliente
-                String clienteFiltro = JOptionPane.showInputDialog("Ingrese el nombre del cliente:");
-                if (clienteFiltro.isEmpty()) {
-                	return;
-                }
+                String clienteFiltro = Validar.validarCampo("Ingrese el nombre del cliente:");
 
                 filtrados = movimientosGenerales.stream()
                     .filter(movimiento -> movimiento.getCliente().getNombre().toLowerCase().contains(clienteFiltro.toLowerCase()))
                     .collect(Collectors.toCollection(LinkedList::new));
                 break;
+
         }
 
         if (filtrados.isEmpty()) {
@@ -278,7 +276,6 @@ public class Empleado extends Usuario {
             JOptionPane.showMessageDialog(null, sb.toString());
         }
     }
-    
 	@Override
 	public String toString() {
 		return "Legajo=" + legajo + ", nombre=" + nombre + ", mail=" + mail ;

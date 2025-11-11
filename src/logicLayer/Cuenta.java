@@ -1,6 +1,7 @@
 package logicLayer;
 
 import java.util.LinkedList;
+import java.util.stream.Collectors;
 
 import javax.swing.JOptionPane;
 
@@ -292,6 +293,53 @@ public class Cuenta {
 	       "Cambio realizado con éxito!\nCotización: $" + cotizacion + 
 	       "\nCompraste: " + dolares + " USD" + "Saldo actual: " + this.saldo );
 	}
+	
+	
+	
+	 public void verMovimientos() {
+	        if (this.movimientos.isEmpty()) {
+	            JOptionPane.showMessageDialog(null, "No hay movimientos registrados en tu cuenta.");
+	            return;
+	        }
+	        String[] opciones = {
+	            "Ver todos los movimientos",
+	            "Filtrar por tipo de movimiento"
+	        };
+
+	        int opcion = JOptionPane.showOptionDialog(
+	            null,
+	            "Seleccione una opción:",
+	            "Ver Movimientos",
+	            JOptionPane.DEFAULT_OPTION,
+	            JOptionPane.INFORMATION_MESSAGE,
+	            null,
+	            opciones,
+	            opciones[0]
+	        );
+	        
+	        LinkedList<Movimiento> filtrados = new LinkedList<>(movimientos);
+	        switch (opcion) {
+	            case 0: // Ver todos los movimientos
+	                break;
+	            case 1: // Filtrar por tipo de movimiento
+	                String tipoFiltro = Validar.validarCampo("Ingrese el tipo de movimiento (ej: Retiro, Depósito, Préstamo):");
+	                
+	                filtrados = movimientos.stream()
+	                    .filter(movimiento -> movimiento.getTipo().toLowerCase().contains(tipoFiltro.toLowerCase()))
+	                    .collect(Collectors.toCollection(LinkedList::new));
+	                break;
+
+	        }
+	        if (filtrados.isEmpty()) {
+	            JOptionPane.showMessageDialog(null, "No se encontraron movimientos con ese criterio.");
+	        } else {
+	            StringBuilder sb = new StringBuilder("=== Tus Movimientos ===\n");
+	            for (Movimiento mov : filtrados) {
+	                sb.append(mov.toString()).append("\n");
+	            }
+	            JOptionPane.showMessageDialog(null, sb.toString());
+	        }
+	    }
 }
 
 	
