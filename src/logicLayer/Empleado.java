@@ -263,14 +263,14 @@ public class Empleado extends Usuario {
 
                 String tipoSeleccionado = tipos[tipoElegido];
                 filtrados = movimientosGenerales.stream()
-                    .filter(movimiento -> movimiento.getTipo().toLowerCase().contains(tipoSeleccionado.toLowerCase()))
+                    .filter(movimiento -> movimiento.getTipo().contains(tipoSeleccionado))
                     .collect(Collectors.toCollection(LinkedList::new));
                 break;
             case 2: //  Filtrar por cliente
                 String clienteFiltro = Validar.validarCampo("Ingrese el nombre del cliente:");
 
                 filtrados = movimientosGenerales.stream()
-                    .filter(movimiento -> movimiento.getCliente().getNombre().contains(clienteFiltro))
+                    .filter(movimiento -> movimiento.getCliente().getNombre().toLowerCase().contains(clienteFiltro.toLowerCase()))
                     .collect(Collectors.toCollection(LinkedList::new));
                 break;
         }
