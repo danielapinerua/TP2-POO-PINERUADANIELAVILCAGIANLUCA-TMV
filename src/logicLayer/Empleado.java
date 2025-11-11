@@ -1,6 +1,7 @@
 package logicLayer;
 
 import java.util.LinkedList;
+import java.util.stream.Collectors;
 
 import javax.swing.JOptionPane;
 
@@ -69,8 +70,8 @@ public class Empleado extends Usuario {
 	                }
 	                break;
 	               
-	            case 2: // Ver información del empleado
-	                JOptionPane.showMessageDialog(null, movimientosGenerales.isEmpty()?"No hay movimientos":movimientosGenerales);
+	            case 2: // Ver movimientos
+	                verMovimientos();
 	                break;
 	                
 	            case 3: // dar alta cajero
@@ -216,7 +217,68 @@ public class Empleado extends Usuario {
         }
         JOptionPane.showMessageDialog(null, sb.toString());
     }
+    
+    
+    public void verMovimientos() {
+        if (movimientosGenerales.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No hay movimientos registrados.");
+            return;
+        }
+        String[] opciones = {
+            "Ver todos los movimientos",
+            "Filtrar por tipo de movimiento",
+            "Filtrar por cliente"
+        };
+        int opcion = JOptionPane.showOptionDialog(
+            null,
+            "Seleccione una opción:",
+            "Ver Movimientos",
+            JOptionPane.DEFAULT_OPTION,
+            JOptionPane.INFORMATION_MESSAGE,
+            null,
+            opciones,
+            opciones[0]
+        );
+        LinkedList<Movimiento> filtrados = new LinkedList<>(movimientosGenerales);
+        
+        switch (opcion) {
+            case 0: // Ver todos los movimientos
+                break;
 
+            case 1: // Filtrar por tipo de movimiento
+                String tipoFiltro = JOptionPane.showInputDialog("Ingrese el tipo de movimiento (ej: Retiro, Depósito, Préstamo):");
+                if (tipoFiltro.trim().isEmpty()) {
+                	return;
+                }
+
+                filtrados = movimientosGenerales.stream()
+                    .filter(movimiento -> movimiento.getTipo().toLowerCase().contains(tipoFiltro.toLowerCase()))
+                    .collect(Collectors.toCollection(LinkedList::new));
+                break;
+
+            case 2: // Filtrar por cliente
+                String clienteFiltro = JOptionPane.showInputDialog("Ingrese el nombre del cliente:");
+                if (clienteFiltro.isEmpty()) {
+                	return;
+                }
+
+                filtrados = movimientosGenerales.stream()
+                    .filter(movimiento -> movimiento.getCliente().getNombre().toLowerCase().contains(clienteFiltro.toLowerCase()))
+                    .collect(Collectors.toCollection(LinkedList::new));
+                break;
+        }
+
+        if (filtrados.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No se encontraron movimientos con ese criterio.");
+        } else {
+            StringBuilder sb = new StringBuilder("=== Movimientos ===\n");
+            for (Movimiento mov : filtrados) {
+                sb.append(mov.toString()).append("\n");
+            }
+            JOptionPane.showMessageDialog(null, sb.toString());
+        }
+    }
+    
 	@Override
 	public String toString() {
 		return "Legajo=" + legajo + ", nombre=" + nombre + ", mail=" + mail ;
