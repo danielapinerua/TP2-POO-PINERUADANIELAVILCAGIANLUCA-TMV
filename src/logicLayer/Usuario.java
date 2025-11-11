@@ -74,7 +74,7 @@ public abstract class Usuario {
 	            }
 	        }
 	    }
-	    return null; // si no se encuentra coincidencia
+	    return null; 
 	}
 	
 	public void cambiarPin() {
