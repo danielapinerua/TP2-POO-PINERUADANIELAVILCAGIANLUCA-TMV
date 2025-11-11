@@ -55,7 +55,7 @@ public class Cajero {
 	
 	@Override
 	public String toString() {
-	    return "Ubicacion=" + ubicacion + ",saldo=" + saldo + ", ubicacion=" + ubicacion + ", estado=" + (estado ? "Activo" : "Inactivo") + "\n";
+	    return "Ubicacion=" + ubicacion + ",saldo=" + saldo + ",estado=" + (estado ? "Activo" : "Inactivo") + "\n";
 	}
 	
 	public static Cajero elegirCajeroRecibir() {

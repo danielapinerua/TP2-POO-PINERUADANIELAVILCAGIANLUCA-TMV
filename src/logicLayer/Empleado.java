@@ -61,7 +61,6 @@ public class Empleado extends Usuario {
 	                verCuentas();
 	                break;
 
-	           
 	            case 1: // Cargar dinero
 	            	Cajero cajeroCarga = Cajero.elegirCajeroEmpleado();
 	                if (cajeroCarga != null) {
@@ -69,7 +68,6 @@ public class Empleado extends Usuario {
 	                    cargarDinero(cajeroCarga, monto);
 	                }
 	                break;
-
 	               
 	            case 2: // Ver información del empleado
 	                JOptionPane.showMessageDialog(null, movimientosGenerales.isEmpty()?"No hay movimientos":movimientosGenerales);
