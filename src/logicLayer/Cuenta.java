@@ -333,7 +333,7 @@ public class Cuenta {
 	        if (filtrados.isEmpty()) {
 	            JOptionPane.showMessageDialog(null, "No se encontraron movimientos con ese criterio.");
 	        } else {
-	            StringBuilder sb = new StringBuilder("Tus Movimientos\n");
+	            StringBuilder sb = new StringBuilder("Tus Movimientos: \n");
 	            for (Movimiento mov : filtrados) {
 	                sb.append(mov.toString()).append("\n");
 	            }

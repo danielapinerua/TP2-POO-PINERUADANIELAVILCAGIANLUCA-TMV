@@ -248,7 +248,7 @@ public class Empleado extends Usuario {
                 break;
 
             case 1: // Filtrar por tipo de movimiento
-                String tipoFiltro = Validar.validarCampo( "Ingrese el tipo de movimiento (ej: Retiro, Depósito, Préstamo):"
+                String tipoFiltro = Validar.validarCampo( "Ingrese el tipo de movimiento (Retiro, Depósito, Préstamo):"
                 );
 
                 filtrados = movimientosGenerales.stream()
