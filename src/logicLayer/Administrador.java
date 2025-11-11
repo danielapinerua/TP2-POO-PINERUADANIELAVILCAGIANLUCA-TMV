@@ -19,12 +19,9 @@ public class Administrador extends Usuario {
 		return idAdmin;
 	}
 
-
-
 	public void setIdAdmin(String idAdmin) {
 		this.idAdmin = idAdmin;
 	}
-
 
 
 

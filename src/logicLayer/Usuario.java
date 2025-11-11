@@ -49,16 +49,32 @@ public abstract class Usuario {
 	}
 	
 	
+	
+	/*
 	public static Usuario login(String mail, String contr) {
 		
 		for (Usuario usuario : usuarios) {
 			if (usuario.getMail().equals(mail) && usuario.getPin().equals(contr)) {
 				
 				return usuario;
-				
 			}
 		}
 		return null;
+	}*/
+	
+	public static Usuario login(String mail, String contr, TipoUsuario tipoEsperado) {
+	    for (Usuario usuario : usuarios) {
+	        if (usuario.getMail().equals(mail) && usuario.getPin().equals(contr)) {
+	            if (usuario.getTipoUsuario() == tipoEsperado) {
+	                return usuario; // coincide tipo + datos
+	            } else {
+	                JOptionPane.showMessageDialog(null, 
+	                    "Este usuario no pertenece al tipo seleccionado (" + tipoEsperado + ").");
+	                return null;
+	            }
+	        }
+	    }
+	    return null; // si no se encuentra coincidencia
 	}
 	
 	public void cambiarPin() {

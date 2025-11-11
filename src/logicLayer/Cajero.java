@@ -1,6 +1,5 @@
 package logicLayer;
 
-import java.lang.reflect.Array;
 import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
@@ -173,12 +172,6 @@ public class Cajero {
 	    }
 	}
   
-
-   
-  
-    
-    
-    
 
 
 }

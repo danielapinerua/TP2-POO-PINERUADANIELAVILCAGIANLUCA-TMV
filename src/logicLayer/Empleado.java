@@ -211,9 +211,9 @@ public class Empleado extends Usuario {
             return;
         }
 
-        StringBuilder sb = new StringBuilder("=== Lista de cajeros ===\n");
+        StringBuilder sb = new StringBuilder("Lista de cajeros: \n");
         for (Cajero c : cajeros) {
-            sb.append(c.toString()); // tu toString ya tiene "\n" al final
+            sb.append(c.toString()); 
         }
         JOptionPane.showMessageDialog(null, sb.toString());
     }

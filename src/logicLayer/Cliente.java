@@ -1,8 +1,5 @@
 package logicLayer;
 
-import java.util.LinkedList;
-import java.util.stream.Collectors;
-
 import javax.swing.JOptionPane;
 
 public class Cliente extends Usuario{
@@ -145,7 +142,6 @@ public class Cliente extends Usuario{
     
     
     
-   
     
 }
 

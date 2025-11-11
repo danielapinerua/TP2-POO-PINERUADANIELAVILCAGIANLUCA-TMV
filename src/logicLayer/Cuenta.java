@@ -291,7 +291,7 @@ public class Cuenta {
 	    Empleado.getMovimientosGenerales().add(mov);
 	    JOptionPane.showMessageDialog(null,
 	       "Cambio realizado con éxito!\nCotización: $" + cotizacion + 
-	       "\nCompraste: " + dolares + " USD" + "Saldo actual: " + this.saldo );
+	       "\nCompraste: " + dolares + " USD" + "\nSaldo actual: " + this.saldo );
 	}
 	
 	

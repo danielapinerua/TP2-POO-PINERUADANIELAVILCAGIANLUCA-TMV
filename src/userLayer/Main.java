@@ -55,9 +55,9 @@ public class Main {
 
             switch (tipoElegido) {
                 case Empleado:
-                    String mailEmp = Validar.validarCampo("Mail del empleado:");
-                    String pinEmp = Validar.validarCampo("PIN del empleado:");
-                    Usuario empleado = Usuario.login(mailEmp, pinEmp);
+                	String mailEmp = Validar.validarCampo("Mail del empleado:");
+                	String pinEmp = Validar.validarCampo("PIN del empleado:");
+                	Usuario empleado = Usuario.login(mailEmp, pinEmp, TipoUsuario.Empleado);
                     if (empleado == null) {
                         JOptionPane.showMessageDialog(null, "Datos incorrectos");
                     } else {
@@ -86,10 +86,9 @@ public class Main {
                             	Cuenta.registrarse();
                             	break;
                             case 1:
-                            	
-                                String mailCli = Validar.validarCampo("Mail del cliente:");
-                                String pinCli = Validar.validarCampo("PIN del cliente:");
-                                Usuario cliente = Usuario.login(mailCli, pinCli);
+                            	String mailCli = Validar.validarCampo("Mail del cliente:");
+                            	String pinCli = Validar.validarCampo("PIN del cliente:");
+                            	Usuario cliente = Usuario.login(mailCli, pinCli, TipoUsuario.Cliente);
                                 if (cliente == null) {
                                     JOptionPane.showMessageDialog(null, "Datos incorrectos");
                                 } else {
@@ -104,9 +103,9 @@ public class Main {
                         } while (opcionCliente != 2);
                     break;
                 case Administrador: 
-                    String mailAdmin = Validar.validarCampo("Mail del administrador:");
-                    String pinAdmin = Validar.validarCampo("PIN del administrador:");
-                    Usuario administrador = Usuario.login(mailAdmin, pinAdmin);
+                	String mailAdmin = Validar.validarCampo("Mail del administrador:");
+                	String pinAdmin = Validar.validarCampo("PIN del administrador:");
+                	Usuario administrador = Usuario.login(mailAdmin, pinAdmin, TipoUsuario.Administrador);
                     if (administrador == null) {
                         JOptionPane.showMessageDialog(null, "Datos incorrectos");
                     } else {
