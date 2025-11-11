@@ -50,11 +50,13 @@ public class Cajero {
 	public static void setCajeros(LinkedList<Cajero> cajeros) {
 		Cajero.cajeros = cajeros;
 	}
+	
+	
+	
 	@Override
 	public String toString() {
-		return "Cajero [saldo=" + saldo + ", ubicacion=" + ubicacion ;
+	    return "Ubicacion=" + ubicacion + ",saldo=" + saldo + ", ubicacion=" + ubicacion + ", estado=" + (estado ? "Activo" : "Inactivo") + "\n";
 	}
-	
 	
 	public static Cajero elegirCajeroRecibir() {
 		//me aseguro que no se pueda retirar dinero de un cajero que no esta habilitado

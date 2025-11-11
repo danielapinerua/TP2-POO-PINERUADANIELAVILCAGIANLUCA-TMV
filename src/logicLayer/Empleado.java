@@ -83,19 +83,23 @@ public class Empleado extends Usuario {
 	              darBajaCajero();
 	                break;
 	                
-	            case 5: // cambiar pin 
+	            case 5://ver cajeros
+	            	verCajeros();
+	            	break;
+	                
+	            case 6: // cambiar pin 
 	            	cambiarPin();
 	            	break;
 	            	
-	            case 6: // ver informacion del empleado
+	            case 7: // ver informacion del empleado
 	                JOptionPane.showMessageDialog(null, toString());
 	                break;
 	                
-	            case 7 ://salir
+	            case 8://salir
 	            	JOptionPane.showMessageDialog(null, "Cerrando sesión...");
 	            	break;
 	        }
-	    } while (opcion != 7);
+	    } while (opcion != 8);
 	}
 	// ver las cuentas q existen
     public void verCuentas() {
@@ -134,24 +138,40 @@ public class Empleado extends Usuario {
             opcionesCajero,
             opcionesCajero[0]
         );
-
         if (opcionCajero == 0) {
-        	  Cajero seleccionado = Cajero.elegirCajeroInactivo();
-
-              if (seleccionado != null) {
-                  seleccionado.setEstado(true);
-                  JOptionPane.showMessageDialog(null, "Cajero en " + seleccionado.getUbicacion() + " dado de alta exitosamente.");
-              }
+            Cajero seleccionado = Cajero.elegirCajeroInactivo();
+            if (seleccionado != null) {
+                seleccionado.setEstado(true);
+                JOptionPane.showMessageDialog(null, 
+                    "Cajero en " + seleccionado.getUbicacion() + " dado de alta exitosamente.");
+            }
         } else if (opcionCajero == 1) {
-        	String ubicacion = Validar.validarCampo("Ingrese la ubicación del nuevo cajero:");
+            String ubicacion = Validar.validarCampo("Ingrese la ubicación del nuevo cajero:");
             double saldoInicial = Validar.validarNumero("Saldo inicial del cajero:");
-            boolean estado = true;
-
+            // Pedir el estado al crear el cajero
+            String[] opcionesEstado = {"Activo", "Inactivo"};
+            int estadoElegido = JOptionPane.showOptionDialog(
+                null,
+                "Seleccione el estado inicial del cajero:",
+                "Estado del cajero",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                opcionesEstado,
+                opcionesEstado[0]
+            );
+            boolean estado;
+            if (estadoElegido == 0) {
+                estado = true;
+            } else {
+                estado = false;
+            }
             Cajero nuevo = new Cajero(saldoInicial, ubicacion, estado);
             Cajero.getCajeros().add(nuevo);
-
-            JOptionPane.showMessageDialog(null, "Cajero nuevo creado en " + ubicacion + ".");
-        
+            JOptionPane.showMessageDialog(null, 
+                "Cajero nuevo creado en " + ubicacion + 
+                "\nSaldo inicial: $" + saldoInicial +
+                "\nEstado: " + (estado ? "Activo" : "Inactivo"));
         }
     }
     
@@ -183,6 +203,20 @@ public class Empleado extends Usuario {
             JOptionPane.showMessageDialog(null, 
                 "Operación cancelada. El cajero sigue activo.");
         }
+    }
+    
+    public void verCajeros() {
+        LinkedList<Cajero> cajeros = Cajero.getCajeros();
+        if (cajeros.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No hay cajeros registrados.");
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder("=== Lista de cajeros ===\n");
+        for (Cajero c : cajeros) {
+            sb.append(c.toString()); // tu toString ya tiene "\n" al final
+        }
+        JOptionPane.showMessageDialog(null, sb.toString());
     }
 
 	@Override
