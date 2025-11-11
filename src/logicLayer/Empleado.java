@@ -108,7 +108,7 @@ public class Empleado extends Usuario {
             return;
         }
 
-        StringBuilder sb = new StringBuilder("=== Lista de cuentas ===\n");
+        StringBuilder sb = new StringBuilder("Lista de cuentas: \n");
         for (Cuenta c : cuentas) {
             sb.append(c.toString()).append("\n");
         }
@@ -269,7 +269,7 @@ public class Empleado extends Usuario {
         if (filtrados.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No se encontraron movimientos con ese criterio.");
         } else {
-            StringBuilder sb = new StringBuilder("=== Movimientos ===\n");
+            StringBuilder sb = new StringBuilder("Movimientos: \n");
             for (Movimiento mov : filtrados) {
                 sb.append(mov.toString()).append("\n");
             }
