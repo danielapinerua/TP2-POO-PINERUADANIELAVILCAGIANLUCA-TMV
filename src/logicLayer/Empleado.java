@@ -306,7 +306,8 @@ public class Empleado extends Usuario {
                 break;
         }
 
-        // Mostrar los resultados filtrados
+        // Mostrar los resultados filtrados segun lo elegido o todos si eligio la opcion de ver todos
+        
         if (filtrados.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No se encontraron movimientos de ese cliente.");
         } else {
