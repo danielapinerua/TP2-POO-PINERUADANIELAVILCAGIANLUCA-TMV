@@ -131,9 +131,9 @@ public class Cajero {
 		int elegido = JOptionPane.showOptionDialog(null,"Elegir cajero", "", 0,
 				0, null, cajerosString, cajerosString[0]) ;
 		return cajeros.get(elegido);
-	
 		
 	}
+	
 	public static Cajero elegirCajeroInactivo() {
 	    int inactivos = 0;
 	    LinkedList<Cajero> cajerosInactivos = new LinkedList<Cajero>();
