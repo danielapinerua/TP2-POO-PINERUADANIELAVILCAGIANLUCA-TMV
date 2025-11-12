@@ -1,5 +1,7 @@
 package logicLayer;
 
+import java.util.LinkedList;
+
 import javax.swing.JOptionPane;
 
 public class Administrador extends Usuario {
@@ -56,7 +58,7 @@ public class Administrador extends Usuario {
 	        "\nLegajo asignado: " + nuevoLegajo);
 	}
 	
-	public void darDeBajaCuenta() {
+	/*public void darDeBajaCuenta() {
 	    String cbu = Validar.validarCampo("Ingrese el CBU de la cuenta a dar de baja:");
 	    Cuenta cuentaABorrar = null;
 
@@ -85,6 +87,58 @@ public class Administrador extends Usuario {
 	        JOptionPane.showMessageDialog(null, "No se encontró una cuenta con ese CBU.");
 	    }
 	}
+	*/
+	
+	public void darDeBajaCuenta() {
+	    LinkedList<Cuenta> cuentas = Cuenta.getCuentas();
+	    if (cuentas.isEmpty()) {
+	        JOptionPane.showMessageDialog(null, "No hay cuentas registradas.");
+	        return;
+	    }
+	    // Crear un array con los nombres de los clientes
+	    String[] nombres = new String[cuentas.size()];
+	    for (int i = 0; i < nombres.length; i++) {
+	        nombres[i] = cuentas.get(i).getCliente().getNombre();
+	    }
+	    // Mostrar menú desplegable con los nombres de los clientes
+	    String nombreElegido = (String) JOptionPane.showInputDialog(
+	        null,
+	        "Seleccione la cuenta a eliminar:",
+	        "Dar de baja cuenta",
+	        JOptionPane.QUESTION_MESSAGE,
+	        null,
+	        nombres,
+	        nombres[0]
+	    );
+	    // Si cancela, se sale del método
+	    if (nombreElegido == null) {
+	        return;
+	    }
+	    // Buscar la cuenta que corresponde al nombre elegido
+	    Cuenta cuentaABorrar = null;
+	    for (Cuenta cuenta : cuentas) {
+	        if (cuenta.getCliente().getNombre().equalsIgnoreCase(nombreElegido)) {
+	            cuentaABorrar = cuenta;
+	            break;
+	        }
+	    }
+	    // Confirmar y eliminar
+	   
+	        int confirmacion = JOptionPane.showConfirmDialog(
+	            null,
+	            "¿Seguro que desea eliminar la cuenta de " + nombreElegido + " (CBU: " + cuentaABorrar.getCbu() + ")?",
+	            "Confirmar eliminación",
+	            JOptionPane.YES_NO_OPTION );
+
+	        if (confirmacion == JOptionPane.YES_OPTION) {
+	            cuentas.remove(cuentaABorrar);
+	            JOptionPane.showMessageDialog(null, "Cuenta eliminada correctamente.");
+	        } else {
+	            JOptionPane.showMessageDialog(null, "Operación cancelada.");
+	        }
+	    }
+	
+	
 	
 	@Override
     public void Menu() {

@@ -56,7 +56,7 @@ public class Cuenta {
 	
 	
 	private static String generarCbu() {
-	    int numero = 1000 + cuentas.size();
+	    int numero = 1000 + cuentas.size() + 1;
 	    return String.valueOf(numero);
 	}
 	
@@ -263,7 +263,7 @@ public class Cuenta {
 	
 	@Override
 	public String toString() {
-		return "cbu=" + cbu + ", cliente=" + cliente + ", saldo=" + saldo + ", limiteCubierto=" + limiteCubierto
+		return "cbu=" + cbu + ", cliente=" + cliente + ", saldo=" + saldo + ", limite Cubierto=" + limiteCubierto
 				+ ", movimientos=" + movimientos ;
 	}
     
