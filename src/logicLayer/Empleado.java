@@ -296,11 +296,10 @@ public class Empleado extends Usuario {
                     nombres[0]
                 );
 
-                if (elegido != null) {
                     filtrados = movimientosGenerales.stream()
                         .filter(mov -> mov.getCliente().getNombre().equalsIgnoreCase(elegido))
                         .collect(Collectors.toCollection(LinkedList::new));
-                }
+                
                 break;
         }
 
