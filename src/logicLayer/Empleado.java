@@ -270,8 +270,8 @@ public class Empleado extends Usuario {
             case 2: // Filtrar por cliente con menú desplegable
                 // Crear una lista de clientes a partir de las cuentas existentes
                 LinkedList<Cliente> clientes = new LinkedList<>();
-                for (Cuenta c : Cuenta.getCuentas()) {
-                    clientes.add(c.getCliente());
+                for (Cuenta cuenta : Cuenta.getCuentas()) {
+                    clientes.add(cuenta.getCliente());
                 }
 
                 if (clientes.isEmpty()) {
