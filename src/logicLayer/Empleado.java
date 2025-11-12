@@ -284,7 +284,7 @@ public class Empleado extends Usuario {
                 for (int i = 0; i < nombres.length; i++) {
                     nombres[i] = clientes.get(i).getNombre();
                 }
-
+                
                 // Mostrar menú desplegable con los nombres de los clientes
                 String elegido = (String) JOptionPane.showInputDialog(
                     null,
@@ -295,6 +295,9 @@ public class Empleado extends Usuario {
                     nombres,
                     nombres[0]
                 );
+                if (elegido == null) {
+        	        return;
+        	    }
 
                     filtrados = movimientosGenerales.stream()
                         .filter(mov -> mov.getCliente().getNombre().equalsIgnoreCase(elegido))
