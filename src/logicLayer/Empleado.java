@@ -306,7 +306,7 @@ public class Empleado extends Usuario {
 
         // Mostrar los resultados filtrados
         if (filtrados.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "No se encontraron movimientos con ese criterio.");
+            JOptionPane.showMessageDialog(null, "No se encontraron movimientos de ese cliente.");
         } else {
             StringBuilder sb = new StringBuilder("Movimientos:\n");
             for (Movimiento mov : filtrados) {
