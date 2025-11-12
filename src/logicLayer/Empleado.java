@@ -247,7 +247,8 @@ public class Empleado extends Usuario {
         switch (opcion) {
             case 0: // Ver todos los movimientos
                 break;
-            case 1: //  Filtrar por tipo de movimiento 
+
+            case 1: // Filtrar por tipo de movimiento
                 String[] tipos = {"Depósito", "Retiro", "Préstamo", "Transferencia", "Pago de servicio", "Cambio de dólares"};
                 int tipoElegido = JOptionPane.showOptionDialog(
                     null,
@@ -260,21 +261,50 @@ public class Empleado extends Usuario {
                     tipos[0]
                 );
 
-
                 String tipoSeleccionado = tipos[tipoElegido];
                 filtrados = movimientosGenerales.stream()
                     .filter(movimiento -> movimiento.getTipo().contains(tipoSeleccionado))
                     .collect(Collectors.toCollection(LinkedList::new));
                 break;
-            case 2: //  Filtrar por cliente
-                String clienteFiltro = Validar.validarCampo("Ingrese el nombre del cliente:");
 
-                filtrados = movimientosGenerales.stream()
-                    .filter(movimiento -> movimiento.getCliente().getNombre().toLowerCase().contains(clienteFiltro.toLowerCase()))
-                    .collect(Collectors.toCollection(LinkedList::new));
+            case 2: // Filtrar por cliente con menú desplegable
+                // Crear una lista de clientes a partir de las cuentas existentes
+                LinkedList<Cliente> clientes = new LinkedList<>();
+                for (Cuenta c : Cuenta.getCuentas()) {
+                    clientes.add(c.getCliente());
+                }
+
+                if (clientes.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "No hay clientes registrados.");
+                    return;
+                }
+
+                // Crear un array con los nombres de los clientes para mostrar en el menú
+                String[] nombres = new String[clientes.size()];
+                for (int i = 0; i < nombres.length; i++) {
+                    nombres[i] = clientes.get(i).getNombre();
+                }
+
+                // Mostrar menú desplegable con los nombres de los clientes
+                String elegido = (String) JOptionPane.showInputDialog(
+                    null,
+                    "Seleccione un cliente:",
+                    "Filtrar por cliente",
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    nombres,
+                    nombres[0]
+                );
+
+                if (elegido != null) {
+                    filtrados = movimientosGenerales.stream()
+                        .filter(mov -> mov.getCliente().getNombre().equalsIgnoreCase(elegido))
+                        .collect(Collectors.toCollection(LinkedList::new));
+                }
                 break;
         }
 
+        // Mostrar los resultados filtrados
         if (filtrados.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No se encontraron movimientos con ese criterio.");
         } else {
