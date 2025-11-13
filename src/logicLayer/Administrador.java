@@ -38,15 +38,9 @@ public class Administrador extends Usuario {
 	    String nombre = Validar.validarLetras("Ingrese nombre del empleado:");
 	    String mail = Validar.validarCampo("Ingrese mail del empleado:");
 	    String pin = Validar.validarCampo("Ingrese PIN del empleado:");
-
 	    // Generar legajo aleatorio basado en el tamaño actual de usuarios
-	  
 	    int legajoAleatorio = 10 + Usuario.getUsuarios().size(); 
-
-	    
-
 	    String nuevoLegajo = String.valueOf(legajoAleatorio);
-
 	    Empleado nuevo = new Empleado(nombre, mail, pin, nuevoLegajo);
 	    Usuario.getUsuarios().add(nuevo);
 
@@ -138,6 +132,23 @@ public class Administrador extends Usuario {
 	        }
 	    }
 	
+	public void verEmpleados() {
+	    LinkedList<Usuario> usuarios = Usuario.getUsuarios();
+	    if (usuarios.isEmpty()) {
+	        JOptionPane.showMessageDialog(null, "No hay usuarios registrados.");
+	        return;
+	    }
+	    StringBuilder sb = new StringBuilder("=== Lista de Empleados ===\n");
+	    for (Usuario u : usuarios) {
+	        // Si el usuario es del tipo Empleado, lo muestro
+	        if (u.getTipoUsuario() == TipoUsuario.Empleado) {
+	            sb.append(u.toString()).append("\n--------------------------\n");
+	        }
+	    }
+
+	    JOptionPane.showMessageDialog(null, sb.toString());
+	}
+	
 	
 	
 	@Override
@@ -161,21 +172,25 @@ public class Administrador extends Usuario {
                     darDeBajaCuenta();
                     break;
                     
-                case 2: //cambiar pin
+                case 2: //ver empleados
+                	verEmpleados();
+                	break;
+                case 3: //cambiar pin
                 	cambiarPin();
                 	break;
                 	
-                case 3: // Ver información
+                case 4: // Ver información
                     JOptionPane.showMessageDialog(null, toString());
                     break;
 
-                case 4: // Salir
+                case 5: // Salir
                     JOptionPane.showMessageDialog(null, "Cerrando sesión...");
                     break;
             }
 
-        } while (opcion != 4);
+        } while (opcion != 5);
 	}
+	
 	
 
 }
