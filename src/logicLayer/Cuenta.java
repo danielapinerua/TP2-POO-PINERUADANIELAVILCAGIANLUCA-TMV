@@ -12,6 +12,7 @@ public class Cuenta {
 	private double limiteCubierto;
 	private LinkedList<Movimiento>movimientos;
 	private static LinkedList<Cuenta>cuentas = new LinkedList<>();
+	private static int contadorCbu = 1003;
 	public Cuenta(String cbu, Cliente cliente, double saldo) {
 		super();
 		this.cbu = cbu;
@@ -56,8 +57,8 @@ public class Cuenta {
 	
 	
 	private static String generarCbu() {
-	    int numero = 1000 + cuentas.size() + 1;
-	    return String.valueOf(numero);
+	    contadorCbu++;
+	    return String.valueOf(contadorCbu);
 	}
 	
 	public static void registrarse() {
