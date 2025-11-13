@@ -138,7 +138,7 @@ public class Administrador extends Usuario {
 	        JOptionPane.showMessageDialog(null, "No hay usuarios registrados.");
 	        return;
 	    }
-	    StringBuilder sb = new StringBuilder("=== Lista de Empleados ===\n");
+	    StringBuilder sb = new StringBuilder("Lista de Empleados: \n");
 	    for (Usuario u : usuarios) {
 	        // Si el usuario es del tipo Empleado, lo muestro
 	        if (u.getTipoUsuario() == TipoUsuario.Empleado) {
