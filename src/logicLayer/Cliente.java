@@ -112,7 +112,7 @@ public class Cliente extends Usuario{
                 	break;
                 	
                 case 7: // Ver saldo
-                    JOptionPane.showMessageDialog(null, "Saldo actual: $" + cuenta.getSaldo());
+                    JOptionPane.showMessageDialog(null, "Saldo actual: $" + cuenta.getSaldo() + "\nSaldo actual en dólares: " + String.format("%.2f", cuenta.getSaldoDolares()) + " USD");
                     break;
 
                 case 8: // Ver movimientos

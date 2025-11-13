@@ -263,7 +263,7 @@ public class Empleado extends Usuario {
 
                 String tipoSeleccionado = tipos[tipoElegido];
                 filtrados = movimientosGenerales.stream()
-                    .filter(movimiento -> movimiento.getTipo().contains(tipoSeleccionado))
+                    .filter(movimiento -> movimiento.getTipo().equals(tipoSeleccionado))
                     .collect(Collectors.toCollection(LinkedList::new));
                 break;
 
@@ -309,7 +309,7 @@ public class Empleado extends Usuario {
         // Mostrar los resultados filtrados segun lo elegido o todos si eligio la opcion de ver todos
         
         if (filtrados.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "No se encontraron movimientos de ese cliente.");
+            JOptionPane.showMessageDialog(null, "No se encontraron movimientos.");
         } else {
             StringBuilder sb = new StringBuilder("Movimientos:\n");
             for (Movimiento mov : filtrados) {

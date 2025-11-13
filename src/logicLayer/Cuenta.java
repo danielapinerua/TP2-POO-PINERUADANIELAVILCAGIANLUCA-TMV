@@ -9,6 +9,7 @@ public class Cuenta {
 	private String cbu;
 	private Cliente cliente;
 	private double saldo;
+	private double saldoDolares;
 	private double limiteCubierto;
 	private LinkedList<Movimiento>movimientos;
 	private static LinkedList<Cuenta>cuentas = new LinkedList<>();
@@ -18,6 +19,7 @@ public class Cuenta {
 		this.cbu = cbu;
 		this.cliente = cliente;
 		this.saldo = saldo;
+		this.saldoDolares = 0;
 		this.limiteCubierto = 2000;
 		this.movimientos = new LinkedList<Movimiento>();
 	}
@@ -40,6 +42,15 @@ public class Cuenta {
 	public void setSaldo(double saldo) {
 		this.saldo = saldo;
 	}
+	
+	public double getSaldoDolares() {
+		return saldoDolares;
+	}
+
+	public void setSaldoDolares(double saldoDolares) {
+		this.saldoDolares = saldoDolares;
+	}
+
 	public LinkedList<Movimiento> getMovimientos() {
 		return movimientos;
 	}
@@ -287,12 +298,16 @@ public class Cuenta {
 	    }
 	    double dolares = pesos / cotizacion;
 	    this.saldo -= pesos;
+	    this.saldoDolares += dolares;
 	    Movimiento mov = new Movimiento("Cambio de dólares", pesos, cliente);
 	    movimientos.add(mov);
 	    Empleado.getMovimientosGenerales().add(mov);
+	    
 	    JOptionPane.showMessageDialog(null,
-	       "Cambio realizado con éxito!\nCotización: $" + cotizacion + 
-	       "\nCompraste: " + dolares + " USD" + "\nSaldo actual: " + this.saldo );
+	    	       "Cambio realizado con éxito!\nCotización: $" + cotizacion + 
+	    	       "\nCompraste: " + String.format("%.2f", dolares) + " USD" + 
+	    	       "\nSaldo actual en pesos: $" + String.format("%.2f", this.saldo) +
+	    	       "\nSaldo actual en dólares: " + String.format("%.2f", this.saldoDolares) + " USD");
 	}
 	
 	
