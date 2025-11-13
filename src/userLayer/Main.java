@@ -17,34 +17,38 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Cajero.getCajeros().add(new Cajero(200000,"Constituyentes", false));		
-		Cajero.getCajeros().add(new Cajero(0,"Beiro", true));
-		Cajero.getCajeros().add(new Cajero(100000,"Congreso", true));
-		Cajero.getCajeros().add(new Cajero(10000,"Sarmiento", true));
-		Cajero.getCajeros().add(new Cajero(50000,"Nazca", true));
+		//Cajero.getCajeros().add(new Cajero(200000,"Constituyentes", false));		
+		//Cajero.getCajeros().add(new Cajero(0,"Beiro", true));
+		//Cajero.getCajeros().add(new Cajero(100000,"Congreso", true));
+		//Cajero.getCajeros().add(new Cajero(10000,"Sarmiento", true));
+		//Cajero.getCajeros().add(new Cajero(50000,"Nazca", true));
 
 		//agregue cuentas creadas
-		Cliente c1 = new Cliente("Daniela", "daniela@mail.com", "1111", "123456789");
-        Cliente c2 = new Cliente("Lucas", "lucas@mail.com", "2222", "987654321");
-        Cliente c3 = new Cliente("Sofia", "sofia@mail.com", "3333", "234567890");
-        Empleado e1 = new Empleado("Gianluca", "gvilca@mail.com", "1234", "3");
-        Empleado e2 = new Empleado("Paula", "paula@gmail.com", "12345", "4");
-        Empleado e3 = new Empleado("Oriana", "oriana@gmail.com", "123456", "5");
+		//Cliente c1 = new Cliente("Daniela", "daniela@mail.com", "1111", "123456789");
+       // Cliente c2 = new Cliente("Lucas", "lucas@mail.com", "2222", "987654321");
+       // Cliente c3 = new Cliente("Sofia", "sofia@mail.com", "3333", "234567890");
+       // Empleado e1 = new Empleado("Gianluca", "gvilca@mail.com", "1234", "3");
+      //  Empleado e2 = new Empleado("Paula", "paula@gmail.com", "12345", "4");
+      //  Empleado e3 = new Empleado("Oriana", "oriana@gmail.com", "123456", "5");
         
-        Administrador admin = new Administrador("Julian", "admin@gmail.com", "9999", "1");
+       // Administrador admin = new Administrador("Julian", "admin@gmail.com", "9999", "1");
         
-        Usuario.getUsuarios().add(c1);
-        Usuario.getUsuarios().add(c2);
-        Usuario.getUsuarios().add(c3);
-        Usuario.getUsuarios().add(e1);
-        Usuario.getUsuarios().add(e2);
-        Usuario.getUsuarios().add(e3);
-        Usuario.getUsuarios().add(admin);
+      //  Usuario.getUsuarios().add(c1);
+      //  Usuario.getUsuarios().add(c2);
+      //  Usuario.getUsuarios().add(c3);
+       // Usuario.getUsuarios().add(e1);
+      //  Usuario.getUsuarios().add(e2);
+      //  Usuario.getUsuarios().add(e3);
+       // Usuario.getUsuarios().add(admin);
         
         //                                    CBU
-        Cuenta.getCuentas().add(new Cuenta("1001", c1, 5000));
-        Cuenta.getCuentas().add(new Cuenta("1002", c2, 8000));
-        Cuenta.getCuentas().add(new Cuenta("1003", c3, 8000));
+      //  Cuenta.getCuentas().add(new Cuenta("1001", c1, 5000));
+      //  Cuenta.getCuentas().add(new Cuenta("1002", c2, 8000));
+      //  Cuenta.getCuentas().add(new Cuenta("1003", c3, 8000));
+		
+		Cajero.cargaInicial();
+		Usuario.cargaInicial();
+		Cuenta.cargaInicial();
 
         int opcionSalir;
         do {

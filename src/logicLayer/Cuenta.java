@@ -369,6 +369,16 @@ public class Cuenta {
 	        JOptionPane.showMessageDialog(null, sb.toString());
 	    }
 	}
+	public static void cargaInicial() {
+	    // Accedemos directamente a los clientes desde la lista de usuarios
+	    Cliente c1 = (Cliente) Usuario.getUsuarios().get(0);
+	    Cliente c2 = (Cliente) Usuario.getUsuarios().get(1);
+	    Cliente c3 = (Cliente) Usuario.getUsuarios().get(2);
+
+	    Cuenta.getCuentas().add(new Cuenta("1001", c1, 5000));
+	    Cuenta.getCuentas().add(new Cuenta("1002", c2, 8000));
+	    Cuenta.getCuentas().add(new Cuenta("1003", c3, 8000));
+	}
 }
 
 	

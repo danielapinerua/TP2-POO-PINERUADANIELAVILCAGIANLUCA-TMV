@@ -99,6 +99,22 @@ public abstract class Usuario {
 		JOptionPane.showMessageDialog(null,
 				"Menu general");
 	}
+	
+	public static void cargaInicial() {
+	    // Clientes
+	    Usuario.getUsuarios().add(new Cliente("Daniela", "daniela@mail.com", "1111", "123456789"));
+	    Usuario.getUsuarios().add(new Cliente("Lucas", "lucas@mail.com", "2222", "987654321"));
+	    Usuario.getUsuarios().add(new Cliente("Sofia", "sofia@mail.com", "3333", "234567890"));
+
+	    // Empleados
+	    Usuario.getUsuarios().add(new Empleado("Gianluca", "gvilca@mail.com", "1234", "3"));
+	    Usuario.getUsuarios().add(new Empleado("Paula", "paula@gmail.com", "12345", "4"));
+	    Usuario.getUsuarios().add(new Empleado("Oriana", "oriana@gmail.com", "123456", "5"));
+
+	    // Administrador
+	    Usuario.getUsuarios().add(new Administrador("Julian", "admin@gmail.com", "9999", "1"));
+	}
+	
 }
 
 	
