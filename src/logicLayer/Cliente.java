@@ -25,10 +25,7 @@ public class Cliente extends Usuario{
 	//public void Menu() {
 		//int opcion=JOptionPane.showOptionDialog(null, "Menu Cliente","",0,0,null, this.getTipoUsuario().getOpciones(),this.getTipoUsuario().getOpciones());
 	
-    @Override
-	public String toString() {
-		return "Telefono=" + telefono + ", nombre=" + nombre + ", mail=" + mail;
-	}
+
 
 	@Override
     public void Menu() {
@@ -131,7 +128,13 @@ public class Cliente extends Usuario{
         } while (opcion != 10);
     }
 
-    private Cuenta buscarCuentaPorMail(String mailCliente) {
+    @Override
+	public String toString() {
+		return "telefono=" + telefono + ", nombre=" + nombre + ", tipo de usuario=" + tipoUsuario + ", mail="
+				+ mail ;
+	}
+
+	public Cuenta buscarCuentaPorMail(String mailCliente) {
         for (Cuenta c : Cuenta.getCuentas()) {
             if (c.getCliente().getMail().equals(mailCliente)) {
                 return c;

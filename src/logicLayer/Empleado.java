@@ -1,5 +1,6 @@
 package logicLayer;
 
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.stream.Collectors;
 
@@ -59,7 +60,7 @@ public class Empleado extends Usuario {
 
 	        switch (opcion) {
 	            case 0: // Ver cuentas
-	                verCuentas();
+	                verUsuarios();
 	                break;
 
 	            case 1: // Cargar dinero
@@ -100,22 +101,94 @@ public class Empleado extends Usuario {
 	        }
 	    } while (opcion != 8);
 	}
-	// ver las cuentas q existen
-    public void verCuentas() {
-        LinkedList<Cuenta> cuentas = Cuenta.getCuentas();
-        if (cuentas.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "No hay cuentas registradas.");
-            return;
-        }
+	
+	
+	
+	//ver usuarios
+	public void verUsuarios() {
 
-        StringBuilder sb = new StringBuilder("Lista de cuentas: \n");
-        for (Cuenta c : cuentas) {
-            sb.append(c.toString()).append("\n");
-        }
-        JOptionPane.showMessageDialog(null, sb.toString());
-    }
+	    String[] opciones = {
+	        "Ver todos",
+	        "Ordenar alfabéticamente",
+	        "Clientes ordenados por saldo"
+	    };
 
-    
+	    int elegido = JOptionPane.showOptionDialog(
+	        null,
+	        "Seleccione una opción",
+	        "Ver usuarios",
+	        0,0,
+	        null,
+	        opciones,
+	        opciones[0]
+	    );
+
+	    switch (elegido) {
+	        // Ver todos los usuarios
+	        case 0:
+	            String mostrarTodos = "LISTA DE USUARIOS: \n";
+	            for (Usuario usuario : Usuario.getUsuarios()) {
+	                mostrarTodos += usuario.toString() + "\n";
+	            }
+
+	            JOptionPane.showMessageDialog(null, mostrarTodos);
+	            break;
+
+	        //Ordenar alfabéticamente por nombre
+	        case 1:
+	            LinkedList<Usuario> ordenados =
+	                Usuario.getUsuarios().stream()
+	                    .sorted(Comparator.comparing(Usuario::getNombre))
+	                    .collect(Collectors.toCollection(LinkedList::new));
+
+	            String mostrarAlfabeticamente = "ORDENADOS ALFABETICAMENTE: \n";
+
+	            for (Usuario usuario : ordenados) {
+	                mostrarAlfabeticamente += usuario.toString() + "\n";
+	            }
+
+	            JOptionPane.showMessageDialog(null, mostrarAlfabeticamente);
+	            break;
+
+	        //  Clientes ordenados por saldo de menor a mayor
+	        case 2:
+
+	            // 1) Filtrar solo clientes
+	            LinkedList<Cliente> clientes = new LinkedList<>();
+
+	            for (Usuario u : Usuario.getUsuarios()) {
+	                if (u.getTipoUsuario() == TipoUsuario.Cliente) {
+	                    clientes.add((Cliente) u);
+	                }
+	            }
+
+	            // 2) Ordenarlos por saldo usando buscarCuentaPorMail() que ya TENÉS en Cliente
+	            LinkedList<Cliente> clientesOrdenados =
+	                clientes.stream()
+	                        .sorted(Comparator.comparing(c ->
+	                                c.buscarCuentaPorMail(c.getMail()).getSaldo()
+	                        ))
+	                        .collect(Collectors.toCollection(LinkedList::new));
+
+	            // 3) Mostrar
+	            String mostrarSaldo = "CLIENTES ORDENADOS POR SALDO: \n";
+
+	            for (Cliente cliente : clientesOrdenados) {
+	                double saldo = cliente.buscarCuentaPorMail(cliente.getMail()).getSaldo();
+	                mostrarSaldo += cliente.getNombre() + " - $" + saldo + "\n";
+	            }
+
+	            JOptionPane.showMessageDialog(null, mostrarSaldo);
+
+	            break;
+
+
+	        default:
+	            break;
+	    }
+	}
+	
+	
     public void cargarDinero(Cajero cajero, double monto) {
         if (monto <= 0) {
             JOptionPane.showMessageDialog(null, "Monto inválido");
@@ -318,10 +391,13 @@ public class Empleado extends Usuario {
             JOptionPane.showMessageDialog(null, sb.toString());
         }
     }
+
 	@Override
 	public String toString() {
-		return "Legajo=" + legajo + ", nombre=" + nombre + ", mail=" + mail ;
+		return "legajo=" + legajo + ", nombre=" + nombre + ", tipo de usuario=" + tipoUsuario + ", mail=" + mail;
 	}
+	
+    
     
     
 }

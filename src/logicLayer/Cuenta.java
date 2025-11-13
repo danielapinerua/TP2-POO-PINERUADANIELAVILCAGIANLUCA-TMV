@@ -369,6 +369,7 @@ public class Cuenta {
 	        JOptionPane.showMessageDialog(null, sb.toString());
 	    }
 	}
+	
 	public static void cargaInicial() {
 	    // Accedemos directamente a los clientes desde la lista de usuarios
 	    Cliente c1 = (Cliente) Usuario.getUsuarios().get(0);
