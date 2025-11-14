@@ -54,6 +54,7 @@ public class Movimiento {
 	public void setCajero(Cajero cajero) {
 		this.cajero = cajero;
 	}
+	
 	@Override
 	public String toString() {
 		if(cajero != null) {

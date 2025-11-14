@@ -9,7 +9,7 @@ public class Cliente extends Usuario{
 	public Cliente(String nombre, String mail, String pin, String telefono) {
 		super(nombre, TipoUsuario.Cliente, mail, pin);
 		this.telefono = telefono;
-		this.cuentaInversion = new CuentaInversion(this);
+		this.cuentaInversion = new CuentaInversion();
 	}
 
 	public String getTelefono() {
@@ -184,6 +184,7 @@ public class Cliente extends Usuario{
 	                
 	            case 3:
 	            	JOptionPane.showMessageDialog(null, "Redirigiendo al menu");
+	            	break;
 	        }
 
 	    } while (opcion != 3);

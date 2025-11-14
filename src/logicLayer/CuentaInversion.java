@@ -5,28 +5,15 @@ import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
 public class CuentaInversion {
-	 private Cliente cliente;
 	    private double saldo;
 	    private LinkedList<Double> historialTasas; // tasas diarias
 	    private LinkedList<Double> historialSaldos; // como fue cambiando el saldo
 
-	    public CuentaInversion(Cliente cliente) {
-	        this.cliente = cliente;
+	    public CuentaInversion() {
 	        this.saldo = 0;
 	        this.historialTasas = new LinkedList<>();
 	        this.historialSaldos = new LinkedList<>();
 	    }
-	    
-	    
-
-	    public Cliente getCliente() {
-			return cliente;
-		}
-
-
-		public void setCliente(Cliente cliente) {
-			this.cliente = cliente;
-		}
 
 
 		public double getSaldo() {
