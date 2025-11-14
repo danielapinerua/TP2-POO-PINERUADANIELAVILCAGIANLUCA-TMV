@@ -322,51 +322,66 @@ public class Empleado extends Usuario {
             JOptionPane.showMessageDialog(null, "No hay movimientos registrados.");
             return;
         }
-
         String[] opciones = {
-            "Ver todos los movimientos",
+            "Ver todos",
             "Filtrar por tipo de movimiento",
-            "Filtrar por cliente"
+            "Filtrar por cliente",
+            "Ordenar por monto (menor a mayor)"
         };
-
-        int opcion = JOptionPane.showOptionDialog(
+        int elegido = JOptionPane.showOptionDialog(
             null,
-            "Seleccione una opción:",
-            "Ver Movimientos",
-            JOptionPane.DEFAULT_OPTION,
-            JOptionPane.INFORMATION_MESSAGE,
-            null,
+            "Elija una opción",
+            "Movimientos",
+            0, 0, null,
             opciones,
             opciones[0]
         );
 
-        LinkedList<Movimiento> filtrados = new LinkedList<>(movimientosGenerales);
-
-        switch (opcion) {
-            case 0: // Ver todos los movimientos
+        switch (elegido) {
+            //  VER TODOS
+            case 0:
+                String listado = "";
+                for (Movimiento movimiento : movimientosGenerales) {
+                    listado += movimiento + "\n";
+                }
+                JOptionPane.showMessageDialog(null, listado);
                 break;
-
-            case 1: // Filtrar por tipo de movimiento
-                String[] tipos = {"Depósito", "Retiro", "Préstamo", "Transferencia", "Pago de servicio", "Cambio de dólares"};
-                int tipoElegido = JOptionPane.showOptionDialog(
+            // FILTRAR POR TIPO
+            case 1:
+                String[] tipos = {
+                    "Depósito", "Retiro", "Préstamo",
+                    "Transferencia", "Pago de servicio",
+                    "Cambio de dólares"
+                };
+                String tipo = (String) JOptionPane.showInputDialog(
                     null,
-                    "Seleccione el tipo de movimiento:",
-                    "Filtrar por tipo",
-                    JOptionPane.DEFAULT_OPTION,
-                    JOptionPane.QUESTION_MESSAGE,
+                    "Elija tipo de movimiento",
+                    "",
+                    0,
                     null,
                     tipos,
                     tipos[0]
                 );
 
-                String tipoSeleccionado = tipos[tipoElegido];
-                filtrados = movimientosGenerales.stream()
-                    .filter(movimiento -> movimiento.getTipo().equals(tipoSeleccionado))
+
+                LinkedList<Movimiento> filtradosPorTipo =
+                    movimientosGenerales.stream()
+                    .filter(movimiento -> movimiento.getTipo().equals(tipo))
                     .collect(Collectors.toCollection(LinkedList::new));
+
+                if (filtradosPorTipo.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "No hay movimientos del tipo seleccionado.");
+                } else {
+                    String listaTipo = "";
+                    for (Movimiento movimiento : filtradosPorTipo) {
+                        listaTipo += movimiento + "\n";
+                    }
+                    JOptionPane.showMessageDialog(null, listaTipo);
+                }
                 break;
 
-            case 2: // Filtrar por cliente con menú desplegable
-                // Crear una lista de clientes a partir de las cuentas existentes
+            //FILTRAR POR CLIENTE
+            case 2:
                 LinkedList<Cliente> clientes = new LinkedList<>();
                 for (Cuenta cuenta : Cuenta.getCuentas()) {
                     clientes.add(cuenta.getCliente());
@@ -377,43 +392,52 @@ public class Empleado extends Usuario {
                     return;
                 }
 
-                // Crear un array con los nombres de los clientes para mostrar en el menú
                 String[] nombres = new String[clientes.size()];
                 for (int i = 0; i < nombres.length; i++) {
                     nombres[i] = clientes.get(i).getNombre();
                 }
-                
-                // Mostrar menú desplegable con los nombres de los clientes
-                String elegido = (String) JOptionPane.showInputDialog(
+
+                String clienteElegido = (String) JOptionPane.showInputDialog(
                     null,
-                    "Seleccione un cliente:",
-                    "Filtrar por cliente",
-                    JOptionPane.QUESTION_MESSAGE,
+                    "Seleccione un cliente",
+                    "",
+                    0,
                     null,
                     nombres,
                     nombres[0]
                 );
-                if (elegido == null) {
-        	        return;
-        	    }
 
-                    filtrados = movimientosGenerales.stream()
-                        .filter(mov -> mov.getCliente().getNombre().equalsIgnoreCase(elegido))
-                        .collect(Collectors.toCollection(LinkedList::new));
-                
+                LinkedList<Movimiento> filtradosPorCliente =
+                    movimientosGenerales.stream()
+                    .filter(movimiento -> movimiento.getCliente().getNombre().equalsIgnoreCase(clienteElegido))
+                    .collect(Collectors.toCollection(LinkedList::new));
+
+                if (filtradosPorCliente.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "No se encontraron movimientos para ese cliente.");
+                } else {
+                    String listaCliente = "";
+                    for (Movimiento movimiento : filtradosPorCliente) {
+                        listaCliente += movimiento + "\n";
+                    }
+                    JOptionPane.showMessageDialog(null, listaCliente);
+                }
+                break;  
+
+            // ORDENAR POR MONTO
+            case 3:
+                LinkedList<Movimiento> movimientosOrdenados =
+                    movimientosGenerales.stream()
+                    .sorted(Comparator.comparingDouble(movimiento -> movimiento.getMonto()))
+                    .collect(Collectors.toCollection(LinkedList::new));
+
+                String listaMonto = "";
+                for (Movimiento movimiento : movimientosOrdenados) {
+                    listaMonto += movimiento + "\n";
+                }
+                JOptionPane.showMessageDialog(null, listaMonto);
                 break;
-        }
-
-        // Mostrar los resultados filtrados segun lo elegido o todos si eligio la opcion de ver todos
-        
-        if (filtrados.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "No se encontraron movimientos.");
-        } else {
-            StringBuilder sb = new StringBuilder("Movimientos:\n");
-            for (Movimiento mov : filtrados) {
-                sb.append(mov.toString()).append("\n");
-            }
-            JOptionPane.showMessageDialog(null, sb.toString());
+            default:
+                break;
         }
     }
 

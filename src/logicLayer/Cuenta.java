@@ -1,5 +1,6 @@
 package logicLayer;
 
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.stream.Collectors;
 
@@ -317,59 +318,83 @@ public class Cuenta {
 	        JOptionPane.showMessageDialog(null, "No hay movimientos registrados en tu cuenta.");
 	        return;
 	    }
-
 	    String[] opciones = {
-	        "Ver todos los movimientos",
-	        "Filtrar por tipo de movimiento"
+	        "Ver todos",
+	        "Filtrar por tipo de movimiento",
+	        "Ordenar por monto (menor a mayor)"
 	    };
 
-	    int opcion = JOptionPane.showOptionDialog(
+	    int elegido = JOptionPane.showOptionDialog(
 	        null,
-	        "Seleccione una opción:",
-	        "Ver Movimientos",
-	        JOptionPane.DEFAULT_OPTION,
-	        JOptionPane.INFORMATION_MESSAGE,
-	        null,
+	        "Elija una opción",
+	        "Movimientos",
+	        0, 0, null,
 	        opciones,
 	        opciones[0]
 	    );
 
-	    LinkedList<Movimiento> filtrados = new LinkedList<>(movimientos);
-
-	    switch (opcion) {
-	        case 0: // Ver todos los movimientos
+	    switch (elegido) {
+	        //VER TODOS
+	        case 0:
+	            String listaTodos = "";
+	            for (Movimiento movimiento : movimientos) {
+	                listaTodos += movimiento + "\n";
+	            }
+	            JOptionPane.showMessageDialog(null, listaTodos);
 	            break;
 
-	        case 1: // Filtrar por tipo de movimiento con menú de opciones
-	            String[] tipos = {"Depósito", "Retiro", "Préstamo", "Transferencia", "Pago de servicio", "Cambio de dólares"};
-	            int tipoElegido = JOptionPane.showOptionDialog(
+	        //FILTRAR POR TIPO
+	        case 1:
+	            String[] tipos = {
+	                "Depósito", "Retiro", "Préstamo",
+	                "Transferencia", "Pago de servicio",
+	                "Cambio de dólares"
+	            };
+	            String tipo = (String) JOptionPane.showInputDialog(
 	                null,
-	                "Seleccione el tipo de movimiento:",
-	                "Filtrar por tipo",
-	                JOptionPane.DEFAULT_OPTION,
-	                JOptionPane.QUESTION_MESSAGE,
+	                "Elija tipo de movimiento",
+	                "",
+	                0,
 	                null,
 	                tipos,
 	                tipos[0]
 	            );
-	            String tipoSeleccionado = tipos[tipoElegido];
 
-	            filtrados = movimientos.stream()
-	                .filter(movimiento -> movimiento.getTipo().contains(tipoSeleccionado))
+	            LinkedList<Movimiento> filtradosPorTipo =
+	                movimientos.stream()
+	                .filter(movimiento -> movimiento.getTipo().equals(tipo))
 	                .collect(Collectors.toCollection(LinkedList::new));
+
+	            if (filtradosPorTipo.isEmpty()) {
+	                JOptionPane.showMessageDialog(null, "No hay movimientos del tipo seleccionado.");
+	            } else {
+	                String listaTipo = "";
+	                for (Movimiento movimiento : filtradosPorTipo) {
+	                    listaTipo += movimiento + "\n";
+	                }
+	                JOptionPane.showMessageDialog(null, listaTipo);
+	            }
+	            break;
+
+	        //ORDENAR POR MONTO
+	        case 2:
+	            LinkedList<Movimiento> ordenadosPorMonto =
+	                movimientos.stream()
+	                .sorted(Comparator.comparingDouble(movimiento -> movimiento.getMonto()))
+	                .collect(Collectors.toCollection(LinkedList::new));
+
+	            String listaMonto = "";
+	            for (Movimiento movimiento : ordenadosPorMonto) {
+	                listaMonto += movimiento + "\n";
+	            }
+
+	            JOptionPane.showMessageDialog(null, listaMonto);
+	            break;
+
+	        default:
 	            break;
 	    }
-	    if (filtrados.isEmpty()) {
-	        JOptionPane.showMessageDialog(null, "No se encontraron movimientos con ese criterio.");
-	    } else {
-	        StringBuilder sb = new StringBuilder("Tus Movimientos:\n");
-	        for (Movimiento mov : filtrados) {
-	            sb.append(mov.toString()).append("\n");
-	        }
-	        JOptionPane.showMessageDialog(null, sb.toString());
-	    }
 	}
-	
 	public static void cargaInicial() {
 	    // Accedemos directamente a los clientes desde la lista de usuarios
 	    Cliente c1 = (Cliente) Usuario.getUsuarios().get(0);
