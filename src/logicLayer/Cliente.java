@@ -108,6 +108,7 @@ public class Cliente extends Usuario{
                 	
                 case 6://inversiones
                 	menuInversiones();
+                	break;
                 	
                 case 7: //cambiar pin
                 	cambiarPin();
@@ -180,6 +181,9 @@ public class Cliente extends Usuario{
 	            case 2:
 	                cuentaInversion.verHistorial();
 	                break;
+	                
+	            case 3:
+	            	JOptionPane.showMessageDialog(null, "Redirigiendo al menu");
 	        }
 
 	    } while (opcion != 3);
