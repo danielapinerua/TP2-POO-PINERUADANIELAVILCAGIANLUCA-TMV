@@ -66,6 +66,11 @@ public class Cuenta {
 	}
 	
 	
+	@Override
+	public String toString() {
+		return "cbu=" + cbu + ", cliente=" + cliente + ", saldo=" + saldo + ", limite Cubierto=" + limiteCubierto
+				+ ", movimientos=" + movimientos ;
+	}
 	
 	
 	private static String generarCbu() {
@@ -274,11 +279,7 @@ public class Cuenta {
 	        "\nSaldo actual: $" + this.saldo);
 	}
 	
-	@Override
-	public String toString() {
-		return "cbu=" + cbu + ", cliente=" + cliente + ", saldo=" + saldo + ", limite Cubierto=" + limiteCubierto
-				+ ", movimientos=" + movimientos ;
-	}
+	
     
 	public void cambiarDolares() {
 	    double cotizacion = 1500.50;
