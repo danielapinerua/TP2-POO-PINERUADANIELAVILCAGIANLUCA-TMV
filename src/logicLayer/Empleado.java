@@ -106,8 +106,7 @@ public class Empleado extends Usuario {
 	
 	//ver usuarios
 	public void verUsuarios() {
-
-	    String[] opciones = {
+		String[] opciones = {
 	        "Ver todos",
 	        "Ordenar alfabéticamente",
 	        "Clientes ordenados por saldo"
@@ -151,37 +150,63 @@ public class Empleado extends Usuario {
 	            break;
 
 	        //  Clientes ordenados por saldo de menor a mayor
-	        case 2:
+	        case 2: // Clientes ordenados por saldo
 
-	            // 1) Filtrar solo clientes
+	            // 1) Filtrar solo los clientes
 	            LinkedList<Cliente> clientes = new LinkedList<>();
-
-	            for (Usuario u : Usuario.getUsuarios()) {
-	                if (u.getTipoUsuario() == TipoUsuario.Cliente) {
-	                    clientes.add((Cliente) u);
+	            for (Usuario usuario : Usuario.getUsuarios()) {
+	                if (usuario.getTipoUsuario() == TipoUsuario.Cliente) {
+	                    clientes.add((Cliente) usuario);
 	                }
 	            }
+	            // 2) Preguntar si ordenar por saldo pesos o dólar
+	            String[] tipoSaldo = {"Saldo en pesos", "Saldo en dólares"};
+	            int opcionSaldo = JOptionPane.showOptionDialog(
+	                    null,
+	                    "Seleccione por qué saldo ordenar:",
+	                    "Tipo de saldo",
+	                    0,0,
+	                    null,
+	                    tipoSaldo,
+	                    tipoSaldo[0]
+	            );
 
-	            // 2) Ordenarlos por saldo usando buscarCuentaPorMail() que ya TENÉS en Cliente
-	            LinkedList<Cliente> clientesOrdenados =
-	                clientes.stream()
-	                        .sorted(Comparator.comparing(c ->
-	                                c.buscarCuentaPorMail(c.getMail()).getSaldo()
+	            //  Ordenar según opción elegida
+	            LinkedList<Cliente> ordenadosPorSaldo;
+
+	            if (opcionSaldo == 0) {
+	                // ordenar por saldo en pesos
+	                ordenadosPorSaldo =clientes.stream()
+	                        .sorted(Comparator.comparing(cliente ->
+	                            cliente.buscarCuentaPorMail(cliente.getMail()).getSaldo()
 	                        ))
 	                        .collect(Collectors.toCollection(LinkedList::new));
 
-	            // 3) Mostrar
-	            String mostrarSaldo = "CLIENTES ORDENADOS POR SALDO: \n";
+	                String mostrar = "CLIENTES ORDENADOS POR SALDO EN PESOS:\n";
+	                for (Cliente cliente : ordenadosPorSaldo) {
+	                    double saldo = cliente.buscarCuentaPorMail(cliente.getMail()).getSaldo();
+	                    mostrar += cliente.getNombre() + " - $" + saldo + "\n";
+	                }
+	                JOptionPane.showMessageDialog(null, mostrar);
 
-	            for (Cliente cliente : clientesOrdenados) {
-	                double saldo = cliente.buscarCuentaPorMail(cliente.getMail()).getSaldo();
-	                mostrarSaldo += cliente.getNombre() + " - $" + saldo + "\n";
+	            } else {
+	                // ordenar por saldo en dólares
+	                ordenadosPorSaldo =
+	                    clientes.stream()
+	                        .sorted(Comparator.comparing(cliente ->
+	                            cliente.buscarCuentaPorMail(cliente.getMail()).getSaldoDolares()
+	                        ))
+	                        .collect(Collectors.toCollection(LinkedList::new));
+
+	                String mostrar = "CLIENTES ORDENADOS POR SALDO EN DÓLARES:\n";
+	                for (Cliente cliente : ordenadosPorSaldo) {
+	                    double saldo = cliente.buscarCuentaPorMail(cliente.getMail()).getSaldoDolares();
+	                    mostrar += cliente.getNombre() + " - " + String.format("%.2f", saldo) + " USD\n";
+	                }
+	                JOptionPane.showMessageDialog(null, mostrar);
 	            }
 
-	            JOptionPane.showMessageDialog(null, mostrarSaldo);
-
 	            break;
-
 
 	        default:
 	            break;
