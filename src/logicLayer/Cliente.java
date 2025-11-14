@@ -4,10 +4,12 @@ import javax.swing.JOptionPane;
 
 public class Cliente extends Usuario{
 	private String telefono;
+	private CuentaInversion cuentaInversion;  //le puse atributo 
 
 	public Cliente(String nombre, String mail, String pin, String telefono) {
 		super(nombre, TipoUsuario.Cliente, mail, pin);
 		this.telefono = telefono;
+		this.cuentaInversion = new CuentaInversion(this);
 	}
 
 	public String getTelefono() {
@@ -19,13 +21,13 @@ public class Cliente extends Usuario{
 	}
 
 	
+	public CuentaInversion getCuentaInversion() {
+		return cuentaInversion;
+	}
 
-   
-   // @Override
-	//public void Menu() {
-		//int opcion=JOptionPane.showOptionDialog(null, "Menu Cliente","",0,0,null, this.getTipoUsuario().getOpciones(),this.getTipoUsuario().getOpciones());
-	
-
+	public void setCuentaInversion(CuentaInversion cuentaInversion) {
+		this.cuentaInversion = cuentaInversion;
+	}
 
 	@Override
     public void Menu() {
@@ -104,28 +106,31 @@ public class Cliente extends Usuario{
                 	cuenta.cambiarDolares();
                 	break;
                 	
-                case 6: //cambiar pin
+                case 6://inversiones
+                	menuInversiones();
+                	
+                case 7: //cambiar pin
                 	cambiarPin();
                 	break;
                 	
-                case 7: // Ver saldo
+                case 8: // Ver saldo
                     JOptionPane.showMessageDialog(null, "Saldo actual en pesos: $" + cuenta.getSaldo() + "\nSaldo actual en dólares: " + String.format("%.2f", cuenta.getSaldoDolares()) + " USD");
                     break;
 
-                case 8: // Ver movimientos
+                case 9: // Ver movimientos
                   cuenta.verMovimientos();
                     break;
 
-                case 9: // Ver información 
+                case 10: // Ver información 
                     JOptionPane.showMessageDialog(null, toString());
                     break;
 
-                case 10: // Salir
+                case 11: // Salir
                     JOptionPane.showMessageDialog(null, "Cerrando sesión...");
                     break;
             }
 
-        } while (opcion != 10);
+        } while (opcion != 11);
     }
 
     @Override
@@ -143,7 +148,42 @@ public class Cliente extends Usuario{
         return null;
     }
     
-    
+	public void menuInversiones() {
+	    String[] opciones = {
+	        "Depositar en inversión",
+	        "Simular un día",
+	        "Ver historial",
+	        "Salir"
+	    };
+
+	    int opcion;
+	    do {
+	        opcion = JOptionPane.showOptionDialog(
+	            null,
+	            "MENÚ DE INVERSIÓN",
+	            "",
+	            0, 0, null,
+	            opciones,
+	            opciones[0]
+	        );
+
+	        switch(opcion) {
+	            case 0:
+	                double monto = Validar.validarNumero("Ingrese monto a invertir:");
+	                cuentaInversion.invertir(monto);
+	                break;
+
+	            case 1:
+	                cuentaInversion.simularDia();
+	                break;
+
+	            case 2:
+	                cuentaInversion.verHistorial();
+	                break;
+	        }
+
+	    } while (opcion != 3);
+	}
     
     
 }
