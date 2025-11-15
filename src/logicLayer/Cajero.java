@@ -139,7 +139,7 @@ public class Cajero {
 	    LinkedList<Cajero> cajerosInactivos = new LinkedList<Cajero>();
 
 	    for (int i = 0; i < cajeros.size(); i++) {
-	        if (!cajeros.get(i).isEstado()) { // estado == false
+	        if (cajeros.get(i).isEstado()==false) { 
 	            cajerosInactivos.add(cajeros.get(i));
 	            inactivos++;
 	        }
