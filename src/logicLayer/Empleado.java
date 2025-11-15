@@ -108,7 +108,7 @@ public class Empleado extends Usuario {
 		String[] opciones = {
 	        "Ver todos",
 	        "Ordenar alfabéticamente",
-	        "Clientes ordenados por saldo"
+	        "Ordenar por saldo"
 	    };
 
 	    int elegido = JOptionPane.showOptionDialog(
@@ -181,7 +181,7 @@ public class Empleado extends Usuario {
 	                        ))
 	                        .collect(Collectors.toCollection(LinkedList::new));
 
-	                String mostrar = "CLIENTES ORDENADOS POR SALDO EN PESOS:\n";
+	                String mostrar = "ORDENADOS POR SALDO EN PESOS:\n";
 	                for (Cliente cliente : ordenadosPorSaldo) {
 	                    double saldo = cliente.buscarCuentaPorMail(cliente.getMail()).getSaldo();
 	                    mostrar += cliente.getNombre() + " - $" + saldo + "\n";
@@ -197,7 +197,7 @@ public class Empleado extends Usuario {
 	                        ))
 	                        .collect(Collectors.toCollection(LinkedList::new));
 
-	                String mostrar = "CLIENTES ORDENADOS POR SALDO EN DÓLARES:\n";
+	                String mostrar = "ORDENADOS POR SALDO EN DÓLARES:\n";
 	                for (Cliente cliente : ordenadosPorSaldo) {
 	                    double saldo = cliente.buscarCuentaPorMail(cliente.getMail()).getSaldoDolares();
 	                    mostrar += cliente.getNombre() + " - " + String.format("%.2f", saldo) + " USD\n";
