@@ -139,10 +139,10 @@ public class Administrador extends Usuario {
 	        return;
 	    }
 	    StringBuilder sb = new StringBuilder("Lista de Empleados: \n");
-	    for (Usuario u : usuarios) {
+	    for (Usuario usuario : usuarios) {
 	        // Si el usuario es del tipo Empleado, lo muestro
-	        if (u.getTipoUsuario() == TipoUsuario.Empleado) {
-	            sb.append(u.toString()).append("\n--------------------------\n");
+	        if (usuario.getTipoUsuario() == TipoUsuario.Empleado) {
+	            sb.append(usuario.toString()).append("\n--------------------------\n");
 	        }
 	    }
 

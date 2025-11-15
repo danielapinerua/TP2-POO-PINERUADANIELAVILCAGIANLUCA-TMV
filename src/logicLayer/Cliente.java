@@ -151,18 +151,20 @@ public class Cliente extends Usuario{
     }
     
 	public void menuInversiones() {
-	    String[] opciones = {
-	        "Depositar en inversión",
-	        "Simular un día",
-	        "Ver historial",
-	        "Salir"
-	    };
+		String[] opciones = {
+			    "Depositar en inversion",
+			    "Simular un dia",
+			    "Simular varios dias",
+			    "Ver historial",
+			    "Ver resumen",
+			    "Salir"
+			};;
 
 	    int opcion;
 	    do {
 	        opcion = JOptionPane.showOptionDialog(
 	            null,
-	            "MENÚ DE INVERSIÓN",
+	            "MENU DE INVERSION",
 	            "",
 	            0, 0, null,
 	            opciones,
@@ -170,25 +172,34 @@ public class Cliente extends Usuario{
 	        );
 
 	        switch(opcion) {
-	            case 0:
-	                double monto = Validar.validarNumero("Ingrese monto a invertir:");
-	                cuentaInversion.invertir(monto);
-	                break;
+	        case 0: // Depositar
+	            double monto = Validar.validarNumero("Ingrese monto a invertir:");
+	            cuentaInversion.invertir(monto);
+	            break;
 
-	            case 1:
-	                cuentaInversion.simularDia();
-	                break;
+	        case 1: // Simular un di­a
+	            cuentaInversion.simularDia();
+	            break;
 
-	            case 2:
-	                cuentaInversion.verHistorial();
-	                break;
-	                
-	            case 3:
-	            	JOptionPane.showMessageDialog(null, "Redirigiendo al menu");
-	            	break;
+	        case 2: // Simular varios dÃias
+	            int dias = Validar.validarNumero("¿Cuantos dias queres simular?");
+	            cuentaInversion.simularVariosDias(dias);
+	            break;
+
+	        case 3: // Ver historial
+	            cuentaInversion.verHistorial();
+	            break;
+
+	        case 4: // Ver resumen
+	            cuentaInversion.verResumen();
+	            break;
+
+	        case 5: // Salir
+	            JOptionPane.showMessageDialog(null, "Redirigiendo al menu");
+	            break;
 	        }
 
-	    } while (opcion != 3);
+	    } while (opcion != 5);
 	}
     
     
