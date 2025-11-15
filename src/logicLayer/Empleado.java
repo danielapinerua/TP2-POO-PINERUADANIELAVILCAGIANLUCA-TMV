@@ -26,12 +26,6 @@ public class Empleado extends Usuario {
 		this.legajo = legajo;
 	}
 	
-	
-	 //@Override
-		//public void Menu() {
-			//int opcion=JOptionPane.showOptionDialog(null, "Menu empleado","",0,0,null, this.getTipoUsuario().getOpciones(),this.getTipoUsuario().getOpciones());
-		
-	// }
 	 	
 	public static LinkedList<Movimiento> getMovimientosGenerales() {
 		return movimientosGenerales;
