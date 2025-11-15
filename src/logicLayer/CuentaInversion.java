@@ -143,7 +143,7 @@ public class CuentaInversion {
             resumen += "Peor tasa: " + String.format("%.2f", peor) + "\n";
         }
 
-        resumen += "Ganancia total: $" + String.format("%.2f", calcularGananciaTotal());
+        resumen += "Rendimiento total: $" + String.format("%.2f", calcularGananciaTotal());
 
         JOptionPane.showMessageDialog(null, resumen);
     }
