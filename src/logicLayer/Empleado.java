@@ -74,31 +74,35 @@ public class Empleado extends Usuario {
 	                verMovimientos();
 	                break;
 	                
-	            case 3: // dar alta cajero
+	            case 3://ver inversiones
+	            	verInversiones();
+	                break;
+	                
+	            case 4: // dar alta cajero
 	              darAltaCajero();
 	              break;
 
-	            case 4: // dar de baja cajero
+	            case 5: // dar de baja cajero
 	              darBajaCajero();
 	                break;
 	                
-	            case 5://ver cajeros
+	            case 6://ver cajeros
 	            	verCajeros();
 	            	break;
 	                
-	            case 6: // cambiar pin 
+	            case 7: // cambiar pin 
 	            	cambiarPin();
 	            	break;
 	            	
-	            case 7: // ver informacion del empleado
+	            case 8: // ver informacion del empleado
 	                JOptionPane.showMessageDialog(null, toString());
 	                break;
 	                
-	            case 8://salir
+	            case 9://salir
 	            	JOptionPane.showMessageDialog(null, "Cerrando sesión...");
 	            	break;
 	        }
-	    } while (opcion != 8);
+	    } while (opcion != 9);
 	}
 	
 	
@@ -435,6 +439,70 @@ public class Empleado extends Usuario {
                 }
                 JOptionPane.showMessageDialog(null, listaMonto);
                 break;
+            default:
+                break;
+        }
+    }
+    
+    
+    public void verInversiones() {
+        // Obtener todos los clientes
+        LinkedList<Cliente> clientes = new LinkedList<>();
+        for (Usuario usuario : Usuario.getUsuarios()) {
+            if (usuario.getTipoUsuario() == TipoUsuario.Cliente) {
+                clientes.add((Cliente) usuario);
+            }
+        }
+        if (clientes.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No hay clientes con cuentas de inversión.");
+            return;
+        }
+
+        String[] opciones = {
+            "Ver todas las inversiones",
+            "Ordenar por saldo (mayor a menor)"
+        };
+
+        int elegido = JOptionPane.showOptionDialog(
+            null,
+            "Seleccione una opción",
+            "Inversiones",
+            0,0,
+            null,
+            opciones,
+            opciones[0]
+        );
+
+        switch (elegido) {
+
+            // Ver todas las inversiones
+            case 0:
+                String texto = "TODAS LAS INVERSIONES:\n";
+
+                for (Cliente cliente : clientes) {
+                    CuentaInversion cuentaInv = cliente.getCuentaInversion();
+                    texto += cliente.getNombre() + " → Saldo: $" + String.format("%.2f", cuentaInv.getSaldo()) + "\n";
+                }
+
+                JOptionPane.showMessageDialog(null, texto);
+                break;
+
+
+            // Ordenar por saldo
+            case 1:
+                LinkedList<Cliente> ordenSaldo =
+                    clientes.stream()
+                    .sorted(Comparator.comparingDouble(
+                        (Cliente cliente) -> cliente.getCuentaInversion().getSaldo()).reversed())
+                    .collect(Collectors.toCollection(LinkedList::new));
+
+                String orden = "INVERSIONES ORDENADAS (mayor a menor):\n\n";
+                for (Cliente cliente : ordenSaldo) {
+                    orden += cliente.getNombre() + " → $" + String.format("%.2f", cliente.getCuentaInversion().getSaldo()) + "\n";
+                }
+                JOptionPane.showMessageDialog(null, orden);
+                break;
+
             default:
                 break;
         }

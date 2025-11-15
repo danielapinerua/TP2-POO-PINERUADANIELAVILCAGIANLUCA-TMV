@@ -54,7 +54,7 @@ public class CuentaInversion {
 
 	public void invertir(double monto) {
         if (monto <= 0) {
-            JOptionPane.showMessageDialog(null, "Monto invÃ¡lido");
+            JOptionPane.showMessageDialog(null, "Monto invalido");
             return;
         }
         this.saldo += monto;
@@ -65,7 +65,7 @@ public class CuentaInversion {
     public void simularDia() {
     	
         if (saldo <= 0) {
-            JOptionPane.showMessageDialog(null, "No podÃ©s simular un dia con saldo 0");
+            JOptionPane.showMessageDialog(null, "No podes simular un dia con saldo 0");
             return;
         }
         
@@ -78,7 +78,7 @@ public class CuentaInversion {
 
         JOptionPane.showMessageDialog(
             null,
-            "Tasa del dia: " + String.format("%.3f", tasa)
+            "Tasa del dia: " + String.format("%.2f", tasa)
             + "\nNuevo saldo: $" + String.format("%.2f", saldo)
         );
     }
@@ -88,7 +88,7 @@ public class CuentaInversion {
 
         for (int i = 0; i < historialTasas.size(); i++) {
             texto += "Dia " + (i+1)
-                   + " - Tasa: " + String.format("%.3f", historialTasas.get(i))
+                   + " - Tasa: " + String.format("%.2f", historialTasas.get(i))
                    + " - Saldo: $" + String.format("%.2f", historialSaldos.get(i))
                    + "\n";
         }
@@ -105,7 +105,7 @@ public class CuentaInversion {
     
     public void simularVariosDias(int dias) {
         if (dias <= 0) {
-            JOptionPane.showMessageDialog(null, "Cantidad de dis invalida.");
+            JOptionPane.showMessageDialog(null, "Cantidad de dias invalida.");
             return;
         }
 
@@ -123,8 +123,8 @@ public class CuentaInversion {
         if (!historialTasas.isEmpty()) {
             double mejor = historialTasas.stream().max(Double::compare).get();
             double peor = historialTasas.stream().min(Double::compare).get();
-            resumen += "Mejor tasa: " + String.format("%.3f", mejor) + "\n";
-            resumen += "Peor tasa: " + String.format("%.3f", peor) + "\n";
+            resumen += "Mejor tasa: " + String.format("%.2f", mejor) + "\n";
+            resumen += "Peor tasa: " + String.format("%.2f", peor) + "\n";
         }
 
         resumen += "Ganancia total: $" + String.format("%.2f", calcularGananciaTotal());
