@@ -6,11 +6,13 @@ import javax.swing.JOptionPane;
 
 public class CuentaInversion {
     private double saldo;
+    private double totalInvertido;
     private LinkedList<Double> historialTasas; // tasas diarias
     private LinkedList<Double> historialSaldos; // como fue cambiando el saldo
 
     public CuentaInversion() {
         this.saldo = 0;
+        this.totalInvertido = 0;
         this.historialTasas = new LinkedList<>();
         this.historialSaldos = new LinkedList<>();
     }
@@ -69,6 +71,7 @@ public class CuentaInversion {
 
 	    // Agregar a la cuenta de inversión
 	    this.saldo += monto;
+	    this.totalInvertido += monto;
 	    
 	    Movimiento mov = new Movimiento("Inversion", monto, cuenta.getCliente());
 	    cuenta.getMovimientos().add(mov);
@@ -116,7 +119,7 @@ public class CuentaInversion {
         if (historialSaldos.isEmpty()) {
             return 0;
         }
-        return saldo - historialSaldos.get(0);
+        return saldo - totalInvertido;
     }
     
     public void simularVariosDias(int dias) {
@@ -132,10 +135,10 @@ public class CuentaInversion {
     
     public void verResumen() {
         String resumen = "";
-        resumen += "Monto invertido inicialmente: $" + String.format("%.2f", historialSaldos.get(0)) + "\n";
+        resumen += "Total invertido por el cliente: $" + String.format("%.2f", totalInvertido) + "\n";
         resumen += "Saldo actual: $" + String.format("%.2f", saldo) + "\n";
-        resumen += "Dias simulados: " + historialSaldos.size() + "\n";
-        
+        resumen += "Rendimiento total: $" + String.format("%.2f", calcularGananciaTotal()) + "\n";
+        resumen += "Días simulados: " + historialSaldos.size() + "\n";
 
         if (!historialTasas.isEmpty()) {
             double mejor = historialTasas.stream().max(Double::compare).get();
@@ -143,8 +146,6 @@ public class CuentaInversion {
             resumen += "Mejor tasa: " + String.format("%.2f", mejor) + "\n";
             resumen += "Peor tasa: " + String.format("%.2f", peor) + "\n";
         }
-
-        resumen += "Rendimiento total: $" + String.format("%.2f", calcularGananciaTotal());
 
         JOptionPane.showMessageDialog(null, resumen);
     }
