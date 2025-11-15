@@ -4,11 +4,8 @@ package userLayer;
 
 import javax.swing.JOptionPane;
 
-import logicLayer.Administrador;
 import logicLayer.Cajero;
-import logicLayer.Cliente;
 import logicLayer.Cuenta;
-import logicLayer.Empleado;
 import logicLayer.TipoUsuario;
 import logicLayer.Usuario;
 import logicLayer.Validar;
