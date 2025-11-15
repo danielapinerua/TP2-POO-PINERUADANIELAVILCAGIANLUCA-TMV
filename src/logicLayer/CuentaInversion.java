@@ -69,6 +69,10 @@ public class CuentaInversion {
 
 	    // Agregar a la cuenta de inversión
 	    this.saldo += monto;
+	    
+	    Movimiento mov = new Movimiento("Inversion", monto, cuenta.getCliente());
+	    cuenta.getMovimientos().add(mov);
+	    Empleado.getMovimientosGenerales().add(mov);
 
 	    JOptionPane.showMessageDialog(null, "Invertiste $" + monto );
 	}

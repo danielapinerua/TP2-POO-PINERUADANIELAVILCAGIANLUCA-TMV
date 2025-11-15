@@ -5,8 +5,7 @@ import java.util.LinkedList;
 import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
 
-import logicLayer.Cliente;
-import logicLayer.CuentaInversion;
+
 
 public class Empleado extends Usuario {
 	private String legajo;
@@ -356,7 +355,7 @@ public class Empleado extends Usuario {
                 String[] tipos = {
                     "Depósito", "Retiro", "Préstamo",
                     "Transferencia", "Pago de servicio",
-                    "Cambio de dólares"
+                    "Cambio de dólares","Inversion"
                 };
                 String tipo = (String) JOptionPane.showInputDialog(
                     null,
