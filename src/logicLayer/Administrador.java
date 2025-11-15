@@ -104,7 +104,6 @@ public class Administrador extends Usuario {
 	        nombres,
 	        nombres[0]
 	    );
-	    // Si cancela, se sale del método
 	    if (nombreElegido == null) {
 	        return;
 	    }
@@ -116,8 +115,6 @@ public class Administrador extends Usuario {
 	            break;
 	        }
 	    }
-	    // Confirmar y eliminar
-	   
 	        int confirmacion = JOptionPane.showConfirmDialog(
 	            null,
 	            "¿Seguro que desea eliminar la cuenta de " + nombreElegido + " (CBU: " + cuentaABorrar.getCbu() + ")?",
@@ -126,6 +123,7 @@ public class Administrador extends Usuario {
 
 	        if (confirmacion == JOptionPane.YES_OPTION) {
 	            cuentas.remove(cuentaABorrar);
+	            Usuario.getUsuarios().remove(cuentaABorrar.getCliente());
 	            JOptionPane.showMessageDialog(null, "Cuenta eliminada correctamente.");
 	        } else {
 	            JOptionPane.showMessageDialog(null, "Operación cancelada.");
