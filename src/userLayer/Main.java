@@ -1,9 +1,6 @@
 package userLayer;
 
-
-
 import javax.swing.JOptionPane;
-
 import logicLayer.Cajero;
 import logicLayer.Cuenta;
 import logicLayer.TipoUsuario;
