@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 public abstract class Usuario {
 	protected String nombre;
 	protected TipoUsuario tipoUsuario;
-	private static LinkedList<Usuario> usuarios = new  LinkedList<Usuario>();
+	private static LinkedList<Usuario> usuarios = new LinkedList<Usuario>();
 	protected String mail;
 	protected String pin;
 	public Usuario(String nombre, TipoUsuario tipoUsuario, String mail, String pin) {
@@ -61,6 +61,10 @@ public abstract class Usuario {
 		}
 		return null;
 	}*/
+	@Override
+	public String toString() {
+		return "Usuario [nombre=" + nombre + ", tipo=" + tipoUsuario + ", mail=" + mail + ", pin=" + pin + "]";
+	}
 	
 	public static Usuario login(String mail, String contr, TipoUsuario tipoEsperado) {
 	    for (Usuario usuario : usuarios) {
@@ -90,10 +94,7 @@ public abstract class Usuario {
 	    JOptionPane.showMessageDialog(null, "PIN actualizado correctamente.");
 	}
 	
-	@Override
-	public String toString() {
-		return "Usuario [nombre=" + nombre + ", tipo=" + tipoUsuario + ", mail=" + mail + ", pin=" + pin + "]";
-	}
+	
 	//public abstract void menu();
 	public void Menu() {
 		JOptionPane.showMessageDialog(null,

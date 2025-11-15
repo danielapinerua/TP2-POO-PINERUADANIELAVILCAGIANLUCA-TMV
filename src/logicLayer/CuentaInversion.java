@@ -42,6 +42,15 @@ public class CuentaInversion {
 		public void setHistorialSaldos(LinkedList<Double> historialSaldos) {
 			this.historialSaldos = historialSaldos;
 		}
+		
+		
+		
+
+		@Override
+		public String toString() {
+			return "CuentaInversion [saldo=" + saldo + ", historialTasas=" + historialTasas + ", historialSaldos="
+					+ historialSaldos + "]";
+		}
 
 
 		public void invertir(double monto) {

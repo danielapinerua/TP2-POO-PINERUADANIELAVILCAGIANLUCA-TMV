@@ -28,6 +28,11 @@ public class Cliente extends Usuario{
 	public void setCuentaInversion(CuentaInversion cuentaInversion) {
 		this.cuentaInversion = cuentaInversion;
 	}
+	 @Override
+		public String toString() {
+			return "telefono=" + telefono + ", nombre=" + nombre + ", tipo de usuario=" + tipoUsuario + ", mail="
+					+ mail ;
+		}
 
 	@Override
     public void Menu() {
@@ -134,11 +139,7 @@ public class Cliente extends Usuario{
         } while (opcion != 11);
     }
 
-    @Override
-	public String toString() {
-		return "telefono=" + telefono + ", nombre=" + nombre + ", tipo de usuario=" + tipoUsuario + ", mail="
-				+ mail ;
-	}
+ 
 
 	public Cuenta buscarCuentaPorMail(String mailCliente) {
         for (Cuenta c : Cuenta.getCuentas()) {

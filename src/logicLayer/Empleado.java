@@ -41,6 +41,11 @@ public class Empleado extends Usuario {
 		Empleado.movimientosGenerales = movimientosGenerales;
 	}
 	
+	@Override
+	public String toString() {
+		return "legajo=" + legajo + ", nombre=" + nombre + ", tipo de usuario=" + tipoUsuario + ", mail=" + mail;
+	}
+	
 
 	@Override
 	public void Menu() {
@@ -441,10 +446,7 @@ public class Empleado extends Usuario {
         }
     }
 
-	@Override
-	public String toString() {
-		return "legajo=" + legajo + ", nombre=" + nombre + ", tipo de usuario=" + tipoUsuario + ", mail=" + mail;
-	}
+	
 	
     
     
