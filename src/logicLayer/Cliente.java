@@ -112,7 +112,7 @@ public class Cliente extends Usuario{
                 	break;
                 	
                 case 6://inversiones
-                	menuInversiones();
+                	menuInversiones(cuenta);
                 	break;
                 	
                 case 7: //cambiar pin
@@ -150,7 +150,7 @@ public class Cliente extends Usuario{
         return null;
     }
     
-	public void menuInversiones() {
+	public void menuInversiones(Cuenta cuenta) {
 		String[] opciones = {
 			    "Depositar en inversion",
 			    "Simular un dia",
@@ -174,7 +174,7 @@ public class Cliente extends Usuario{
 	        switch(opcion) {
 	        case 0: // Depositar
 	            double monto = Validar.validarNumero("Ingrese monto a invertir:");
-	            cuentaInversion.invertir(monto);
+	            cuentaInversion.invertir(cuenta, monto);
 	            break;
 
 	        case 1: // Simular un di­a

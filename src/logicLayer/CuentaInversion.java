@@ -52,14 +52,26 @@ public class CuentaInversion {
 	}
 
 
-	public void invertir(double monto) {
-        if (monto <= 0) {
-            JOptionPane.showMessageDialog(null, "Monto invalido");
-            return;
-        }
-        this.saldo += monto;
-        JOptionPane.showMessageDialog(null, "Invertiste $" + monto);
-    }
+	public void invertir(Cuenta cuenta, double monto) {
+	    if (monto <= 0) {
+	        JOptionPane.showMessageDialog(null, "Monto inválido");
+	        return;
+	    }
+
+	    // Solo se puede invertir hasta el saldo disponible, sin límite cubierto
+	    if (monto > cuenta.getSaldo()) {
+	        JOptionPane.showMessageDialog(null, "Saldo insuficiente. Solo podes invertir hasta $" + cuenta.getSaldo() + ". No podes usar dinero de tu limite cubierto");
+	        return;
+	    }
+
+	    // Descontar de la cuenta corriente
+	    cuenta.setSaldo(cuenta.getSaldo() - monto);
+
+	    // Agregar a la cuenta de inversión
+	    this.saldo += monto;
+
+	    JOptionPane.showMessageDialog(null, "Invertiste $" + monto );
+	}
     
 
     public void simularDia() {
