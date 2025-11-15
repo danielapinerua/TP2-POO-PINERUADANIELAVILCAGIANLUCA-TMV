@@ -3,8 +3,10 @@ package logicLayer;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.stream.Collectors;
-
 import javax.swing.JOptionPane;
+
+import logicLayer.Cliente;
+import logicLayer.CuentaInversion;
 
 public class Empleado extends Usuario {
 	private String legajo;
@@ -460,7 +462,7 @@ public class Empleado extends Usuario {
 
         String[] opciones = {
             "Ver todas las inversiones",
-            "Ordenar por saldo (mayor a menor)"
+            "Ordenar por saldo (menor a mayor)"
         };
 
         int elegido = JOptionPane.showOptionDialog(
@@ -488,17 +490,18 @@ public class Empleado extends Usuario {
                 break;
 
 
-            // Ordenar por saldo
+             // Ordenar por saldo
             case 1:
-                LinkedList<Cliente> ordenSaldo =
-                    clientes.stream()
-                    .sorted(Comparator.comparingDouble(
-                        (Cliente cliente) -> cliente.getCuentaInversion().getSaldo()).reversed())
-                    .collect(Collectors.toCollection(LinkedList::new));
-
-                String orden = "INVERSIONES ORDENADAS (mayor a menor):\n\n";
+            	LinkedList<Cliente> ordenSaldo =
+                clientes.stream()
+                        .sorted(Comparator.comparingDouble(
+                            c -> c.getCuentaInversion().getSaldo()
+                        ))
+                        .collect(Collectors.toCollection(LinkedList::new));
+                String orden = "INVERSIONES ORDENADAS (menor a mayor):\n\n";
                 for (Cliente cliente : ordenSaldo) {
-                    orden += cliente.getNombre() + " → $" + String.format("%.2f", cliente.getCuentaInversion().getSaldo()) + "\n";
+                    orden += cliente.getNombre() + " → $" 
+                           + String.format("%.2f", cliente.getCuentaInversion().getSaldo()) + "\n";
                 }
                 JOptionPane.showMessageDialog(null, orden);
                 break;
