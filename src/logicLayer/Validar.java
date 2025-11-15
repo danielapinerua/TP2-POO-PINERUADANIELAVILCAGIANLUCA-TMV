@@ -14,7 +14,6 @@ public abstract class Validar {
 				ingreso = JOptionPane.showInputDialog(mensaje);
 			} while (ingreso.isEmpty());
 			for (int i = 0; i < ingreso.length(); i++) {
-				//si caracter no es un digito
 				if (!Character.isDigit(ingreso.charAt(i))) {
 					flag = false;
 					break;
