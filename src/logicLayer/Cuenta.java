@@ -298,7 +298,7 @@ public class Cuenta {
 	    }
 	    if (pesos > this.saldo) {
 	        JOptionPane.showMessageDialog(null, 
-	            "Usarás parte de tu límite cubierto para completar la operación.");
+	            "Usarás parte de tu límite cubierto para realizar el cambio.");
 	    }
 	    double dolares = pesos / cotizacion;
 	    this.saldo -= pesos;
