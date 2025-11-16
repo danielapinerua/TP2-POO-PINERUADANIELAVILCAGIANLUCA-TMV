@@ -50,22 +50,6 @@ public abstract class Usuario {
 	
 	
 	
-	/*
-	public static Usuario login(String mail, String contr) {
-		
-		for (Usuario usuario : usuarios) {
-			if (usuario.getMail().equals(mail) && usuario.getPin().equals(contr)) {
-				
-				return usuario;
-			}
-		}
-		return null;
-	}*/
-	@Override
-	public String toString() {
-		return "Usuario [nombre=" + nombre + ", tipo=" + tipoUsuario + ", mail=" + mail + ", pin=" + pin + "]";
-	}
-	
 	public static Usuario login(String mail, String contr, TipoUsuario tipoEsperado) {
 	    for (Usuario usuario : usuarios) {
 	        if (usuario.getMail().equals(mail) && usuario.getPin().equals(contr)) {
@@ -73,7 +57,7 @@ public abstract class Usuario {
 	                return usuario; // coincide tipo + datos
 	            } else {
 	                JOptionPane.showMessageDialog(null, 
-	                    "Este usuario no pertenece al tipo seleccionado (" + tipoEsperado + ").");
+	                    "Este usuario no pertenece al tipo seleccionado (" + tipoEsperado + ")");
 	                return null;
 	            }
 	        }
