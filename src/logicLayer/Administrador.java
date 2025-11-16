@@ -28,7 +28,8 @@ public class Administrador extends Usuario {
 
 	@Override
 	public String toString() {
-		return "IdAdmin=" + idAdmin + ", nombre=" + nombre + ", mail=" + mail;
+		return "idAdmin=" + idAdmin + ", nombre=" + nombre + ", tipo de usuario=" + tipoUsuario + ", mail="
+				+ mail + "]";
 	}
 
 
