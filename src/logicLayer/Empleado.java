@@ -309,8 +309,8 @@ public class Empleado extends Usuario {
             return;
         }
         String texto = "Lista de cajeros:\n";
-        for (Cajero c : cajeros) {
-            texto += c.toString() + "\n";
+        for (Cajero cajero : cajeros) {
+            texto += cajero.toString() + "\n";
         }
         JOptionPane.showMessageDialog(null, texto);
     }
