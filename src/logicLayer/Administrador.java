@@ -101,21 +101,20 @@ public class Administrador extends Usuario {
 	
 	public void verEmpleados() {
 	    LinkedList<Usuario> usuarios = Usuario.getUsuarios();
-	    if (usuarios.isEmpty()) {
-	        JOptionPane.showMessageDialog(null, "No hay usuarios registrados.");
-	        return;
-	    }
-	    StringBuilder sb = new StringBuilder("Lista de Empleados: \n");
+	    String texto = "Lista de Empleados:\n";
+	    boolean hayEmpleados = false;
 	    for (Usuario usuario : usuarios) {
-	        // Si el usuario es del tipo Empleado, lo muestro
 	        if (usuario.getTipoUsuario() == TipoUsuario.Empleado) {
-	            sb.append(usuario.toString()).append("\n--------------------------\n");
+	            texto += usuario.toString() + "\n";
+	            hayEmpleados = true;
 	        }
 	    }
-
-	    JOptionPane.showMessageDialog(null, sb.toString());
+	    if (!hayEmpleados) {
+	        JOptionPane.showMessageDialog(null, "No hay empleados registrados.");
+	        return;
+	    }
+	    JOptionPane.showMessageDialog(null, texto);
 	}
-	
 	
 	
 	@Override
