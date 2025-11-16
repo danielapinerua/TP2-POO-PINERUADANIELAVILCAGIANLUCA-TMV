@@ -271,7 +271,7 @@ public class Cuenta {
 	        return;
 	    }
 	    this.saldo -= monto;
-	    Movimiento mov = new Movimiento("Pago de servicio: " + servicios[servicioElegido], monto, cliente);
+	    Movimiento mov = new Movimiento("Pago de servicio", monto, cliente);
 	    this.movimientos.add(mov);
 	    Empleado.getMovimientosGenerales().add(mov);
 	    JOptionPane.showMessageDialog(null, 
