@@ -397,7 +397,6 @@ public class Cuenta {
 	    }
 	}
 	public static void cargaInicial() {
-	    // Accedemos directamente a los clientes desde la lista de usuarios
 	    Cliente c1 = (Cliente) Usuario.getUsuarios().get(0);
 	    Cliente c2 = (Cliente) Usuario.getUsuarios().get(1);
 	    Cliente c3 = (Cliente) Usuario.getUsuarios().get(2);
