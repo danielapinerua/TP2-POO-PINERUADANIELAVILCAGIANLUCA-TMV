@@ -142,9 +142,9 @@ public class Cliente extends Usuario{
  
 
 	public Cuenta buscarCuentaPorMail(String mailCliente) {
-        for (Cuenta c : Cuenta.getCuentas()) {
-            if (c.getCliente().getMail().equals(mailCliente)) {
-                return c;
+        for (Cuenta cuenta : Cuenta.getCuentas()) {
+            if (cuenta.getCliente().getMail().equals(mailCliente)) {
+                return cuenta;
             }
         }
         return null;
