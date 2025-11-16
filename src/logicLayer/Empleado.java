@@ -301,7 +301,7 @@ public class Empleado extends Usuario {
         }
         String texto = "Lista de cajeros:\n";
         for (Cajero cajero : cajeros) {
-            texto += cajero.toString() + "\n";
+            texto += cajero.toString();
         }
         JOptionPane.showMessageDialog(null, texto);
     }
@@ -434,7 +434,6 @@ public class Empleado extends Usuario {
     
     
     public void verInversiones() {
-        // Obtener todos los clientes
         LinkedList<Cliente> clientes = new LinkedList<>();
         for (Usuario usuario : Usuario.getUsuarios()) {
             if (usuario.getTipoUsuario() == TipoUsuario.Cliente) {
@@ -481,7 +480,7 @@ public class Empleado extends Usuario {
             	LinkedList<Cliente> ordenSaldo =
                 clientes.stream()
                         .sorted(Comparator.comparingDouble(
-                            c -> c.getCuentaInversion().getSaldo()
+                            cliente -> cliente.getCuentaInversion().getSaldo()
                         ))
                         .collect(Collectors.toCollection(LinkedList::new));
                 String orden = "INVERSIONES ORDENADAS (menor a mayor):\n";
