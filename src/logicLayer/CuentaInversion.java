@@ -147,10 +147,10 @@ public class CuentaInversion {
     
     public void verResumen() {
         String resumen = "";
-        resumen += "Total invertido por el cliente: $" + String.format("%.2f", totalInvertido) + "\n";
-        resumen += "Saldo actual: $" + String.format("%.2f", saldo) + "\n";
-        resumen += "Rendimiento total: $" + String.format("%.2f", calcularGananciaTotal()) + "\n";
-        resumen += "Días simulados: " + historialSaldos.size() + "\n";
+        resumen += "Total invertido: $" + String.format("%.2f", totalInvertido) + "\n" +
+        	    "Saldo actual: $" + String.format("%.2f", saldo) + "\n" +
+        	    "Rendimiento total: $" + String.format("%.2f", calcularGananciaTotal()) + "\n" +
+        	    "Días simulados: " + historialSaldos.size() + "\n";
 
         if (!historialTasas.isEmpty()) {
             double mejor = historialTasas.stream().max(Double::compare).get();
