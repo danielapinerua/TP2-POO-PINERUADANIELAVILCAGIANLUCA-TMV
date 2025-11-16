@@ -103,15 +103,13 @@ public class Empleado extends Usuario {
 	    } while (opcion != 9);
 	}
 	
-	
 	public void verUsuarios() {
 		String[] opciones = {
 	        "Ver todos",
 	        "Ordenar alfabéticamente",
 	        "Ordenar por saldo"
 	    };
-
-	    int elegido = JOptionPane.showOptionDialog(
+		int elegido = JOptionPane.showOptionDialog(
 	        null,
 	        "Seleccione una opción",
 	        "Ver usuarios",
@@ -212,10 +210,9 @@ public class Empleado extends Usuario {
 	    }
 	}
 	
-	
-    public void cargarDinero(Cajero cajero, double monto) {
-        if (monto <= 0) {
-            JOptionPane.showMessageDialog(null, "Monto inválido");
+	public void cargarDinero(Cajero cajero, double monto) {
+		if (monto <= 0) {
+			JOptionPane.showMessageDialog(null, "Monto inválido");
             return;
         }
         cajero.setSaldo(cajero.getSaldo() + monto);
@@ -492,9 +489,9 @@ public class Empleado extends Usuario {
                             c -> c.getCuentaInversion().getSaldo()
                         ))
                         .collect(Collectors.toCollection(LinkedList::new));
-                String orden = "INVERSIONES ORDENADAS (menor a mayor):\n\n";
+                String orden = "INVERSIONES ORDENADAS (menor a mayor):\n";
                 for (Cliente cliente : ordenSaldo) {
-                    orden += cliente.getNombre() + " → $" 
+                    orden += cliente.getNombre() + " - $" 
                            + String.format("%.2f", cliente.getCuentaInversion().getSaldo()) + "\n";
                 }
                 JOptionPane.showMessageDialog(null, orden);

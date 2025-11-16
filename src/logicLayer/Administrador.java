@@ -68,7 +68,7 @@ public class Administrador extends Usuario {
 	        null,
 	        "Seleccione la cuenta a eliminar:",
 	        "Dar de baja cuenta",
-	        JOptionPane.QUESTION_MESSAGE,
+	        0,
 	        null,
 	        nombres,
 	        nombres[0]
