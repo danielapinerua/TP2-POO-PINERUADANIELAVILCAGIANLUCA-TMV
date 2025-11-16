@@ -254,7 +254,7 @@ public class Cuenta {
 	        servicios[0]
 	    );
 	    if (servicioElegido == -1) {
-	        return; // si el usuario cancela
+	        return; // 
 	    }
 	    double monto = Validar.validarNumero("Ingrese el monto a pagar para " + servicios[servicioElegido] + ":");
 	    if (monto <= 0) {
@@ -267,11 +267,10 @@ public class Cuenta {
 		            "Saldo insuficiente. Tu saldo disponible (incluyendo el límite cubierto) es de $" + saldoDisponible);
 	        return;
 	    }
-	
-	    // usa parte del límite cubierto
+
 	    if (monto > this.saldo && monto <= saldoDisponible) {
 	        JOptionPane.showMessageDialog(null, 
-	            "Estás utilizando parte de tu límite cubierto para realizar esta transferencia.");
+	            "Estás utilizando parte de tu límite cubierto para realizar este pago.");
 	    }
 	    this.saldo -= monto;
 	    Movimiento mov = new Movimiento("Pago de servicio", monto, cliente);
