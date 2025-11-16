@@ -60,16 +60,14 @@ public class CuentaInversion {
 	        return;
 	    }
 
-	    // Solo se puede invertir hasta el saldo disponible, sin límite cubierto
 	    if (monto > cuenta.getSaldo()) {
 	        JOptionPane.showMessageDialog(null, "Saldo insuficiente. Solo podes invertir hasta $" + cuenta.getSaldo() + ". No podes usar dinero de tu limite cubierto");
 	        return;
 	    }
 
-	    // Descontar de la cuenta corriente
 	    cuenta.setSaldo(cuenta.getSaldo() - monto);
 
-	    // Agregar a la cuenta de inversión
+
 	    this.saldo += monto;
 	    this.totalInvertido += monto;
 	    
@@ -82,13 +80,10 @@ public class CuentaInversion {
     
 
     public void simularDia() {
-    	
         if (saldo <= 0) {
             JOptionPane.showMessageDialog(null, "No podes simular un dia con saldo 0");
             return;
         }
-        
-        // Tasa entre -0.05 y 0.05
         double tasa = (Math.random() * 0.10) - 0.05;
         double rendimiento = saldo * tasa;
         saldo += rendimiento;
