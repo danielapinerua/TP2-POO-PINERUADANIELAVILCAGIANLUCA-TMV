@@ -239,7 +239,7 @@ public class Empleado extends Usuario {
         } else if (opcionCajero == 1) {
             String ubicacion = Validar.validarCampo("Ingrese la ubicación del nuevo cajero:");
             double saldoInicial = Validar.validarNumero("Saldo inicial del cajero:");
-            // Pedir el estado al crear el cajero
+
             String[] opcionesEstado = {"Activo", "Inactivo"};
             int estadoElegido = JOptionPane.showOptionDialog(
                 null,
@@ -269,15 +269,12 @@ public class Empleado extends Usuario {
     
     
     public void darBajaCajero() {
-        // Elegir entre los cajeros activos
         Cajero cajeroBaja = Cajero.elegirCajeroDisponible();
-
         if (cajeroBaja == null) {
             JOptionPane.showMessageDialog(null, "No hay cajeros activos para dar de baja.");
             return;
         }
 
-        // Confirmar antes de desactivarlo
         int confirmar = JOptionPane.showConfirmDialog(
             null,
             "¿Seguro que desea dar de baja el cajero en " + cajeroBaja.getUbicacion() + "?",

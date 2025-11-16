@@ -267,8 +267,15 @@ public class Cuenta {
 	    }
 	    double saldoDisponible = this.saldo + this.limiteCubierto;
 	    if (monto > saldoDisponible) {
-	        JOptionPane.showMessageDialog(null, "Saldo insuficiente (incluyendo límite cubierto).");
+	    	JOptionPane.showMessageDialog(null, 
+		            "Saldo insuficiente. Tu saldo disponible (incluyendo el límite cubierto) es de $" + saldoDisponible);
 	        return;
+	    }
+	
+	    // usa parte del límite cubierto
+	    if (monto > this.saldo && monto <= saldoDisponible) {
+	        JOptionPane.showMessageDialog(null, 
+	            "Estás utilizando parte de tu límite cubierto para realizar esta transferencia.");
 	    }
 	    this.saldo -= monto;
 	    Movimiento mov = new Movimiento("Pago de servicio", monto, cliente);
