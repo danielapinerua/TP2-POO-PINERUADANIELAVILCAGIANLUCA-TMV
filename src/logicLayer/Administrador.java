@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
 public class Administrador extends Usuario {
-	//dar de baja cuentas y crear empleados
 	private String idAdmin;
 	
 	
@@ -51,37 +50,6 @@ public class Administrador extends Usuario {
 	        "\nPIN: " + pin +
 	        "\nLegajo asignado: " + nuevoLegajo);
 	}
-	
-	/*public void darDeBajaCuenta() {
-	    String cbu = Validar.validarCampo("Ingrese el CBU de la cuenta a dar de baja:");
-	    Cuenta cuentaABorrar = null;
-
-	    for (Cuenta cuenta : Cuenta.getCuentas()) {
-	        if (cuenta.getCbu().equals(cbu)) {
-	            cuentaABorrar = cuenta;
-	            break;
-	        }
-	    }
-
-	    if (cuentaABorrar != null) {
-	        int confirmacion = JOptionPane.showConfirmDialog(
-	            null,
-	            "¿Seguro que desea eliminar la cuenta de " + cuentaABorrar.getCliente().getNombre() + "?",
-	            "Confirmar eliminación",
-	            JOptionPane.YES_NO_OPTION
-	        );
-
-	        if (confirmacion == JOptionPane.YES_OPTION) {
-	            Cuenta.getCuentas().remove(cuentaABorrar);
-	            JOptionPane.showMessageDialog(null, "Cuenta eliminada correctamente.");
-	        } else {
-	            JOptionPane.showMessageDialog(null, "Operación cancelada.");
-	        }
-	    } else {
-	        JOptionPane.showMessageDialog(null, "No se encontró una cuenta con ese CBU.");
-	    }
-	}
-	*/
 	
 	public void darDeBajaCuenta() {
 	    LinkedList<Cuenta> cuentas = Cuenta.getCuentas();
