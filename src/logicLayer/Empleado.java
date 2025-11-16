@@ -6,12 +6,9 @@ import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
 
 
-
 public class Empleado extends Usuario {
 	private String legajo;
 	private static LinkedList<Movimiento> movimientosGenerales = new LinkedList<Movimiento>();
-
-	//private static LinkedList<Empleado>empleados = new LinkedList<>();
 
 
 	public Empleado(String nombre, String mail, String pin, String legajo) {
@@ -107,8 +104,6 @@ public class Empleado extends Usuario {
 	}
 	
 	
-	
-	//ver usuarios
 	public void verUsuarios() {
 		String[] opciones = {
 	        "Ver todos",
@@ -306,19 +301,20 @@ public class Empleado extends Usuario {
         }
     }
     
+    
     public void verCajeros() {
         LinkedList<Cajero> cajeros = Cajero.getCajeros();
         if (cajeros.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay cajeros registrados.");
             return;
         }
-
-        StringBuilder sb = new StringBuilder("Lista de cajeros: \n");
+        String texto = "Lista de cajeros:\n";
         for (Cajero c : cajeros) {
-            sb.append(c.toString()); 
+            texto += c.toString() + "\n";
         }
-        JOptionPane.showMessageDialog(null, sb.toString());
+        JOptionPane.showMessageDialog(null, texto);
     }
+    
     
     
     public void verMovimientos() {
