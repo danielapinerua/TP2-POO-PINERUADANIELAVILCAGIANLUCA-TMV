@@ -79,7 +79,7 @@ public class Administrador extends Usuario {
 	    // Buscar la cuenta que corresponde al nombre elegido
 	    Cuenta cuentaABorrar = null;
 	    for (Cuenta cuenta : cuentas) {
-	        if (cuenta.getCliente().getNombre().equalsIgnoreCase(nombreElegido)) {
+	        if (cuenta.getCliente().getNombre().equals(nombreElegido)) {
 	            cuentaABorrar = cuenta;
 	            break;
 	        }

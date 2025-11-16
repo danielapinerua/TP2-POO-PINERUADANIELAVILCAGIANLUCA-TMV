@@ -403,7 +403,7 @@ public class Cuenta {
 
 	    Cuenta.getCuentas().add(new Cuenta("1001", c1, 5000));
 	    Cuenta.getCuentas().add(new Cuenta("1002", c2, 8000));
-	    Cuenta.getCuentas().add(new Cuenta("1003", c3, 8000));
+	    Cuenta.getCuentas().add(new Cuenta("1003", c3, 10000));
 	}
 }
 
