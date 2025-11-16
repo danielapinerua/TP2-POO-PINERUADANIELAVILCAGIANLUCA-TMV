@@ -175,7 +175,7 @@ public class Cuenta {
 	    this.movimientos.add(mov);
 	    Empleado.getMovimientosGenerales().add(mov);
 
-	    JOptionPane.showMessageDialog(null, "Retiro exitoso! Retiraste: $" + monto);
+	    JOptionPane.showMessageDialog(null, "Retiro exitoso! Retiraste: $" + monto + "\nSaldo actual: " + this.saldo);
 	}
 	
 	

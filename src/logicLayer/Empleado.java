@@ -333,7 +333,7 @@ public class Empleado extends Usuario {
             case 0:
                 String listado = "";
                 for (Movimiento movimiento : movimientosGenerales) {
-                    listado += movimiento + "\n";
+                    listado += movimiento;
                 }
                 JOptionPane.showMessageDialog(null, listado);
                 break;
@@ -365,7 +365,7 @@ public class Empleado extends Usuario {
                 } else {
                     String listaTipo = "";
                     for (Movimiento movimiento : filtradosPorTipo) {
-                        listaTipo += movimiento + "\n";
+                        listaTipo += movimiento;
                     }
                     JOptionPane.showMessageDialog(null, listaTipo);
                 }
@@ -408,7 +408,7 @@ public class Empleado extends Usuario {
                 } else {
                     String listaCliente = "";
                     for (Movimiento movimiento : filtradosPorCliente) {
-                        listaCliente += movimiento + "\n";
+                        listaCliente += movimiento ;
                     }
                     JOptionPane.showMessageDialog(null, listaCliente);
                 }
@@ -423,7 +423,7 @@ public class Empleado extends Usuario {
 
                 String listaMonto = "";
                 for (Movimiento movimiento : movimientosOrdenados) {
-                    listaMonto += movimiento + "\n";
+                    listaMonto += movimiento;
                 }
                 JOptionPane.showMessageDialog(null, listaMonto);
                 break;
