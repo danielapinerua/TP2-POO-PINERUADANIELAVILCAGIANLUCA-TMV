@@ -341,7 +341,7 @@ public class Cuenta {
 	        case 0:
 	            String listaTodos = "";
 	            for (Movimiento movimiento : movimientos) {
-	                listaTodos += movimiento + "\n";
+	                listaTodos += movimiento ;
 	            }
 	            JOptionPane.showMessageDialog(null, listaTodos);
 	            break;
@@ -373,7 +373,7 @@ public class Cuenta {
 	            } else {
 	                String listaTipo = "";
 	                for (Movimiento movimiento : filtradosPorTipo) {
-	                    listaTipo += movimiento + "\n";
+	                    listaTipo += movimiento ;
 	                }
 	                JOptionPane.showMessageDialog(null, listaTipo);
 	            }
@@ -388,7 +388,7 @@ public class Cuenta {
 
 	            String listaMonto = "";
 	            for (Movimiento movimiento : ordenadosPorMonto) {
-	                listaMonto += movimiento + "\n";
+	                listaMonto += movimiento ;
 	            }
 
 	            JOptionPane.showMessageDialog(null, listaMonto);
