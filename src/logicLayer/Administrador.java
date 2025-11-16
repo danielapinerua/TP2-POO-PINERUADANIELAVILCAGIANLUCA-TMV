@@ -109,7 +109,7 @@ public class Administrador extends Usuario {
 	            hayEmpleados = true;
 	        }
 	    }
-	    if (!hayEmpleados) {
+	    if (hayEmpleados==false) {
 	        JOptionPane.showMessageDialog(null, "No hay empleados registrados.");
 	        return;
 	    }
