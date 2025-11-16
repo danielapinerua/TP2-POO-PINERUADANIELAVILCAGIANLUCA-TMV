@@ -1,1 +1,1 @@
-<img src= "Parcial2danielapineruagianlucavilca/src/logicLayer/Diagramaparcial2danielapineruagianlucavilca.png">
+<img src= "src/logicLayer/Diagramaparcial2danielapineruagianlucavilca.png">
