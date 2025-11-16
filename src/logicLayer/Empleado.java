@@ -228,8 +228,8 @@ public class Empleado extends Usuario {
             null,
             "Seleccione una acción:",
             "Administrar cajeros",
-            JOptionPane.DEFAULT_OPTION,
-            JOptionPane.INFORMATION_MESSAGE,
+            0,
+            0,
             null,
             opcionesCajero,
             opcionesCajero[0]
@@ -250,8 +250,7 @@ public class Empleado extends Usuario {
                 null,
                 "Seleccione el estado inicial del cajero:",
                 "Estado del cajero",
-                JOptionPane.DEFAULT_OPTION,
-                JOptionPane.QUESTION_MESSAGE,
+                0,0,
                 null,
                 opcionesEstado,
                 opcionesEstado[0]
