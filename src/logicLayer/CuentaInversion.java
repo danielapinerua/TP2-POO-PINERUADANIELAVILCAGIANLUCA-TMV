@@ -104,7 +104,19 @@ public class CuentaInversion {
 
     public void verHistorial() {
         String texto = "Historial de inversion:\n";
+        
+        if (totalInvertido == 0) {
+            texto += "No realizaste ninguna inversión todavía.";
+            JOptionPane.showMessageDialog(null, texto);
+            return;
+        }
 
+        if (historialTasas.isEmpty()) {
+            texto += "Invertiste $" + String.format("%.2f", totalInvertido) + 
+                     ", pero aún no simulaste ningún día.";
+            JOptionPane.showMessageDialog(null, texto);
+            return;
+        }
         for (int i = 0; i < historialTasas.size(); i++) {
             texto += "Dia " + (i+1)
                    + " - Tasa: " + String.format("%.2f", historialTasas.get(i))

@@ -164,7 +164,7 @@ public class Cliente extends Usuario{
 	    do {
 	        opcion = JOptionPane.showOptionDialog(
 	            null,
-	            "MENU DE INVERSION",
+	            "MENU DE INVERSIONES",
 	            "",
 	            0, 0, null,
 	            opciones,
