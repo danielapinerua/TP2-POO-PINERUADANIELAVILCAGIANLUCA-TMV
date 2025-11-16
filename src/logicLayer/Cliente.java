@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 public class Cliente extends Usuario{
 	private String telefono;
-	private CuentaInversion cuentaInversion;  //le puse atributo 
+	private CuentaInversion cuentaInversion;  
 
 	public Cliente(String nombre, String mail, String pin, String telefono) {
 		super(nombre, TipoUsuario.Cliente, mail, pin);
@@ -76,7 +76,6 @@ public class Cliente extends Usuario{
                     if (aTransferir == null) {
                         JOptionPane.showMessageDialog(null, "CBU no encontrado");
                     } 
-                    // Evitar transferencias a la misma cuenta
                     else if (aTransferir.getCbu().equals(cuenta.getCbu())) {
                         JOptionPane.showMessageDialog(null, "No puedes transferirte dinero a tu propia cuenta.");
                     } 

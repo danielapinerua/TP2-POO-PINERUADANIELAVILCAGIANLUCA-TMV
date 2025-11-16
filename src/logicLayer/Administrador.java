@@ -38,7 +38,7 @@ public class Administrador extends Usuario {
 	    String nombre = Validar.validarLetras("Ingrese nombre del empleado:");
 	    String mail = Validar.validarCampo("Ingrese mail del empleado:");
 	    String pin = Validar.validarCampo("Ingrese PIN del empleado:");
-	    // Generar legajo aleatorio basado en el tamaño actual de usuarios
+
 	    int legajoAleatorio = 10 + Usuario.getUsuarios().size(); 
 	    String nuevoLegajo = String.valueOf(legajoAleatorio);
 	    Empleado nuevo = new Empleado(nombre, mail, pin, nuevoLegajo);
@@ -58,12 +58,10 @@ public class Administrador extends Usuario {
 	        JOptionPane.showMessageDialog(null, "No hay cuentas registradas.");
 	        return;
 	    }
-	    // Crear un array con los nombres de los clientes
 	    String[] nombres = new String[cuentas.size()];
 	    for (int i = 0; i < nombres.length; i++) {
 	        nombres[i] = cuentas.get(i).getCliente().getNombre();
 	    }
-	    // Mostrar menú desplegable con los nombres de los clientes
 	    String nombreElegido = (String) JOptionPane.showInputDialog(
 	        null,
 	        "Seleccione la cuenta a eliminar:",
@@ -76,7 +74,6 @@ public class Administrador extends Usuario {
 	    if (nombreElegido == null) {
 	        return;
 	    }
-	    // Buscar la cuenta que corresponde al nombre elegido
 	    Cuenta cuentaABorrar = null;
 	    for (Cuenta cuenta : cuentas) {
 	        if (cuenta.getCliente().getNombre().equals(nombreElegido)) {
