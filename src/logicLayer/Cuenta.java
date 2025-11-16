@@ -85,7 +85,7 @@ public class Cuenta {
         String telefono = String.valueOf(Validar.validarNumero("Ingresar teléfono:"));
 
         Cliente nuevoCliente = new Cliente(nombre, mail, pin, telefono);
-        Usuario.getUsuarios().add(nuevoCliente); // Se agrega a la lista general de usuarios
+        Usuario.getUsuarios().add(nuevoCliente); 
         String cbu = generarCbu();
         double saldo = 0;
         Cuenta nuevaCuenta = new Cuenta(cbu, nuevoCliente, saldo);
@@ -107,21 +107,17 @@ public class Cuenta {
 
 	    double saldoDisponible = this.saldo + this.limiteCubierto;
 
-	    //  ni con el límite alcanza
 	    if (monto > saldoDisponible) {
 	        JOptionPane.showMessageDialog(null, 
 	            "Saldo insuficiente. Tu saldo disponible (incluyendo el límite cubierto) es de $" + saldoDisponible);
 	        return;
 	    }
-
-	    // usa parte del límite cubierto
 	    if (monto > this.saldo && monto <= saldoDisponible) {
 	        JOptionPane.showMessageDialog(null, 
 	            "Estás utilizando parte de tu límite cubierto para realizar esta transferencia.");
 	    }
 	    this.saldo -= monto;
 	    aTransferir.saldo += monto;
-
 	    this.movimientos.add(new Movimiento("Transferencia enviada", monto, cliente));
 	    aTransferir.movimientos.add(new Movimiento("Transferencia recibida", monto, aTransferir.cliente));
 	    Empleado.getMovimientosGenerales().add(new Movimiento("Transferencia", monto, cliente));
@@ -136,7 +132,7 @@ public class Cuenta {
 	public void depositar(double monto, Cajero cajero) {
 	    if (monto > 0) {
 	        this.saldo += monto;
-	        cajero.setSaldo(cajero.getSaldo() + monto); // suma al cajero
+	        cajero.setSaldo(cajero.getSaldo() + monto); 
 	        Movimiento mov = new Movimiento("Depósito", monto, cliente, cajero);
 	        this.movimientos.add(mov);
 	        Empleado.getMovimientosGenerales().add(mov);
@@ -152,13 +148,13 @@ public class Cuenta {
 	        return;
 	    }
 	    double saldoDisponible = this.saldo + this.limiteCubierto;
-	    // el monto supera incluso el límite cubierto
+
 	    if (monto > saldoDisponible) {
 	        JOptionPane.showMessageDialog(null, 
 	            "Saldo insuficiente. Tu saldo disponible (incluyendo el límite cubierto) es de $" + saldoDisponible);
 	        return;
 	    }
-	    // el monto es mayor al saldo, pero se cubre con el límite
+
 	    if (monto > this.saldo && monto <= saldoDisponible) {
 	        JOptionPane.showMessageDialog(null, 
 	            "Estás utilizando parte de tu límite cubierto. Tu saldo quedará negativo después de este retiro.");
