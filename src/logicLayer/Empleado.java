@@ -147,16 +147,15 @@ public class Empleado extends Usuario {
 	            break;
 
 	        //  Clientes ordenados por saldo de menor a mayor
-	        case 2: // Clientes ordenados por saldo
+	        case 2: 
 
-	            // 1) Filtrar solo los clientes
 	            LinkedList<Cliente> clientes = new LinkedList<>();
 	            for (Usuario usuario : Usuario.getUsuarios()) {
 	                if (usuario.getTipoUsuario() == TipoUsuario.Cliente) {
 	                    clientes.add((Cliente) usuario);
 	                }
 	            }
-	            // 2) Preguntar si ordenar por saldo pesos o dólar
+	            // Preguntar si ordenar por saldo pesos o dólar
 	            String[] tipoSaldo = {"Saldo en pesos", "Saldo en dólares"};
 	            int opcionSaldo = JOptionPane.showOptionDialog(
 	                    null,
@@ -168,7 +167,6 @@ public class Empleado extends Usuario {
 	                    tipoSaldo[0]
 	            );
 
-	            //  Ordenar según opción elegida
 	            LinkedList<Cliente> ordenadosPorSaldo;
 
 	            if (opcionSaldo == 0) {
