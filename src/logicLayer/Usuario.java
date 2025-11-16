@@ -54,7 +54,7 @@ public abstract class Usuario {
 	    for (Usuario usuario : usuarios) {
 	        if (usuario.getMail().equals(mail) && usuario.getPin().equals(contr)) {
 	            if (usuario.getTipoUsuario() == tipoEsperado) {
-	                return usuario; // coincide tipo + datos
+	                return usuario; 
 	            } else {
 	                JOptionPane.showMessageDialog(null, 
 	                    "Este usuario no pertenece al tipo seleccionado (" + tipoEsperado + ")");
@@ -72,14 +72,13 @@ public abstract class Usuario {
 	        if (!this.getPin().equals(pinActual)) {
 	            JOptionPane.showMessageDialog(null, "PIN incorrecto. Intente nuevamente.");
 	        }
-	    } while (!this.getPin().equals(pinActual)); // se repite mientras el pin sea incorrecto
+	    } while (!this.getPin().equals(pinActual)); 
 	    String nuevoPin = Validar.validarCampo("Ingrese el nuevo PIN:");
 	    this.setPin(nuevoPin);
 	    JOptionPane.showMessageDialog(null, "PIN actualizado correctamente.");
 	}
 	
-	
-	//public abstract void menu();
+
 	public void Menu() {
 		JOptionPane.showMessageDialog(null,
 				"Menu general");
