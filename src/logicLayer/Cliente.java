@@ -180,7 +180,7 @@ public class Cliente extends Usuario{
 	            cuentaInversion.simularDia();
 	            break;
 
-	        case 2: // Simular varios dÃias
+	        case 2: // Simular varios dias
 	            int dias = Validar.validarNumero("¿Cuantos dias queres simular?");
 	            cuentaInversion.simularVariosDias(dias);
 	            break;

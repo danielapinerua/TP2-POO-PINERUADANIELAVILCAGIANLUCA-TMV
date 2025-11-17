@@ -7,8 +7,8 @@ import javax.swing.JOptionPane;
 public class CuentaInversion {
     private double saldo;
     private double totalInvertido;
-    private LinkedList<Double> historialTasas; // tasas diarias
-    private LinkedList<Double> historialSaldos; // como fue cambiando el saldo
+    private LinkedList<Double> historialTasas; 
+    private LinkedList<Double> historialSaldos; 
 
     public CuentaInversion() {
         this.saldo = 0;
