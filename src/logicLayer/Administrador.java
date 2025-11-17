@@ -29,7 +29,7 @@ public class Administrador extends Usuario {
 	@Override
 	public String toString() {
 		return "idAdmin=" + idAdmin + ", nombre=" + nombre + ", tipo de usuario=" + tipoUsuario + ", mail="
-				+ mail + "]";
+				+ mail;
 	}
 
 
