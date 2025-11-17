@@ -468,7 +468,7 @@ public class Empleado extends Usuario {
 
                 for (Cliente cliente : clientes) {
                     CuentaInversion cuentaInv = cliente.getCuentaInversion();
-                    texto += cliente.getNombre() + " → Saldo: $" + String.format("%.2f", cuentaInv.getSaldo()) + "\n";
+                    texto += cliente.getNombre() + " - Saldo: $" + String.format("%.2f", cuentaInv.getSaldo()) + "\n";
                 }
 
                 JOptionPane.showMessageDialog(null, texto);
