@@ -304,7 +304,7 @@ public class Cuenta {
 	    this.saldo -= pesos;
 	    this.saldoDolares += dolares;
 	    Movimiento mov = new Movimiento("Cambio de dólares", pesos, cliente);
-	    movimientos.add(mov);
+	    this.movimientos.add(mov);
 	    Empleado.getMovimientosGenerales().add(mov);
 	    
 	    JOptionPane.showMessageDialog(null,
