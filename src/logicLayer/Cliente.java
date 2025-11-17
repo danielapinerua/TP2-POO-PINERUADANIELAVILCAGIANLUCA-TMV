@@ -65,7 +65,7 @@ public class Cliente extends Usuario{
                 	String cbuATransferir = String.valueOf(Validar.validarNumero("Ingrese el CBU a transferir:"));
                     Cuenta aTransferir = null;
 
-                    // Buscar cuenta destino
+                    // Buscar cuenta a transferir
                     for (Cuenta c : Cuenta.getCuentas()) {
                         if (c.getCbu().equals(cbuATransferir)) {
                             aTransferir = c;
