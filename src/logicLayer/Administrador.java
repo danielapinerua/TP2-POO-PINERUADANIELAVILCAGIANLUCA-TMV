@@ -45,7 +45,7 @@ public class Administrador extends Usuario {
 	    Usuario.getUsuarios().add(nuevo);
 
 	    JOptionPane.showMessageDialog(null,
-	        "Empleado creado con éxito.\n\n" +
+	        "Empleado creado con éxito.\n" +
 	        "Nombre: " + nombre +
 	        "\nMail: " + mail +
 	        "\nPIN: " + pin +

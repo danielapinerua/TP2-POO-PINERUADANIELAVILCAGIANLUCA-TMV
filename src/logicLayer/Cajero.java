@@ -174,7 +174,7 @@ public class Cajero {
 	    Cajero.getCajeros().add(new Cajero(200000, "Constituyentes", false));
 	    Cajero.getCajeros().add(new Cajero(0, "Beiro", true));
 	    Cajero.getCajeros().add(new Cajero(100000, "Congreso", true));
-	    Cajero.getCajeros().add(new Cajero(10000, "Sarmiento", true));
+	    Cajero.getCajeros().add(new Cajero(30000, "Sarmiento", true));
 	    Cajero.getCajeros().add(new Cajero(50000, "Nazca", true));
 	}
   
